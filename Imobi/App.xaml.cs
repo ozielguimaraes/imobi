@@ -3,18 +3,30 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Imobi.Services;
 using Imobi.Views;
+using System.Threading.Tasks;
+using Imobi.IoC;
+using Imobi.Services.Interfaces;
 
 namespace Imobi
 {
     public partial class App : Application
     {
-
         public App()
         {
             InitializeComponent();
+            InitializeApp();
+            InitializeNavigation();
+        }
 
-            DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+        private async Task InitializeNavigation()
+        {
+            var navigationService = Bootstraper.AppContainer.Resolve<INavigationService>();
+            await navigationService.InitializeAsync();
+        }
+
+        private void InitializeApp()
+        {
+            Bootstrape  r.AppContainer.RegisterDependencies();
         }
 
         protected override void OnStart()
