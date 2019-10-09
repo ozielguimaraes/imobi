@@ -24,7 +24,8 @@ namespace Imobi.Services
 
         public async Task InitializeAsync()
         {
-            Application.Current.Properties.Add("Logged", true);
+            if (!Application.Current.Properties.ContainsKey("Logged"))
+                Application.Current.Properties.Add("Logged", true);
 
             //logged
             if (Application.Current.Properties.ContainsKey("Logged"))

@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                <Frame Padding="0" HorizontalOptions="CenterAndExpand">
+                <Frame HorizontalOptions="CenterAndExpand">
                     <Label Text="JOSE TESTE" />
                 </Frame>
                 <Frame HorizontalOptions="CenterAndExpand">
