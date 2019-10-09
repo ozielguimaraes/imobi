@@ -29,7 +29,7 @@ namespace Imobi.Services
             //logged
             if (Application.Current.Properties.ContainsKey("Logged"))
             {
-                await NavigateToAsync<MyWalletViewModel>();
+                await NavigateToAsync<ProposalDocsViewModel>();
             }
             //Dont logged
             else
@@ -172,6 +172,7 @@ namespace Imobi.Services
             _mappings.Add(typeof(MenuViewModel), typeof(MenuView));
             _mappings.Add(typeof(LoginViewModel), typeof(LoginView));
             _mappings.Add(typeof(MyWalletViewModel), typeof(MyWalletView));
+            _mappings.Add(typeof(ProposalDocsViewModel), typeof(ProposalDocsView));
             _mappings.Add(typeof(ProposalViewModel), typeof(ProposalView));
             _mappings.Add(typeof(RegisterViewModel), typeof(RegisterView));
         }

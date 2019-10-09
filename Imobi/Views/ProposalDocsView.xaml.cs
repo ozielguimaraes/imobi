@@ -5,9 +5,9 @@ using Xamarin.Forms.Xaml;
 namespace Imobi.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MenuView : ContentPage
+    public partial class ProposalDocsView : ContentPage
     {
-        public MenuView()
+        public ProposalDocsView()
         {
             InitializeComponent();
         }

@@ -1,9 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Imobi.Services;
-using Imobi.Views;
-using System.Threading.Tasks;
+﻿using Xamarin.Forms;
 using Imobi.IoC;
 using Imobi.Services.Interfaces;
 
