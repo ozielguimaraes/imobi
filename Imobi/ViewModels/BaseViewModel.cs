@@ -7,6 +7,7 @@ using Xamarin.Forms;
 
 using Imobi.Models;
 using Imobi.Services;
+using System.Threading.Tasks;
 
 namespace Imobi.ViewModels
 {
@@ -52,5 +53,10 @@ namespace Imobi.ViewModels
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
+        public virtual Task InitializeAsync(object data)
+        {
+            return Task.FromResult(false);
+        }
     }
 }

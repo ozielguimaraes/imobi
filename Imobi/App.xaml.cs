@@ -18,15 +18,15 @@ namespace Imobi
             InitializeNavigation();
         }
 
-        private async Task InitializeNavigation()
-        {
-            var navigationService = Bootstraper.AppContainer.Resolve<INavigationService>();
-            await navigationService.InitializeAsync();
-        }
-
         private void InitializeApp()
         {
-            Bootstrape  r.AppContainer.RegisterDependencies();
+            Bootstraper.RegisterDependencies();
+        }
+
+        private async void InitializeNavigation()
+        {
+            var navigationService = Bootstraper.Resolve<INavigationService>();
+            await navigationService.InitializeAsync();
         }
 
         protected override void OnStart()
