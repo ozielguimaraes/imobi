@@ -29,7 +29,7 @@ namespace Imobi.Services
             //logged
             if (Application.Current.Properties.ContainsKey("Logged"))
             {
-                await NavigateToAsync<HomeViewModel>();
+                await NavigateToAsync<MyWalletViewModel>();
             }
             //Dont logged
             else
@@ -132,7 +132,6 @@ namespace Imobi.Services
             {
                 if (CurrentApplication.MainPage is AmilMobileNavigationPage navigationPage)
                     await navigationPage.PushAsync(page);
-
                 else CurrentApplication.MainPage = new AmilMobileNavigationPage(page);
             }
 

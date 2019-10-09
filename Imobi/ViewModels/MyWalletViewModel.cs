@@ -1,6 +1,6 @@
 ﻿namespace Imobi.ViewModels
 {
-    public class MyWalletViewModel
+    public class MyWalletViewModel : BaseViewModel
     {
     }
 }
