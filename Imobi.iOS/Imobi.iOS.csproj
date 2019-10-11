@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderers\BoxGradientViewRenderer.cs" />
     <Compile Include="Renderers\ImageCircleRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
@@ -139,5 +140,14 @@
       <Project>{4E07792F-AE37-4AE3-9531-5DD4877CFEB2}</Project>
       <Name>Imobi</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_bar_graph_white%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_bar_graph_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_bar_graph_white%402x.png" />
   </ItemGroup>
 </Project>

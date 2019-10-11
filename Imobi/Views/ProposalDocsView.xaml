@@ -12,11 +12,11 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="16,0,16,0">
-                <StackLayout Orientation="Horizontal">
+                <StackLayout Margin="0,16,0,0" Orientation="Horizontal">
                     <Image
-                        HeightRequest="16"
+                        HeightRequest="32"
                         Source="ic_plus_circle_white"
-                        WidthRequest="16" />
+                        WidthRequest="32" />
                     <Label
                         FontAttributes="Bold"
                         FontSize="Medium"
@@ -24,38 +24,49 @@
                         Text="OP"
                         TextColor="{StaticResource TitleColorDefault}" />
                     <Image
-                        HeightRequest="16"
-                        Source="ic_plus_circle_white"
-                        WidthRequest="16" />
+                        HeightRequest="24"
+                        Source="ic_bar_graph_white"
+                        WidthRequest="24" />
                 </StackLayout>
-                <StackLayout Margin="0,24,0,0" Orientation="Horizontal">
-                    <BoxView
-                        Margin="0"
-                        HeightRequest="1"
-                        HorizontalOptions="End"
-                        VerticalOptions="CenterAndExpand"
-                        Color="{StaticResource TitleColorDefault}" />
-                    <components:ImageCircle
-                        FillColor="{StaticResource TitleColorDefault}"
-                        HeightRequest="16"
-                        WidthRequest="16" />
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                    <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal"
+                        Spacing="0">
+                        <components:BoxGradientView
+                            ColorsList="#c1c1c1,#1c2340"
+                            HeightRequest="2"
+                            HorizontalOptions="FillAndExpand"
+                            Mode="ToTopLeft"
+                            VerticalOptions="CenterAndExpand" />
+                        <components:ImageCircle
+                            FillColor="{StaticResource TitleColorDefault}"
+                            HeightRequest="16"
+                            WidthRequest="16" />
+                    </StackLayout>
                     <Label
+                        Grid.Column="1"
+                        Margin="8,0,8,0"
                         FontAttributes="Bold"
                         FontSize="Medium"
-                        HorizontalOptions="CenterAndExpand"
                         Text="ON PROPOSTA"
                         TextColor="{StaticResource TitleColorDefault}" />
-
-                    <components:ImageCircle
-                        FillColor="{StaticResource TitleColorDefault}"
-                        HeightRequest="16"
-                        WidthRequest="16" />
-                    <BoxView
-                        Margin="0"
-                        HeightRequest="1"
-                        HorizontalOptions="End"
-                        VerticalOptions="CenterAndExpand"
-                        Color="{StaticResource TitleColorDefault}" />
+                    <StackLayout
+                        Grid.Column="2"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal"
+                        Spacing="0">
+                        <components:ImageCircle
+                            FillColor="{StaticResource TitleColorDefault}"
+                            HeightRequest="16"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="16" />
+                        <components:BoxGradientView
+                            ColorsList="#ffffff,#1c2340"
+                            HeightRequest="2"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <StackLayout>
