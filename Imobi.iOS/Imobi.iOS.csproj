@@ -150,4 +150,13 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_bar_graph_white%402x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_4squares_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_4squares_white%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_4squares_white%403x.png" />
+  </ItemGroup>
 </Project>
