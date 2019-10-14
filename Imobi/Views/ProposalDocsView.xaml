@@ -175,7 +175,7 @@
                             Color="White" />
                     </StackLayout>
                 </StackLayout>
-                <StackLayout Margin="0,16,0,0" Orientation="Horizontal">
+                <StackLayout Margin="0,16,0,0" Orientation="Hor izontal">
                     <Frame
                         Padding="0"
                         BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
