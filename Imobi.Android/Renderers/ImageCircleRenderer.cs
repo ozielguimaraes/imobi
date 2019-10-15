@@ -22,7 +22,7 @@ namespace Imobi.Droid.Renderers
         {
             base.OnElementChanged(e);
 
-            if (e.OldElement == null)
+            if (e.OldElement is null)
             {
                 if ((int)Android.OS.Build.VERSION.SdkInt < 18)
                     SetLayerType(LayerType.Software, null);

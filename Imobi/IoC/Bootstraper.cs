@@ -1,6 +1,10 @@
 ﻿using Autofac;
+using Imobi.Managers.File;
+using Imobi.Managers.File.Interfaces;
 using Imobi.Services;
 using Imobi.Services.Interfaces;
+using Imobi.Validations;
+using Imobi.Validations.Interfaces;
 using Imobi.ViewModels;
 using System;
 
@@ -25,7 +29,16 @@ namespace Imobi.IoC
             builder.RegisterType<ProposalViewModel>();
 
             //Services
+            builder.RegisterType<MessageService>().As<IMessageService>();
             builder.RegisterType<NavigationService>().As<INavigationService>();
+            builder.RegisterType<ProposalFileTypeService>().As<IProposalFileTypeService>();
+
+            //Validations
+            builder.RegisterType<FileValidation>().As<IFileValidation>();
+            builder.RegisterType<PermissionValidation>().As<IPermissionValidation>();
+
+            //Managers
+            builder.RegisterType<FileManager>().As<IFileManager>();
 
             _container = builder.Build();
         }

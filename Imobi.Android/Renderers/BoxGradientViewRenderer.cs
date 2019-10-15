@@ -83,7 +83,7 @@ namespace Imobi.Droid.Renderers
         {
             base.OnElementChanged(e);
 
-            if (e.OldElement != null || Element == null) return;
+            if (e.OldElement != null || Element is null) return;
 
             try
             {

@@ -6,12 +6,20 @@ using Xamarin.Forms;
 using Imobi.Models;
 using Imobi.Services;
 using System.Threading.Tasks;
+using Imobi.IoC;
+using Imobi.Services.Interfaces;
 
 namespace Imobi.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+        protected IMessageService MessageService { get; private set; }
+
+        public BaseViewModel()
+        {
+            MessageService = Bootstraper.Resolve<IMessageService>();
+        }
 
         private bool isBusy = false;
 
@@ -49,7 +57,7 @@ namespace Imobi.ViewModels
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
-            if (changed == null)
+            if (changed is null)
                 return;
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));

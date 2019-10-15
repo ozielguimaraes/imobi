@@ -175,7 +175,7 @@
                             Color="White" />
                     </StackLayout>
                 </StackLayout>
-                <StackLayout Margin="0,16,0,0" Orientation="Hor izontal">
+                <StackLayout Margin="0,16,0,0" Orientation="Horizontal">
                     <Frame
                         Padding="0"
                         BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
@@ -290,7 +290,11 @@
                         HeightRequest="16"
                         Source="ic_plus_circle_white"
                         WidthRequest="16" />
-                    <Label Text="ADD NOVO DOCUMENTO" TextColor="{StaticResource TextColorDefault}" />
+                    <Label Text="ADD NOVO DOCUMENTO" TextColor="{StaticResource TextColorDefault}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding IncludeAttachmentCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

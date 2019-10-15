@@ -153,7 +153,7 @@ namespace Imobi.Services
         {
             Type pageType = GetPageTypeForViewModel(viewModelType);
 
-            if (pageType == null)
+            if (pageType is null)
             {
                 throw new Exception($"Mapping type for {viewModelType} is not a page");
             }

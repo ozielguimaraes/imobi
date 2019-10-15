@@ -53,6 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Plugin.Permissions">
+      <Version>3.0.0.12</Version>
+    </PackageReference>
     <PackageReference Include="Xam.Plugin.Media">
       <Version>4.0.1.5</Version>
     </PackageReference>
@@ -66,9 +69,13 @@
     <PackageReference Include="Xamarin.Android.Support.Core.Utils" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.CustomTabs" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker">
+      <Version>2.1.34</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Managers\File\ImageResizer.cs" />
     <Compile Include="Renderers\BoxGradientViewRenderer.cs" />
     <Compile Include="Renderers\ImageCircleRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -144,6 +151,18 @@
     <AndroidResource Include="Resources\xml\file_paths.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_check_green.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_x_red.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_x_red.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_check_green.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_check_green.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_x_red.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_check_green.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_x_red.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_check_green.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_x_red.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_check_green.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_x_red.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
