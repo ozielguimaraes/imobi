@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.imobi" android:installLocation="auto">
   <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
-  <application android:label="Imobi"></application>
   <uses-feature android:name="android.hardware.camera" android:required="true" />
   <uses-feature android:name="android.hardware.microphone" android:required="true" />
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -9,11 +8,12 @@
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.CAMERA" />
 
-  <provider android:name="android.support.v4.content.FileProvider"
-				android:authorities="${applicationId}.fileprovider"
-				android:exported="false"
-				android:grantUriPermissions="true">
-    <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
-      android:resource="@xml/file_paths"></meta-data>
-  </provider>
+  <application android:label="Imobi">
+    <provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
+      <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
+    </provider>
+    <provider android:name="android.support.v4.content.FileProvider" android:authorities="com.companyname.imobi.fileprovider" android:exported="false" android:grantUriPermissions="true">
+      <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
+    </provider>
+  </application>
 </manifest>

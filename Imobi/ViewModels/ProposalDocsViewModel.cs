@@ -19,7 +19,7 @@ namespace Imobi.ViewModels
         private const string CAMERA = "Câmera";
         private const string GALERIA = "Galeria";
         private const string FILES = "Arquivos";
-        private readonly string[] AttachFileOptions = { CAMERA, GALERIA };
+        private readonly string[] AttachFileOptions = { CAMERA, GALERIA, FILES };
         private readonly IFileManager _fileManager;
 
         private string _documentType;
@@ -106,10 +106,9 @@ namespace Imobi.ViewModels
             }
             catch (Exception ex)
             {
-                Console.WriteLine("----- START ERROR -------");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("----- END ERROR -------");
+                ExceptionService.TrackError(ex, "IncludeAttachmentAsync");
             }
+            finally { IsBusy = false; }
         }
 
         private async Task PickedFileHandler(FilePickedDto media)

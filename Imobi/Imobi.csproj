@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.1.1" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.848062" />  

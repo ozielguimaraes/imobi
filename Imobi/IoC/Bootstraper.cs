@@ -29,6 +29,7 @@ namespace Imobi.IoC
             builder.RegisterType<ProposalViewModel>();
 
             //Services
+            builder.RegisterType<ExceptionService>().As<IExceptionService>();
             builder.RegisterType<MessageService>().As<IMessageService>();
             builder.RegisterType<NavigationService>().As<INavigationService>();
             builder.RegisterType<ProposalFileTypeService>().As<IProposalFileTypeService>();

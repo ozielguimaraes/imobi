@@ -1,17 +1,19 @@
-﻿
-using Foundation;
+﻿using Foundation;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using UIKit;
 
 namespace Imobi.iOS
 {
-    // The UIApplicationDelegate for the application. This class is responsible for launching the 
-    // User Interface of the application, as well as listening (and optionally responding) to 
+    // The UIApplicationDelegate for the application. This class is responsible for launching the
+    // User Interface of the application, as well as listening (and optionally responding) to
     // application events from iOS.
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
         //
-        // This method is invoked when the application has loaded and is ready to run. In this 
+        // This method is invoked when the application has loaded and is ready to run. In this
         // method you should instantiate the window, load the UI into it and then make the window
         // visible.
         //
@@ -21,6 +23,8 @@ namespace Imobi.iOS
         {
             global::Xamarin.Forms.Forms.SetFlags("Shell_Experimental", "Visual_Experimental", "CollectionView_Experimental", "FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init();
+            AppCenter.Start(Constants.Constants.AppCenter.iOS.Key, typeof(Analytics), typeof(Crashes));
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

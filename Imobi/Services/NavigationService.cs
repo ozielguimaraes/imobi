@@ -11,7 +11,6 @@ namespace Imobi.Services
 {
     public class NavigationService : INavigationService
     {
-        //private readonly IAuthenticationService _authenticationService;
         private readonly Dictionary<Type, Type> _mappings;
 
         protected Application CurrentApplication => Application.Current;
@@ -27,12 +26,10 @@ namespace Imobi.Services
             if (!Application.Current.Properties.ContainsKey("Logged"))
                 Application.Current.Properties.Add("Logged", true);
 
-            //logged
             if (Application.Current.Properties.ContainsKey("Logged"))
             {
                 await NavigateToAsync<ProposalDocsViewModel>();
             }
-            //Dont logged
             else
             {
                 await NavigateToAsync<LoginViewModel>();

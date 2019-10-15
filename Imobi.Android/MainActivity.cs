@@ -3,6 +3,9 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Plugin.CurrentActivity;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace Imobi.Droid
 {
@@ -20,6 +23,7 @@ namespace Imobi.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            AppCenter.Start(Constants.Constants.AppCenter.Android.Key, typeof(Analytics), typeof(Crashes));
             LoadApplication(new App());
         }
 
