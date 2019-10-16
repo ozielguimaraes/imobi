@@ -6,6 +6,7 @@
     xmlns:components="clr-namespace:Imobi.Views.Components"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:templates="clr-namespace:Imobi.Templates"
     BackgroundColor="{StaticResource BackgroundColorPage}"
     NavigationPage.HasNavigationBar="false"
     mc:Ignorable="d">
@@ -176,13 +177,18 @@
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Margin="0,16,0,0" Orientation="Horizontal">
-                    <Frame
+                    <FlexLayout
+                        BindableLayout.ItemTemplateSelector="{templates:BuyerDocumentGroupDataTemplateSelector}"
+                        BindableLayout.ItemsSource="{Binding Buyer.Documents}"
+                        Direction="Column" />
+
+                    <!--<Frame
                         Padding="0"
                         BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
-                        HeightRequest="60"
+                        HeightRequest="80"
                         HorizontalOptions="Start"
                         VerticalOptions="Start"
-                        WidthRequest="60">
+                        WidthRequest="80">
                         <StackLayout>
                             <Image
                                 Margin="0,5,5,0"
@@ -200,10 +206,10 @@
                     <Frame
                         Padding="0"
                         BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
-                        HeightRequest="60"
+                        HeightRequest="80"
                         HorizontalOptions="Start"
                         VerticalOptions="Start"
-                        WidthRequest="60">
+                        WidthRequest="80">
                         <StackLayout>
                             <Image
                                 Margin="0,5,5,0"
@@ -221,10 +227,10 @@
                     <Frame
                         Padding="0"
                         BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
-                        HeightRequest="60"
+                        HeightRequest="80"
                         HorizontalOptions="Start"
                         VerticalOptions="Start"
-                        WidthRequest="60">
+                        WidthRequest="80">
                         <StackLayout>
                             <Image
                                 Margin="0,5,5,0"
@@ -238,63 +244,20 @@
                                 TextColor="{StaticResource TextColorDefault}"
                                 VerticalOptions="Center" />
                         </StackLayout>
-                    </Frame>
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
-                        HeightRequest="60"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Start"
-                        WidthRequest="60">
-                        <StackLayout>
-                            <Image
-                                Margin="0,5,5,0"
-                                HeightRequest="16"
-                                HorizontalOptions="EndAndExpand"
-                                Source="ic_plus_circle_white"
-                                WidthRequest="16" />
-                            <Label
-                                HorizontalOptions="Center"
-                                Text="RG"
-                                TextColor="{StaticResource TextColorDefault}"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </Frame>
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
-                        HeightRequest="60"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Start"
-                        WidthRequest="60">
-                        <StackLayout>
-                            <Image
-                                Margin="0,5,5,0"
-                                HeightRequest="16"
-                                HorizontalOptions="EndAndExpand"
-                                Source="ic_plus_circle_white"
-                                WidthRequest="16" />
-                            <Label
-                                HorizontalOptions="Center"
-                                Text="RG"
-                                TextColor="{StaticResource TextColorDefault}"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </Frame>
+                    </Frame>-->
                 </StackLayout>
                 <StackLayout
                     Margin="0,16,0,0"
                     HorizontalOptions="CenterAndExpand"
                     Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding IncludeAttachmentCommand}" />
+                    </StackLayout.GestureRecognizers>
                     <Image
                         HeightRequest="16"
                         Source="ic_plus_circle_white"
                         WidthRequest="16" />
-                    <Label Text="ADD NOVO DOCUMENTO" TextColor="{StaticResource TextColorDefault}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding IncludeAttachmentCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                    <Label Text="ADD NOVO DOCUMENTO" TextColor="{StaticResource TextColorDefault}" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

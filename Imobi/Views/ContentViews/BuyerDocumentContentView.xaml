@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Imobi.Views.ContentViews.BuyerDocumentContentView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Margin="5"
+    mc:Ignorable="d">
+    <ContentView.Content>
+        <StackLayout Spacing="15">
+            <Frame
+                Padding="0"
+                BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
+                HeightRequest="70"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                WidthRequest="70">
+                <StackLayout>
+                    <Image
+                        Margin="0,5,5,0"
+                        HeightRequest="16"
+                        HorizontalOptions="EndAndExpand"
+                        Source="{Binding Image}"
+                        WidthRequest="16" />
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="{Binding BuyerDocumentType}"
+                        TextColor="{StaticResource TextColorDefault}"
+                        VerticalOptions="Center" />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

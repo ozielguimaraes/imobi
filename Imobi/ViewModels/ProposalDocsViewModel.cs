@@ -5,7 +5,6 @@ using Imobi.Managers.File.Interfaces;
 using Imobi.Services.Interfaces;
 using Imobi.Validations.Interfaces;
 using System;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -61,6 +60,7 @@ namespace Imobi.ViewModels
                     return;
                 }
                 DocumentType = await MessageService.ShowOptionsAsync("Qual tipo de documento deseja selecionar?", options: fileTypes);
+                if (DocumentType is null) return;
 
                 var addFileFrom = await MessageService.ShowOptionsAsync("Agora escolha de onde deseja enviar os arquivos", AttachFileOptions);
 
@@ -69,7 +69,11 @@ namespace Imobi.ViewModels
                 if (addFileFrom.Equals(CAMERA))
                 {
                     var file = await _fileManager.TakePhotoAsync();
-                    if (file != null) media = new FilePickedDto(file);
+                    if (file != null)
+                    {
+                        media = new FilePickedDto(file);
+                        await PickedFileHandler(media);
+                    }
                 }
                 else if (addFileFrom.Equals(FILES))
                 {
@@ -79,6 +83,7 @@ namespace Imobi.ViewModels
                         var tempPath = Path.GetTempPath();
                         var folder = Path.Combine(tempPath, "tmp");
                         if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
+
                         var path = Path.Combine(folder, file.FileName);
                         File.WriteAllBytes(path, file.DataArray);
                         file.FilePath = path;
@@ -136,7 +141,7 @@ namespace Imobi.ViewModels
                 return;
             }
 
-            Buyer.Files.Add(media);
+            Buyer.NewDocumentAdded(DocumentType, media);
         }
     }
 }
