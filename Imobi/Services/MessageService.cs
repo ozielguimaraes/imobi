@@ -51,9 +51,9 @@ namespace Imobi.Services
             return await Application.Current.MainPage.DisplayAlert(title, message, "OK", "Cancelar");
         }
 
-        public async Task<string> ShowOptionsAsync(string message, string cancel, params string[] options)
+        public async Task<string> ShowOptionsAsync(string message, params string[] options)
         {
-            return await Application.Current.MainPage.DisplayActionSheet(message, cancel, null, options);
+            return await Application.Current.MainPage.DisplayActionSheet(message, "Cancelar", null, options);
         }
 
         public async Task<string> ShowOptionsAsync(string message, IEnumerable<string> options, string cancel)

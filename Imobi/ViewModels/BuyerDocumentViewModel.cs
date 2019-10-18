@@ -1,8 +1,13 @@
-﻿namespace Imobi.Dtos
+﻿using Imobi.Dtos;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
+
+namespace Imobi.ViewModels
 {
-    public class BuyerDocumentDto
+    public class BuyerDocumentViewModel : BaseViewModel
     {
-        public BuyerDocumentDto(string buyerDocumentType, FilePickedDto file)
+        public BuyerDocumentViewModel(string buyerDocumentType, FilePickedDto file)
         {
             BuyerDocumentType = buyerDocumentType;
             File = file;

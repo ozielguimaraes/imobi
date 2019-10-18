@@ -177,13 +177,7 @@
                             Color="White" />
                     </StackLayout>
                 </StackLayout>
-                <views:ProposalDocsView />
-                <!--<StackLayout Margin="0,16,0,0" Orientation="Horizontal">
-                    <FlexLayout
-                        BindableLayout.ItemTemplateSelector="{templates:BuyerDocumentGroupDataTemplateSelector}"
-                        BindableLayout.ItemsSource="{Binding BuyerSelected.Documents}"
-                        Direction="Column" />
-                </StackLayout>-->
+                <views:ProposalDocsView BindingContext="{Binding BuyerSelected}" />
                 <StackLayout
                     Margin="0,16,0,0"
                     HorizontalOptions="CenterAndExpand"

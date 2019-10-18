@@ -3,22 +3,18 @@
     x:Class="Imobi.Views.ProposalDocsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:components="clr-namespace:Imobi.Views.Components"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:templates="clr-namespace:Imobi.Templates"
-    BackgroundColor="{StaticResource BackgroundColorPage}"
     mc:Ignorable="d">
     <ContentView.Content>
-        <ScrollView>
-            <StackLayout Margin="16,0,16,0">
-                <StackLayout Margin="0,16,0,0" Orientation="Horizontal">
-                    <FlexLayout
-                        BindableLayout.ItemTemplateSelector="{templates:BuyerDocumentGroupDataTemplateSelector}"
-                        BindableLayout.ItemsSource="{Binding .}"
-                        Direction="Column" />
-                </StackLayout>
+        <StackLayout Margin="16,0,16,0">
+            <StackLayout Margin="0,16,0,0" Orientation="Horizontal">
+                <FlexLayout
+                    BindableLayout.ItemTemplateSelector="{templates:BuyerDocumentGroupDataTemplateSelector}"
+                    BindableLayout.ItemsSource="{Binding Documents}"
+                    Direction="Column" />
             </StackLayout>
-        </ScrollView>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>

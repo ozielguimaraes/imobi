@@ -27,7 +27,11 @@
                         HorizontalOptions="Center"
                         Text="{Binding BuyerDocumentType}"
                         TextColor="{StaticResource TextColorDefault}"
-                        VerticalOptions="Center" />
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenBuyerDocumentOptionsCommand}" CommandParameter="{Binding .}" />
+                        </Label.GestureRecognizers>
+                    </Label>
                 </StackLayout>
             </Frame>
         </StackLayout>

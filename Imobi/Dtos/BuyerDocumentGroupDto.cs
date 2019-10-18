@@ -1,14 +1,15 @@
-﻿using System.Collections.ObjectModel;
+﻿using Imobi.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace Imobi.Dtos
 {
     public class BuyerDocumentGroupDto
     {
-        public BuyerDocumentGroupDto(BuyerDocumentDto buyerDocument)
+        public BuyerDocumentGroupDto(BuyerDocumentViewModel buyerDocument)
         {
-            BuyerDocuments = new ObservableCollection<BuyerDocumentDto> { buyerDocument };
+            BuyerDocuments = new ObservableCollection<BuyerDocumentViewModel> { buyerDocument };
         }
 
-        public ObservableCollection<BuyerDocumentDto> BuyerDocuments { get; private set; }
+        public ObservableCollection<BuyerDocumentViewModel> BuyerDocuments { get; private set; }
     }
 }

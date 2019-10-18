@@ -5,7 +5,6 @@ using Imobi.Managers.File.Interfaces;
 using Imobi.Services.Interfaces;
 using Imobi.Validations.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -30,6 +29,21 @@ namespace Imobi.ViewModels
         }
 
         public ICommand IncludeAttachmentCommand => new Command(async () => await IncludeAttachmentAsync());
+        public ICommand OpenBuyerDocumentOptionsCommand => new Command<BuyerDocumentViewModel>(async (item) => await OpenBuyerDocumentOptionsAsync(item));
+
+        private async Task OpenBuyerDocumentOptionsAsync(BuyerDocumentViewModel itemSelected)
+        {
+            var optionSelected = await MessageService.ShowOptionsAsync("Escolha uma opção", "Visualizar", "Excluir");
+            if (optionSelected is null) return;
+
+            if (optionSelected.Equals("Excluir"))
+            {
+                RemoveDocument(itemSelected);
+            }
+            else if (optionSelected.Equals("Visualizar"))
+            {
+            }
+        }
 
         private string _documentType;
 
@@ -149,9 +163,9 @@ namespace Imobi.ViewModels
             NewDocumentAdded(DocumentType, media);
         }
 
-        internal void NewDocumentAdded(string documentType, FilePickedDto file)
+        private void NewDocumentAdded(string documentType, FilePickedDto file)
         {
-            var buyerDocument = new BuyerDocumentDto(documentType, file);
+            var buyerDocument = new BuyerDocumentViewModel(documentType, file);
             var fileAddedTolist = false;
             foreach (var item in Documents)
             {
@@ -165,6 +179,17 @@ namespace Imobi.ViewModels
             {
                 var newDocument = new BuyerDocumentGroupDto(buyerDocument);
                 Documents.Add(newDocument);
+            }
+        }
+
+        private void RemoveDocument(BuyerDocumentViewModel itemSelected)
+        {
+            foreach (var item in Documents.SelectMany(s => s.BuyerDocuments))
+            {
+                if (item.BuyerDocumentType.Equals(itemSelected.BuyerDocumentType))
+                {
+                    var toRemove = item;
+                }
             }
         }
     }

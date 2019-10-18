@@ -17,7 +17,7 @@ namespace Imobi.Services.Interfaces
 
         Task<bool> ShowConfirmationAsync(string message, string title = Constants.Constants.AppName);
 
-        Task<string> ShowOptionsAsync(string message, string cancel = "Cancelar", params string[] options);
+        Task<string> ShowOptionsAsync(string message, params string[] options);
 
         Task<string> ShowOptionsAsync(string message, IEnumerable<string> options, string cancel = "Cancelar");
     }
