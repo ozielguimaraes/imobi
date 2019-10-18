@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<ContentView
     x:Class="Imobi.Views.ProposalDocsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -8,194 +8,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:templates="clr-namespace:Imobi.Templates"
     BackgroundColor="{StaticResource BackgroundColorPage}"
-    NavigationPage.HasNavigationBar="false"
     mc:Ignorable="d">
-    <ContentPage.Content>
+    <ContentView.Content>
         <ScrollView>
             <StackLayout Margin="16,0,16,0">
                 <StackLayout Margin="0,16,0,0" Orientation="Horizontal">
-                    <Image
-                        HeightRequest="32"
-                        Source="ic_4squares_white"
-                        WidthRequest="32" />
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="Medium"
-                        HorizontalOptions="CenterAndExpand"
-                        Text="OP"
-                        TextColor="{StaticResource TitleColorDefault}" />
-                    <Image
-                        HeightRequest="24"
-                        Source="ic_bar_graph_white"
-                        WidthRequest="24" />
-                </StackLayout>
-                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                    <StackLayout
-                        HorizontalOptions="FillAndExpand"
-                        Orientation="Horizontal"
-                        Spacing="0">
-                        <components:BoxGradientView
-                            ColorsList="#c1c1c1,#1c2340"
-                            HeightRequest="2"
-                            HorizontalOptions="FillAndExpand"
-                            Mode="ToTopLeft"
-                            VerticalOptions="CenterAndExpand" />
-                        <components:ImageCircle
-                            FillColor="{StaticResource TitleColorDefault}"
-                            HeightRequest="16"
-                            WidthRequest="16" />
-                    </StackLayout>
-                    <Label
-                        Grid.Column="1"
-                        Margin="8,0,8,0"
-                        FontAttributes="Bold"
-                        FontSize="Medium"
-                        Text="ON PROPOSTA"
-                        TextColor="{StaticResource TitleColorDefault}" />
-                    <StackLayout
-                        Grid.Column="2"
-                        HorizontalOptions="FillAndExpand"
-                        Orientation="Horizontal"
-                        Spacing="0">
-                        <components:ImageCircle
-                            FillColor="{StaticResource TitleColorDefault}"
-                            HeightRequest="16"
-                            VerticalOptions="CenterAndExpand"
-                            WidthRequest="16" />
-                        <components:BoxGradientView
-                            ColorsList="#ffffff,#1c2340"
-                            HeightRequest="2"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="CenterAndExpand" />
-                    </StackLayout>
-                </StackLayout>
-                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                    <StackLayout HorizontalOptions="StartAndExpand">
-                        <Label Text="FINANCIADO" TextColor="{StaticResource TextColorDefault}" />
-                        <Label Text="R$ 300,000,88" TextColor="{StaticResource TextColorDefault}" />
-                    </StackLayout>
-                    <Image
-                        HeightRequest="50"
-                        HorizontalOptions="Center"
-                        Source="ic_triangule_white"
-                        WidthRequest="150" />
-                    <StackLayout HorizontalOptions="EndAndExpand">
-                        <Label Text="NUMERO" TextColor="{StaticResource TextColorDefault}" />
-                        <Label
-                            HorizontalTextAlignment="End"
-                            Text="38987"
-                            TextColor="{StaticResource TextColorDefault}" />
-                    </StackLayout>
-                </StackLayout>
-                <StackLayout
-                    Margin="0,32,0,0"
-                    HorizontalOptions="FillAndExpand"
-                    Orientation="Horizontal">
-                    <Frame
-                        BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
-                        CornerRadius="8"
-                        HasShadow="True"
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="CenterAndExpand">
-                        <StackLayout>
-                            <Image
-                                HeightRequest="16"
-                                Source="ic_plus_circle_white"
-                                WidthRequest="16" />
-                            <Label Text="JOSE TESTE" TextColor="{StaticResource TextColorDefault}" />
-                        </StackLayout>
-                    </Frame>
-                    <Frame
-                        BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
-                        CornerRadius="8"
-                        HasShadow="True"
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="CenterAndExpand">
-                        <StackLayout>
-                            <Image
-                                HeightRequest="16"
-                                Source="ic_plus_circle_white"
-                                WidthRequest="16" />
-                            <Label Text="MARIA TESTE" TextColor="{StaticResource TextColorDefault}" />
-                        </StackLayout>
-                    </Frame>
-                </StackLayout>
-                <StackLayout
-                    Margin="0,16,0,0"
-                    HorizontalOptions="FillAndExpand"
-                    Orientation="Horizontal">
-                    <BoxView
-                        BackgroundColor="{StaticResource TextColorDefault}"
-                        HeightRequest="1"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="CenterAndExpand" />
-                    <Label Text="Comprador" TextColor="{StaticResource TextColorDefault}" />
-                    <BoxView
-                        BackgroundColor="{StaticResource TextColorDefault}"
-                        HeightRequest="1"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="CenterAndExpand" />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <StackLayout HorizontalOptions="FillAndExpand">
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="Medium"
-                            Text="Docs"
-                            TextColor="{StaticResource TitleColorDefault}" />
-                        <BoxView
-                            HeightRequest="1"
-                            HorizontalOptions="StartAndExpand"
-                            VerticalOptions="CenterAndExpand"
-                            Color="White" />
-                    </StackLayout>
-                    <StackLayout HorizontalOptions="StartAndExpand">
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="Medium"
-                            Text="Ficha"
-                            TextColor="{StaticResource TitleColorDefault}" />
-                        <BoxView
-                            HeightRequest="1"
-                            HorizontalOptions="CenterAndExpand"
-                            IsVisible="False"
-                            VerticalOptions="CenterAndExpand"
-                            Color="White" />
-                    </StackLayout>
-                    <StackLayout HorizontalOptions="EndAndExpand">
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="Medium"
-                            Text="Fluxo"
-                            TextColor="{StaticResource TitleColorDefault}" />
-                        <BoxView
-                            HeightRequest="1"
-                            HorizontalOptions="CenterAndExpand"
-                            IsVisible="False"
-                            VerticalOptions="CenterAndExpand"
-                            Color="White" />
-                    </StackLayout>
-                </StackLayout>
-                <StackLayout Margin="0,16,0,0" Orientation="Horizontal">
                     <FlexLayout
                         BindableLayout.ItemTemplateSelector="{templates:BuyerDocumentGroupDataTemplateSelector}"
-                        BindableLayout.ItemsSource="{Binding BuyerSelected.Documents}"
+                        BindableLayout.ItemsSource="{Binding .}"
                         Direction="Column" />
-                </StackLayout>
-                <StackLayout
-                    Margin="0,16,0,0"
-                    HorizontalOptions="CenterAndExpand"
-                    Orientation="Horizontal">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding IncludeAttachmentCommand}" />
-                    </StackLayout.GestureRecognizers>
-                    <Image
-                        HeightRequest="16"
-                        Source="ic_plus_circle_white"
-                        WidthRequest="16" />
-                    <Label Text="ADD NOVO DOCUMENTO" TextColor="{StaticResource TextColorDefault}" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>
-    </ContentPage.Content>
-</ContentPage>
+    </ContentView.Content>
+</ContentView>

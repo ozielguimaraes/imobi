@@ -7,6 +7,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:templates="clr-namespace:Imobi.Templates"
+    xmlns:views="clr-namespace:Imobi.Views"
     BackgroundColor="{StaticResource BackgroundColorPage}"
     NavigationPage.HasNavigationBar="false"
     mc:Ignorable="d">
@@ -176,12 +177,13 @@
                             Color="White" />
                     </StackLayout>
                 </StackLayout>
-                <StackLayout Margin="0,16,0,0" Orientation="Horizontal">
+                <views:ProposalDocsView />
+                <!--<StackLayout Margin="0,16,0,0" Orientation="Horizontal">
                     <FlexLayout
                         BindableLayout.ItemTemplateSelector="{templates:BuyerDocumentGroupDataTemplateSelector}"
                         BindableLayout.ItemsSource="{Binding BuyerSelected.Documents}"
                         Direction="Column" />
-                </StackLayout>
+                </StackLayout>-->
                 <StackLayout
                     Margin="0,16,0,0"
                     HorizontalOptions="CenterAndExpand"
