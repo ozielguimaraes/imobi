@@ -25,7 +25,10 @@ namespace Imobi.IoC
             builder.RegisterType<MenuViewModel>();
             builder.RegisterType<RegisterViewModel>();
             builder.RegisterType<MyWalletViewModel>();
+            builder.RegisterType<ListProposalFormViewModel>();
             builder.RegisterType<ProposalDocsViewModel>();
+            builder.RegisterType<ProposalFormViewModel>();
+            builder.RegisterType<ProposalFlowViewModel>();
             builder.RegisterType<ProposalViewModel>();
 
             //Services

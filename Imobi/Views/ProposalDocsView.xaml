@@ -179,72 +179,8 @@
                 <StackLayout Margin="0,16,0,0" Orientation="Horizontal">
                     <FlexLayout
                         BindableLayout.ItemTemplateSelector="{templates:BuyerDocumentGroupDataTemplateSelector}"
-                        BindableLayout.ItemsSource="{Binding Buyer.Documents}"
+                        BindableLayout.ItemsSource="{Binding BuyerSelected.Documents}"
                         Direction="Column" />
-
-                    <!--<Frame
-                        Padding="0"
-                        BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
-                        HeightRequest="80"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Start"
-                        WidthRequest="80">
-                        <StackLayout>
-                            <Image
-                                Margin="0,5,5,0"
-                                HeightRequest="16"
-                                HorizontalOptions="EndAndExpand"
-                                Source="ic_plus_circle_white"
-                                WidthRequest="16" />
-                            <Label
-                                HorizontalOptions="Center"
-                                Text="RG"
-                                TextColor="{StaticResource TextColorDefault}"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </Frame>
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
-                        HeightRequest="80"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Start"
-                        WidthRequest="80">
-                        <StackLayout>
-                            <Image
-                                Margin="0,5,5,0"
-                                HeightRequest="16"
-                                HorizontalOptions="EndAndExpand"
-                                Source="ic_plus_circle_white"
-                                WidthRequest="16" />
-                            <Label
-                                HorizontalOptions="Center"
-                                Text="RG"
-                                TextColor="{StaticResource TextColorDefault}"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </Frame>
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
-                        HeightRequest="80"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Start"
-                        WidthRequest="80">
-                        <StackLayout>
-                            <Image
-                                Margin="0,5,5,0"
-                                HeightRequest="16"
-                                HorizontalOptions="EndAndExpand"
-                                Source="ic_plus_circle_white"
-                                WidthRequest="16" />
-                            <Label
-                                HorizontalOptions="Center"
-                                Text="RG"
-                                TextColor="{StaticResource TextColorDefault}"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </Frame>-->
                 </StackLayout>
                 <StackLayout
                     Margin="0,16,0,0"
