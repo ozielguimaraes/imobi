@@ -6,7 +6,6 @@
     xmlns:components="clr-namespace:Imobi.Views.Components"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:templates="clr-namespace:Imobi.Templates"
     xmlns:views="clr-namespace:Imobi.Views"
     BackgroundColor="{StaticResource BackgroundColorPage}"
     NavigationPage.HasNavigationBar="false"
@@ -177,7 +176,9 @@
                             Color="White" />
                     </StackLayout>
                 </StackLayout>
-                <views:ProposalDocsView BindingContext="{Binding BuyerSelected}" />
+                <StackLayout Margin="16,16,16,0">
+                    <views:ProposalDocsView BindingContext="{Binding BuyerSelected, Mode=TwoWay}" />
+                </StackLayout>
                 <StackLayout
                     Margin="0,16,0,0"
                     HorizontalOptions="CenterAndExpand"

@@ -3,18 +3,27 @@
     x:Class="Imobi.Views.ProposalDocsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:contentViews="clr-namespace:Imobi.Views.ContentViews"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:templates="clr-namespace:Imobi.Templates"
+    xmlns:renderedViews="clr-namespace:Sharpnado.Presentation.Forms.RenderedViews;assembly=Sharpnado.Presentation.Forms"
     mc:Ignorable="d">
     <ContentView.Content>
-        <StackLayout Margin="16,0,16,0">
-            <StackLayout Margin="0,16,0,0" Orientation="Horizontal">
-                <FlexLayout
-                    BindableLayout.ItemTemplateSelector="{templates:BuyerDocumentGroupDataTemplateSelector}"
-                    BindableLayout.ItemsSource="{Binding Documents}"
-                    Direction="Column" />
-            </StackLayout>
-        </StackLayout>
+        <renderedViews:HorizontalListView
+            CollectionPadding="2"
+            EnableDragAndDrop="False"
+            ItemHeight="70"
+            ItemSpacing="2"
+            ItemWidth="70"
+            ItemsSource="{Binding Documents, Mode=TwoWay}"
+            ListLayout="Grid">
+            <renderedViews:HorizontalListView.ItemTemplate>
+                <DataTemplate>
+                    <renderedViews:DraggableViewCell>
+                        <contentViews:BuyerDocumentContentView />
+                    </renderedViews:DraggableViewCell>
+                </DataTemplate>
+            </renderedViews:HorizontalListView.ItemTemplate>
+        </renderedViews:HorizontalListView>
     </ContentView.Content>
 </ContentView>

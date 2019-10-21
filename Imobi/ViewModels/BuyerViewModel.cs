@@ -5,6 +5,7 @@ using Imobi.Managers.File.Interfaces;
 using Imobi.Services.Interfaces;
 using Imobi.Validations.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace Imobi.ViewModels
         public BuyerViewModel()
         {
             _fileManager = Bootstraper.Resolve<IFileManager>();
-            Documents = new ObservableCollection<BuyerDocumentGroupDto>();
+            Documents = new List<BuyerDocumentViewModel>();
         }
 
         public ICommand IncludeAttachmentCommand => new Command(async () => await IncludeAttachmentAsync());
@@ -53,7 +54,13 @@ namespace Imobi.ViewModels
             set { SetProperty(ref _documentType, value); }
         }
 
-        public ObservableCollection<BuyerDocumentGroupDto> Documents { get; set; }
+        private List<BuyerDocumentViewModel> _documents;
+
+        public List<BuyerDocumentViewModel> Documents
+        {
+            get { return _documents; }
+            set { SetProperty(ref _documents, value); }
+        }
 
         private ProposalFormViewModel _form;
 
@@ -163,34 +170,24 @@ namespace Imobi.ViewModels
             NewDocumentAdded(DocumentType, media);
         }
 
-        private void NewDocumentAdded(string documentType, FilePickedDto file)
+        private async Task NewDocumentAdded(string documentType, FilePickedDto file)
         {
-            var buyerDocument = new BuyerDocumentViewModel(documentType, file);
-            var fileAddedTolist = false;
-            foreach (var item in Documents)
+            try
             {
-                if (item.BuyerDocuments.Count < 4)
-                {
-                    item.BuyerDocuments.Add(buyerDocument);
-                    fileAddedTolist = true;
-                }
+                var buyerDocument = new BuyerDocumentViewModel(documentType, file);
+                //TODO Add validation
+                Documents.Add(buyerDocument);
             }
-            if (!fileAddedTolist)
+            catch (Exception ex)
             {
-                var newDocument = new BuyerDocumentGroupDto(buyerDocument);
-                Documents.Add(newDocument);
+                ExceptionService.TrackError(ex, $"{nameof(BuyerViewModel)}.NewDocumentAdded");
+                await MessageService.ShowAsync("Houve um problema ao anexar o arquivo, tente novamente mais tarde");
             }
         }
 
         private void RemoveDocument(BuyerDocumentViewModel itemSelected)
         {
-            foreach (var item in Documents.SelectMany(s => s.BuyerDocuments))
-            {
-                if (item.BuyerDocumentType.Equals(itemSelected.BuyerDocumentType))
-                {
-                    var toRemove = item;
-                }
-            }
+            Documents.Remove(itemSelected);
         }
     }
 }

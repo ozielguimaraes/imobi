@@ -6,6 +6,7 @@ using Plugin.CurrentActivity;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using Sharpnado.Presentation.Forms.Droid;
 
 namespace Imobi.Droid
 {
@@ -24,6 +25,8 @@ namespace Imobi.Droid
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             AppCenter.Start(Constants.Constants.AppCenter.Android.Key, typeof(Analytics), typeof(Crashes));
+            SharpnadoInitializer.Initialize();
+
             LoadApplication(new App());
         }
 
