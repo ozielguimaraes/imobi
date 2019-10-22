@@ -29,7 +29,7 @@
                         Source="ic_bar_graph_white"
                         WidthRequest="24" />
                 </StackLayout>
-                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal">
                     <StackLayout
                         HorizontalOptions="FillAndExpand"
                         Orientation="Horizontal"
@@ -69,7 +69,7 @@
                             VerticalOptions="CenterAndExpand" />
                     </StackLayout>
                 </StackLayout>
-                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal">
                     <StackLayout HorizontalOptions="StartAndExpand">
                         <Label Text="FINANCIADO" TextColor="{StaticResource TextColorDefault}" />
                         <Label Text="R$ 300,000,88" TextColor="{StaticResource TextColorDefault}" />
@@ -176,9 +176,7 @@
                             Color="White" />
                     </StackLayout>
                 </StackLayout>
-                <StackLayout Margin="16,16,16,0">
-                    <views:ProposalDocsView BindingContext="{Binding BuyerSelected, Mode=OneWay}" />
-                </StackLayout>
+                <views:ProposalDocsView Margin="16,16,16,0" BindingContext="{Binding BuyerSelected}" />
                 <StackLayout
                     Margin="0,16,0,0"
                     HorizontalOptions="CenterAndExpand"
