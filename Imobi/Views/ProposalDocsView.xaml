@@ -9,8 +9,23 @@
     xmlns:renderedViews="clr-namespace:Sharpnado.Presentation.Forms.RenderedViews;assembly=Sharpnado.Presentation.Forms"
     mc:Ignorable="d">
     <ContentView.Content>
-        <renderedViews:HorizontalListView
+        <CollectionView ItemsSource="{Binding Documents}">
+            <CollectionView.ItemsLayout>
+                <ListItemsLayout>
+                    <x:Arguments>
+                        <ItemsLayoutOrientation>Horizontal</ItemsLayoutOrientation>
+                    </x:Arguments>
+                </ListItemsLayout>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <contentViews:BuyerDocumentContentView BindingContext="{Binding .}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <!--<renderedViews:HorizontalListView
             CollectionPadding="2"
+            DisableScroll="True"
             EnableDragAndDrop="False"
             ItemHeight="70"
             ItemSpacing="2"
@@ -24,6 +39,6 @@
                     </renderedViews:DraggableViewCell>
                 </DataTemplate>
             </renderedViews:HorizontalListView.ItemTemplate>
-        </renderedViews:HorizontalListView>
+        </renderedViews:HorizontalListView>-->
     </ContentView.Content>
 </ContentView>

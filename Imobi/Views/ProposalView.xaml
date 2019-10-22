@@ -177,7 +177,7 @@
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Margin="16,16,16,0">
-                    <views:ProposalDocsView BindingContext="{Binding BuyerSelected, Mode=TwoWay}" />
+                    <views:ProposalDocsView BindingContext="{Binding BuyerSelected, Mode=OneWay}" />
                 </StackLayout>
                 <StackLayout
                     Margin="0,16,0,0"
