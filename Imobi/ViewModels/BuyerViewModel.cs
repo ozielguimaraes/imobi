@@ -47,7 +47,11 @@ namespace Imobi.ViewModels
         public List<BuyerDocumentViewModel> Documents
         {
             get { return _documents; }
-            set { SetProperty(ref _documents, value); }
+            set
+            {
+                _documents = value;
+                OnPropertyChanged();
+            }
         }
 
         private ProposalFormViewModel _form;

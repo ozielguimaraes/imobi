@@ -59,8 +59,7 @@ namespace Imobi.ViewModels
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
-            if (changed is null)
-                return;
+            if (changed is null) return;
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

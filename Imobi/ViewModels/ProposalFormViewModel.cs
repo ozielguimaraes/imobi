@@ -1,5 +1,6 @@
 ﻿using Imobi.Attributes;
 using System;
+using System.Linq;
 
 namespace Imobi.ViewModels
 {
@@ -140,5 +141,7 @@ namespace Imobi.ViewModels
             get { return _numberOfDependents; }
             set { SetProperty(ref _numberOfDependents, value); }
         }
+
+        public string ShortName => FullName?.Split(' ').FirstOrDefault() ?? string.Empty;
     }
 }

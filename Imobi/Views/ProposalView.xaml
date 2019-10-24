@@ -94,35 +94,72 @@
                     <Frame
                         BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
                         CornerRadius="8"
-                        HasShadow="True"
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="CenterAndExpand">
+                        HasShadow="False"
+                        HeightRequest="50"
+                        HorizontalOptions="Start"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="70">
                         <StackLayout>
                             <Image
                                 HeightRequest="16"
                                 Source="ic_plus_circle_white"
                                 WidthRequest="16" />
-                            <Label Text="JOSE TESTE" TextColor="{StaticResource TextColorDefault}" />
+                            <Label
+                                HorizontalOptions="CenterAndExpand"
+                                Text="Add"
+                                TextColor="{StaticResource TextColorDefault}" />
                         </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding EnableBuyerRegisterCommand}" />
+                        </Frame.GestureRecognizers>
                     </Frame>
-                    <Frame
-                        BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
-                        CornerRadius="8"
-                        HasShadow="True"
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="CenterAndExpand">
-                        <StackLayout>
-                            <Image
-                                HeightRequest="16"
-                                Source="ic_plus_circle_white"
-                                WidthRequest="16" />
-                            <Label Text="MARIA TESTE" TextColor="{StaticResource TextColorDefault}" />
-                        </StackLayout>
-                    </Frame>
+                    <CollectionView
+                        BackgroundColor="Red"
+                        HeightRequest="60"
+                        HorizontalOptions="EndAndExpand"
+                        IsVisible="{Binding ShowBuyers, Mode=OneWay}"
+                        ItemsSource="{Binding Buyers}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="35" />
+                                        <RowDefinition Height="35" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70" />
+                                        <ColumnDefinition Width="140" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image
+                                        Grid.RowSpan="2"
+                                        Aspect="AspectFill"
+                                        HeightRequest="60"
+                                        Source="ic_plus_circle_white"
+                                        WidthRequest="60" />
+                                    <Label
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        LineBreakMode="TailTruncation"
+                                        Text="Binding Name}" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontAttributes="Italic"
+                                        LineBreakMode="TailTruncation"
+                                        Text="Binding Location}"
+                                        VerticalOptions="End" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </StackLayout>
                 <StackLayout
                     Margin="0,16,0,0"
                     HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding ShowBuyerOptions}"
                     Orientation="Horizontal">
                     <BoxView
                         BackgroundColor="{StaticResource TextColorDefault}"
@@ -136,47 +173,70 @@
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="CenterAndExpand" />
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <StackLayout HorizontalOptions="FillAndExpand">
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="Medium"
-                            Text="Docs"
-                            TextColor="{StaticResource TitleColorDefault}" />
-                        <BoxView
-                            HeightRequest="1"
-                            HorizontalOptions="StartAndExpand"
-                            VerticalOptions="CenterAndExpand"
-                            Color="White" />
+                <StackLayout IsVisible="{Binding ShowBuyerOptions}">
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout HorizontalOptions="FillAndExpand">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                Text="Docs"
+                                TextColor="{StaticResource TitleColorDefault}" />
+                            <BoxView
+                                HeightRequest="1"
+                                HorizontalOptions="StartAndExpand"
+                                IsVisible="{Binding IsDocsTabVisible}"
+                                VerticalOptions="CenterAndExpand"
+                                Color="White" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoToDocsTabCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                Text="Ficha"
+                                TextColor="{StaticResource TitleColorDefault}" />
+                            <BoxView
+                                HeightRequest="1"
+                                HorizontalOptions="CenterAndExpand"
+                                IsVisible="{Binding IsFormTabVisible}"
+                                VerticalOptions="CenterAndExpand"
+                                Color="White" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoToFormTabCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="EndAndExpand">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                Text="Fluxo"
+                                TextColor="{StaticResource TitleColorDefault}" />
+                            <BoxView
+                                HeightRequest="1"
+                                HorizontalOptions="CenterAndExpand"
+                                IsVisible="{Binding IsFlowTabVisible}"
+                                VerticalOptions="CenterAndExpand"
+                                Color="White" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoToFlowTabCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
                     </StackLayout>
-                    <StackLayout HorizontalOptions="StartAndExpand">
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="Medium"
-                            Text="Ficha"
-                            TextColor="{StaticResource TitleColorDefault}" />
-                        <BoxView
-                            HeightRequest="1"
-                            HorizontalOptions="CenterAndExpand"
-                            IsVisible="False"
-                            VerticalOptions="CenterAndExpand"
-                            Color="White" />
-                    </StackLayout>
-                    <StackLayout HorizontalOptions="EndAndExpand">
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="Medium"
-                            Text="Fluxo"
-                            TextColor="{StaticResource TitleColorDefault}" />
-                        <BoxView
-                            HeightRequest="1"
-                            HorizontalOptions="CenterAndExpand"
-                            IsVisible="False"
-                            VerticalOptions="CenterAndExpand"
-                            Color="White" />
-                    </StackLayout>
+                    <views:ProposalDocsView
+                        Margin="0,16,0,0"
+                        BindingContext="{Binding .}"
+                        IsVisible="{Binding IsDocsTabVisible}" />
+                    <views:ProposalFormView
+                        Margin="0,16,0,0"
+                        BindingContext="{Binding .}"
+                        IsVisible="{Binding IsFormTabVisible}" />
+                    <views:ProposalDocsView
+                        Margin="0,16,0,0"
+                        BindingContext="{Binding .}"
+                        IsVisible="{Binding IsFlowTabVisible}" />
                 </StackLayout>
-                <views:ProposalDocsView Margin="0,16,0,0" BindingContext="{Binding .}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
