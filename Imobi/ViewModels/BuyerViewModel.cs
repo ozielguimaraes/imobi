@@ -29,22 +29,10 @@ namespace Imobi.ViewModels
             Documents = new List<BuyerDocumentViewModel>();
         }
 
+        public ICommand BuyerDocumentSelectedCommand => new Command<BuyerDocumentViewModel>(async (item) => await BuyerDocumentSelectedAsync(item));
+
         public ICommand IncludeAttachmentCommand => new Command(async () => await IncludeAttachmentAsync());
         public ICommand OpenBuyerDocumentOptionsCommand => new Command<BuyerDocumentViewModel>(async (item) => await OpenBuyerDocumentOptionsAsync(item));
-
-        private async Task OpenBuyerDocumentOptionsAsync(BuyerDocumentViewModel itemSelected)
-        {
-            var optionSelected = await MessageService.ShowOptionsAsync("Escolha uma opção", "Visualizar", "Excluir");
-            if (optionSelected is null) return;
-
-            if (optionSelected.Equals("Excluir"))
-            {
-                RemoveDocument(itemSelected);
-            }
-            else if (optionSelected.Equals("Visualizar"))
-            {
-            }
-        }
 
         private string _documentType;
 
@@ -188,6 +176,25 @@ namespace Imobi.ViewModels
         private void RemoveDocument(BuyerDocumentViewModel itemSelected)
         {
             Documents.Remove(itemSelected);
+        }
+
+        private async Task BuyerDocumentSelectedAsync(BuyerDocumentViewModel buyerDocument)
+        {
+            await MessageService.ShowAsync("TESTE OK " + buyerDocument.BuyerDocumentType);
+        }
+
+        private async Task OpenBuyerDocumentOptionsAsync(BuyerDocumentViewModel itemSelected)
+        {
+            var optionSelected = await MessageService.ShowOptionsAsync("Escolha uma opção", "Visualizar", "Excluir");
+            if (optionSelected is null) return;
+
+            if (optionSelected.Equals("Excluir"))
+            {
+                RemoveDocument(itemSelected);
+            }
+            else if (optionSelected.Equals("Visualizar"))
+            {
+            }
         }
     }
 }

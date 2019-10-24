@@ -27,11 +27,5 @@ namespace Imobi.ViewModels
         {
             Buyer = Buyer ?? new BuyerViewModel();
         }
-
-        public ICommand GoToRecordCommand => new Command(async () => await GoToRecordAsync());
-
-        private async Task GoToRecordAsync()
-        {
-        }
     }
 }

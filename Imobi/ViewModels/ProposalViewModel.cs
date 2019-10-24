@@ -1,4 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Imobi.ViewModels
 {
@@ -8,6 +11,8 @@ namespace Imobi.ViewModels
         {
             BuyerSelected = new BuyerViewModel();
         }
+
+        public ICommand GoToRecordCommand => new Command(async () => await GoToRecordAsync());
 
         private ProposalFlowViewModel _flow;
 
@@ -34,5 +39,9 @@ namespace Imobi.ViewModels
         }
 
         public bool ShowBuyerOptions => !(BuyerSelected is null);
+
+        private async Task GoToRecordAsync()
+        {
+        }
     }
 }

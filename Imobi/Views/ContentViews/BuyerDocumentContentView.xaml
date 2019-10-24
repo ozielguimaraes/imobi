@@ -5,35 +5,33 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Margin="5"
+    Margin="3"
     mc:Ignorable="d">
     <ContentView.Content>
-        <StackLayout Spacing="15">
-            <Frame
-                Padding="0"
-                BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
-                HeightRequest="70"
-                HorizontalOptions="Start"
-                VerticalOptions="Start"
-                WidthRequest="70">
-                <StackLayout>
-                    <Image
-                        Margin="0,5,5,0"
-                        HeightRequest="16"
-                        HorizontalOptions="EndAndExpand"
-                        Source="{Binding Image}"
-                        WidthRequest="16" />
-                    <Label
-                        HorizontalOptions="Center"
-                        Text="{Binding BuyerDocumentType}"
-                        TextColor="{StaticResource TextColorDefault}"
-                        VerticalOptions="Center">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenBuyerDocumentOptionsCommand}" CommandParameter="{Binding .}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </StackLayout>
-            </Frame>
-        </StackLayout>
+        <Frame
+            Padding="0"
+            BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
+            HeightRequest="70"
+            HorizontalOptions="Start"
+            VerticalOptions="Start"
+            WidthRequest="65">
+            <StackLayout>
+                <Image
+                    Margin="0,5,5,0"
+                    HeightRequest="16"
+                    HorizontalOptions="EndAndExpand"
+                    Source="{Binding Image}"
+                    WidthRequest="16" />
+                <Label
+                    HorizontalOptions="Center"
+                    Text="{Binding BuyerDocumentType}"
+                    TextColor="{StaticResource TextColorDefault}"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenBuyerDocumentOptionsCommand}" CommandParameter="{Binding .}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </Frame>
     </ContentView.Content>
 </ContentView>

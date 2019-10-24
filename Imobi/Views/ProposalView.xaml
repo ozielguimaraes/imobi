@@ -176,21 +176,7 @@
                             Color="White" />
                     </StackLayout>
                 </StackLayout>
-                <views:ProposalDocsView Margin="16,16,16,0" BindingContext="{Binding BuyerSelected}" />
-                <StackLayout
-                    Margin="0,16,0,0"
-                    HorizontalOptions="CenterAndExpand"
-                    Orientation="Horizontal">
-                    <Image
-                        HeightRequest="16"
-                        Source="ic_plus_circle_white"
-                        WidthRequest="16" />
-                    <Label Text="ADD NOVO DOCUMENTO" TextColor="{StaticResource TextColorDefault}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding BuyerSelected.IncludeAttachmentCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </StackLayout>
+                <views:ProposalDocsView Margin="0,16,0,0" BindingContext="{Binding .}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

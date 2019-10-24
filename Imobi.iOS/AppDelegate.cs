@@ -26,6 +26,7 @@ namespace Imobi.iOS
             global::Xamarin.Forms.Forms.Init();
             AppCenter.Start(Constants.Constants.AppCenter.iOS.Key, typeof(Analytics), typeof(Crashes));
             SharpnadoInitializer.Initialize();
+            AiForms.Layouts.LayoutsInit.Init();
 
             LoadApplication(new App());
 

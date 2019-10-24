@@ -3,28 +3,38 @@
     x:Class="Imobi.Views.ProposalDocsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:al="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
     xmlns:contentViews="clr-namespace:Imobi.Views.ContentViews"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:renderedViews="clr-namespace:Sharpnado.Presentation.Forms.RenderedViews;assembly=Sharpnado.Presentation.Forms"
+    xmlns:templates="clr-namespace:Imobi.Templates"
     mc:Ignorable="d">
     <ContentView.Content>
-        <renderedViews:HorizontalListView
-            CollectionPadding="2"
-            DisableScroll="True"
-            EnableDragAndDrop="False"
-            ItemHeight="70"
-            ItemSpacing="2"
-            ItemWidth="70"
-            ItemsSource="{Binding Documents, Mode=TwoWay}"
-            ListLayout="Grid">
-            <renderedViews:HorizontalListView.ItemTemplate>
-                <DataTemplate>
-                    <renderedViews:DraggableViewCell>
+        <StackLayout>
+            <al:RepeatableWrapLayout
+                HorizontalOptions="CenterAndExpand"
+                ItemTapCommand="{Binding BuyerSelected.BuyerDocumentSelectedCommand}"
+                ItemsSource="{Binding BuyerSelected.Documents}">
+                <al:RepeatableWrapLayout.ItemTemplate>
+                    <DataTemplate>
                         <contentViews:BuyerDocumentContentView />
-                    </renderedViews:DraggableViewCell>
-                </DataTemplate>
-            </renderedViews:HorizontalListView.ItemTemplate>
-        </renderedViews:HorizontalListView>
+                    </DataTemplate>
+                </al:RepeatableWrapLayout.ItemTemplate>
+            </al:RepeatableWrapLayout>
+            <StackLayout
+                Margin="0,16,0,8"
+                HorizontalOptions="CenterAndExpand"
+                Orientation="Horizontal">
+                <Image
+                    HeightRequest="16"
+                    Source="ic_plus_circle_white"
+                    WidthRequest="16" />
+                <Label Text="ADD NOVO DOCUMENTO" TextColor="{StaticResource TextColorDefault}" />
+            </StackLayout>
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding BuyerSelected.IncludeAttachmentCommand}" />
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>
