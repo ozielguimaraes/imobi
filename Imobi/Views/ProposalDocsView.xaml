@@ -25,6 +25,7 @@
             <StackLayout
                 Margin="0,16,0,8"
                 HorizontalOptions="CenterAndExpand"
+                IsVisible="{Binding BuyerSelected.CanAddNewFile}"
                 Orientation="Horizontal">
                 <Image
                     HeightRequest="16"

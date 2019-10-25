@@ -26,7 +26,7 @@ namespace Imobi.ViewModels
         public BuyerViewModel()
         {
             _fileManager = Bootstraper.Resolve<IFileManager>();
-            Documents = new List<BuyerDocumentViewModel>();
+            Documents = new ObservableCollection<BuyerDocumentViewModel>();
         }
 
         public ICommand BuyerDocumentSelectedCommand => new Command<BuyerDocumentViewModel>(async (item) => await BuyerDocumentSelectedAsync(item));
@@ -42,16 +42,12 @@ namespace Imobi.ViewModels
             set { SetProperty(ref _documentType, value); }
         }
 
-        private List<BuyerDocumentViewModel> _documents;
+        private ObservableCollection<BuyerDocumentViewModel> _documents;
 
-        public List<BuyerDocumentViewModel> Documents
+        public ObservableCollection<BuyerDocumentViewModel> Documents
         {
             get { return _documents; }
-            set
-            {
-                _documents = value;
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref _documents, value);
         }
 
         private ProposalFormViewModel _form;
@@ -62,25 +58,62 @@ namespace Imobi.ViewModels
             set => SetProperty(ref _form, value);
         }
 
+        private string[] _fileTypes;
+
+        public string[] FileTypes
+        {
+            get => _fileTypes;
+            set
+            {
+                _fileTypes = value;
+                OnPropertyChanged();
+                FileTypesRemain = value;
+            }
+        }
+
+        private string[] _fileTypesRemain;
+
+        public string[] FileTypesRemain
+        {
+            get => _fileTypesRemain;
+            set
+            {
+                _fileTypesRemain = value;
+                OnPropertyChanged();
+                CanAddNewFile = value?.Any() ?? false;
+            }
+        }
+
+        private bool _canAddNewFile;
+
+        public bool CanAddNewFile
+        {
+            get => _canAddNewFile;
+            set => SetProperty(ref _canAddNewFile, value);
+        }
+
         private async Task IncludeAttachmentAsync()
         {
             try
             {
                 if (IsBusy) return;
                 IsBusy = true;
-                var proposalFileTypeService = Bootstraper.Resolve<IProposalFileTypeService>();
-                var fileTypes = await proposalFileTypeService.GetFileTypes();
-
-                if (!fileTypes?.Any() ?? true)
+                if (!FileTypes?.Any() ?? true)
+                {
+                    var proposalFileTypeService = Bootstraper.Resolve<IProposalFileTypeService>();
+                    FileTypes = await proposalFileTypeService.GetFileTypes();
+                }
+                if (!FileTypes?.Any() ?? true)
                 {
                     await MessageService.ShowAsync("Não foi possível obter a lista de arquivos necessários, tente novamente mais tarde.");
                     return;
                 }
 
-                DocumentType = await MessageService.ShowOptionsAsync("Qual tipo de documento deseja selecionar?", options: fileTypes);
-                if (DocumentType is null) return;
+                DocumentType = await MessageService.ShowOptionsAsync("Qual tipo de documento deseja selecionar?", options: FileTypesRemain);
+                if (DocumentType is null || DocumentType.Equals("Cancelar")) return;
 
                 var addFileFrom = await MessageService.ShowOptionsAsync("Agora escolha de onde deseja enviar os arquivos", AttachFileOptions);
+                if (addFileFrom is null || addFileFrom.Equals("Cancelar")) return;
 
                 FilePickedDto media = null;
 
@@ -159,7 +192,7 @@ namespace Imobi.ViewModels
                 return;
             }
 
-            NewDocumentAdded(DocumentType, media);
+            await NewDocumentAdded(DocumentType, media);
         }
 
         private async Task NewDocumentAdded(string documentType, FilePickedDto file)
@@ -167,8 +200,8 @@ namespace Imobi.ViewModels
             try
             {
                 var buyerDocument = new BuyerDocumentViewModel(documentType, file);
-                //TODO Add validation
                 Documents.Add(buyerDocument);
+                FileTypesRemain = FileTypes?.Where(a => !Documents.Any(d => d.BuyerDocumentType == a)).ToArray();
             }
             catch (Exception ex)
             {
@@ -180,11 +213,12 @@ namespace Imobi.ViewModels
         private void RemoveDocument(BuyerDocumentViewModel itemSelected)
         {
             Documents.Remove(itemSelected);
+            FileTypesRemain = FileTypes?.Where(a => !Documents.Any(d => d.BuyerDocumentType == a)).ToArray();
         }
 
         private async Task BuyerDocumentSelectedAsync(BuyerDocumentViewModel buyerDocument)
         {
-            await MessageService.ShowAsync("TESTE OK " + buyerDocument.BuyerDocumentType);
+            //await MessageService.ShowAsync("TESTE OK " + buyerDocument.BuyerDocumentType);
         }
 
         private async Task OpenBuyerDocumentOptionsAsync(BuyerDocumentViewModel itemSelected)
