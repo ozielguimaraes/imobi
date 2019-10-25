@@ -126,6 +126,8 @@ namespace Imobi.ViewModels
             IsFormTabVisible = true;
             IsFlowTabVisible = false;
             IsDocsTabVisible = false;
+            BuyerSelected.Form = BuyerSelected.Form ?? new ProposalFormViewModel();
+            BuyerSelected.Form.LoadPickers();
         }
 
         private void EnableFlowTab()

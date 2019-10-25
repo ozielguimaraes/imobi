@@ -11,10 +11,7 @@ namespace Imobi.ViewModels
     {
         public ProposalFormViewModel()
         {
-            MaritalStatusList = EnumExtension.ConvertToList<MaritalStatusEnum>();
-            DocumentTypeList = EnumExtension.ConvertToList<DocumentTypeEnum>();
-            ScholarityList = EnumExtension.ConvertToList<ScholarityEnum>();
-            GenreList = EnumExtension.ConvertToList<GenreEnum>();
+            //LoadPickers();
         }
 
         private string cpf;
@@ -166,9 +163,44 @@ namespace Imobi.ViewModels
             set { SetProperty(ref _shortName, value); }
         }
 
-        public List<EnumValueDataAttribute> MaritalStatusList { get; private set; }
-        public List<EnumValueDataAttribute> DocumentTypeList { get; private set; }
-        public List<EnumValueDataAttribute> ScholarityList { get; private set; }
-        public List<EnumValueDataAttribute> GenreList { get; private set; }
+        private List<EnumValueDataAttribute> _maritalStatusList;
+
+        public List<EnumValueDataAttribute> MaritalStatusList
+        {
+            get { return _maritalStatusList; }
+            set { SetProperty(ref _maritalStatusList, value); }
+        }
+
+        private List<EnumValueDataAttribute> _documentTypeList;
+
+        public List<EnumValueDataAttribute> DocumentTypeList
+        {
+            get { return _documentTypeList; }
+            set { SetProperty(ref _documentTypeList, value); }
+        }
+
+        private List<EnumValueDataAttribute> _scholarityList;
+
+        public List<EnumValueDataAttribute> ScholarityList
+        {
+            get { return _scholarityList; }
+            set { SetProperty(ref _scholarityList, value); }
+        }
+
+        private List<EnumValueDataAttribute> _genreList;
+
+        public List<EnumValueDataAttribute> GenreList
+        {
+            get { return _genreList; }
+            set { SetProperty(ref _genreList, value); }
+        }
+
+        public void LoadPickers()
+        {
+            MaritalStatusList = EnumExtension.ConvertToList<MaritalStatusEnum>();
+            DocumentTypeList = EnumExtension.ConvertToList<DocumentTypeEnum>();
+            ScholarityList = EnumExtension.ConvertToList<ScholarityEnum>();
+            GenreList = EnumExtension.ConvertToList<GenreEnum>();
+        }
     }
 }

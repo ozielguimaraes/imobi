@@ -16,6 +16,164 @@
                     Placeholder="Ex: 123.456.789-00"
                     ReturnType="Next"
                     Text="{Binding BuyerSelected.Form.Cpf}" />
+                <Label Text="Nome completo" />
+                <Entry
+                    Keyboard="Plain"
+                    MaxLength="50"
+                    Placeholder="Ex: Fulano da Silva Júnior"
+                    ReturnType="Next"
+                    Text="{Binding BuyerSelected.Form.FullName}" />
+
+                <Label Text="Data de nascimento" />
+                <Entry
+                    Keyboard="Numeric"
+                    MaxLength="10"
+                    Placeholder="Ex: 01/01/2001"
+                    ReturnType="Next"
+                    Text="{Binding BuyerSelected.Form.BirthDate}" />
+
+                <Label Text="Escolaridade" />
+                <Picker
+                    Title="Escolaridade"
+                    ItemDisplayBinding="{Binding Value}"
+                    ItemsSource="{Binding ScholarityList}"
+                    SelectedItem="{Binding BuyerSelected.Form.Scholarity}" />
+
+                <Label Text="Gênero" />
+                <Picker
+                    Title="Gênero"
+                    ItemDisplayBinding="{Binding Value}"
+                    ItemsSource="{Binding GenreList}"
+                    SelectedItem="{Binding BuyerSelected.Form.Genre}" />
+
+                <Label Text="Estado civil" />
+                <Picker
+                    Title="Estado civil"
+                    ItemDisplayBinding="{Binding Value}"
+                    ItemsSource="{Binding MaritalStatusList}"
+                    SelectedItem="{Binding BuyerSelected.Form.MaritalStatus}" />
+
+                <Label Text="Nacionalidade" />
+                <Entry
+                    MaxLength="20"
+                    Placeholder="Ex: Brasileira"
+                    ReturnType="Next"
+                    Text="{Binding BuyerSelected.Form.Nationality}">
+                    <Entry.Keyboard>
+                        <Keyboard x:FactoryMethod="Create">
+                            <x:Arguments>
+                                <KeyboardFlags>Suggestions,CapitalizeWord</KeyboardFlags>
+                            </x:Arguments>
+                        </Keyboard>
+                    </Entry.Keyboard>
+                </Entry>
+
+                <Label Text="Naturalidade" />
+                <Entry
+                    MaxLength="35"
+                    Placeholder="Ex: Belo Horizonte"
+                    ReturnType="Next"
+                    Text="{Binding BuyerSelected.Form.PlaceOfBirth}">
+                    <Entry.Keyboard>
+                        <Keyboard x:FactoryMethod="Create">
+                            <x:Arguments>
+                                <KeyboardFlags>Suggestions,CapitalizeWord</KeyboardFlags>
+                            </x:Arguments>
+                        </Keyboard>
+                    </Entry.Keyboard>
+                </Entry>
+
+                <Label Text="Valor FGTS" />
+                <Entry
+                    Keyboard="Numeric"
+                    Placeholder="Ex: 12.200,00"
+                    ReturnType="Next"
+                    Text="{Binding BuyerSelected.Form.FgtsValue}" />
+
+                <Label Text="Nome do pai" />
+                <Entry
+                    MaxLength="10"
+                    Placeholder="Ex: João da Fonseca Souza"
+                    ReturnType="Next"
+                    Text="{Binding BuyerSelected.Form.FathersName}">
+                    <Entry.Keyboard>
+                        <Keyboard x:FactoryMethod="Create">
+                            <x:Arguments>
+                                <KeyboardFlags>Suggestions,CapitalizeWord</KeyboardFlags>
+                            </x:Arguments>
+                        </Keyboard>
+                    </Entry.Keyboard>
+                </Entry>
+
+                <Label Text="Nome da mãe" />
+                <Entry
+                    MaxLength="10"
+                    Placeholder="Ex: Joaquina Rocha de Souza"
+                    ReturnType="Next"
+                    Text="{Binding BuyerSelected.Form.MothersName}">
+                    <Entry.Keyboard>
+                        <Keyboard x:FactoryMethod="Create">
+                            <x:Arguments>
+                                <KeyboardFlags>Suggestions,CapitalizeWord</KeyboardFlags>
+                            </x:Arguments>
+                        </Keyboard>
+                    </Entry.Keyboard>
+                </Entry>
+
+                <Label FontSize="Medium" Text="Documentos" />
+
+                <Label Text="Tipo documento" />
+                <Picker
+                    Title="Tipo documento"
+                    ItemDisplayBinding="{Binding Value}"
+                    ItemsSource="{Binding DocumentTypeList}"
+                    SelectedItem="{Binding BuyerSelected.Form.DocumentType}" />
+
+                <Label Text="N° documento" />
+                <Entry
+                    Keyboard="Numeric"
+                    MaxLength="30"
+                    Placeholder="Ex: 312654"
+                    ReturnType="Next"
+                    Text="{Binding BuyerSelected.Form.DocumentNumber}" />
+
+                <Label Text="Orgão expedidor" />
+                <Entry
+                    MaxLength="10"
+                    Placeholder="Ex: SSP"
+                    ReturnType="Next"
+                    Text="{Binding BuyerSelected.Form.DispatchingAgency}">
+                    <Entry.Keyboard>
+                        <Keyboard x:FactoryMethod="Create">
+                            <x:Arguments>
+                                <KeyboardFlags>Suggestions,CapitalizeCharacter</KeyboardFlags>
+                            </x:Arguments>
+                        </Keyboard>
+                    </Entry.Keyboard>
+                </Entry>
+
+                <Label Text="Data de emissão" />
+                <Entry
+                    Keyboard="Numeric"
+                    MaxLength="10"
+                    Placeholder="Ex: 01/01/2005"
+                    ReturnType="Next"
+                    Text="{Binding BuyerSelected.Form.IssueDate}" />
+
+                <Label Text="Cat. profissional" />
+                <Entry
+                    MaxLength="20"
+                    Placeholder="Ex: 98673571"
+                    ReturnType="Next"
+                    Text="{Binding BuyerSelected.Form.NumberOfDependents}" />
+
+                <Label Text="Dependentes n°" />
+                <Entry
+                    Keyboard="Numeric"
+                    MaxLength="2"
+                    Placeholder="Ex: 2"
+                    ReturnType="Done"
+                    Text="{Binding BuyerSelected.Form.QuantidadeDependentes}" />
             </StackLayout>
         </ScrollView>
     </ContentView.Content>

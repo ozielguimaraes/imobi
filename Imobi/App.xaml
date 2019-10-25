@@ -10,8 +10,9 @@
         <Color x:Key="TitleColorDefault">White</Color>
         <Color x:Key="TextColorDefault">#ececec</Color>
         <Color x:Key="LabelTextColorPrimary">#ececec</Color>
+        <!--  Entry  -->
         <Color x:Key="EntryTextColorPrimary">#c1c1c1</Color>
-        <Color x:Key="EntryPlaceholderColorPrimary">#e0e0e0</Color>
+        <Color x:Key="EntryPlaceholderColorPrimary">#c9c9c9</Color>
 
         <Color x:Key="BackgroundColorPage">#1e2541</Color>
         <Color x:Key="BackgroundColorBuyerFrame">#2a3263</Color>
@@ -23,7 +24,7 @@
             <Setter Property="TextColor" Value="{StaticResource TextColorDefault}" />
         </Style>
         <Style TargetType="Entry">
-            <Setter Property="TextColor" Value="{StaticResource EntryPlaceholderColorPrimary}" />
+            <Setter Property="TextColor" Value="{StaticResource EntryTextColorPrimary}" />
             <Setter Property="PlaceholderColor" Value="{StaticResource EntryPlaceholderColorPrimary}" />
         </Style>
     </Application.Resources>
