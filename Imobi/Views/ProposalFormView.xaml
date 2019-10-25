@@ -9,18 +9,13 @@
     <ContentView.Content>
         <ScrollView>
             <StackLayout>
-                <Label Text="Ficha!" />
-                <Label Text="Ficha!" />
-                <Label Text="Ficha!" />
-                <Label Text="Ficha!" />
-                <Label Text="Ficha!" />
-                <Label Text="Ficha!" />
-                <Label Text="Ficha!" />
-                <Label Text="Ficha!" />
-                <Label Text="Ficha!" />
-                <Label Text="Ficha!" />
-                <Label Text="Ficha!" />
-                <Label Text="Ficha!" />
+                <Label Text="CPF" />
+                <Entry
+                    Keyboard="Numeric"
+                    MaxLength="14"
+                    Placeholder="Ex: 123.456.789-00"
+                    ReturnType="Next"
+                    Text="{Binding BuyerSelected.Form.Cpf}" />
             </StackLayout>
         </ScrollView>
     </ContentView.Content>

@@ -1,11 +1,22 @@
 ﻿using Imobi.Attributes;
+using Imobi.Enums;
+using Imobi.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Imobi.ViewModels
 {
     public class ProposalFormViewModel : BaseViewModel
     {
+        public ProposalFormViewModel()
+        {
+            MaritalStatusList = EnumExtension.ConvertToList<MaritalStatusEnum>();
+            DocumentTypeList = EnumExtension.ConvertToList<DocumentTypeEnum>();
+            ScholarityList = EnumExtension.ConvertToList<ScholarityEnum>();
+            GenreList = EnumExtension.ConvertToList<GenreEnum>();
+        }
+
         private string cpf;
 
         public string Cpf
@@ -19,7 +30,12 @@ namespace Imobi.ViewModels
         public string FullName
         {
             get { return _fullName; }
-            set { SetProperty(ref _fullName, value); }
+            set
+            {
+                _fullName = value;
+                OnPropertyChanged();
+                ShortName = value?.Split(' ').FirstOrDefault() ?? string.Empty;
+            }
         }
 
         private DateTime _birthDate;
@@ -94,12 +110,12 @@ namespace Imobi.ViewModels
             set { SetProperty(ref _mothersName, value); }
         }
 
-        private EnumValueDataAttribute _tipoDocumento;
+        private EnumValueDataAttribute _documentType;
 
-        public EnumValueDataAttribute TipoDocumento
+        public EnumValueDataAttribute DocumentType
         {
-            get { return _tipoDocumento; }
-            set { SetProperty(ref _tipoDocumento, value); }
+            get { return _documentType; }
+            set { SetProperty(ref _documentType, value); }
         }
 
         private string _documentNumber;
@@ -142,6 +158,17 @@ namespace Imobi.ViewModels
             set { SetProperty(ref _numberOfDependents, value); }
         }
 
-        public string ShortName => FullName?.Split(' ').FirstOrDefault() ?? string.Empty;
+        private string _shortName;
+
+        public string ShortName
+        {
+            get { return _shortName; }
+            set { SetProperty(ref _shortName, value); }
+        }
+
+        public List<EnumValueDataAttribute> MaritalStatusList { get; private set; }
+        public List<EnumValueDataAttribute> DocumentTypeList { get; private set; }
+        public List<EnumValueDataAttribute> ScholarityList { get; private set; }
+        public List<EnumValueDataAttribute> GenreList { get; private set; }
     }
 }
