@@ -15,7 +15,7 @@ namespace Imobi.ViewModels
         public ICommand EnableBuyerRegisterCommand => new Command(async () => await EnableBuyerRegisterAsync());
         public ICommand GoToDocsTabCommand => new Command(async () => await GoToDocsTabAsync());
         public ICommand GoToFormTabCommand => new Command(async () => await GoToFormTabAsync());
-        public ICommand GoToFowTabCommand => new Command(async () => await GoToFlowTabAsync());
+        public ICommand GoToFlowTabCommand => new Command(async () => await GoToFlowTabAsync());
 
         private ProposalFlowViewModel _flow;
 
@@ -34,9 +34,34 @@ namespace Imobi.ViewModels
             {
                 _buyerSelected = value;
                 OnPropertyChanged(nameof(BuyerSelected));
-
                 ShowBuyerOptions = !(BuyerSelected is null);
+                CanGoToFormTab = value?.Documents.Any() ?? false;
+                CanGoToFlowTab = CanGoToFormTab && AllFiledsFilled;
             }
+        }
+
+        private bool _canGoToFormTab;
+
+        public bool CanGoToFormTab
+        {
+            get => _canGoToFormTab;
+            set => SetProperty(ref _canGoToFormTab, value);
+        }
+
+        private bool _allFiledsFilled;
+
+        public bool AllFiledsFilled
+        {
+            get => _allFiledsFilled;
+            set => SetProperty(ref _allFiledsFilled, value);
+        }
+
+        private bool _canGoToFlowTab;
+
+        public bool CanGoToFlowTab
+        {
+            get => _canGoToFlowTab;
+            set => SetProperty(ref _canGoToFlowTab, value);
         }
 
         private bool _isDocsTabVisible;

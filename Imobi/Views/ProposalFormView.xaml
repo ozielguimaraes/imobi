@@ -177,7 +177,7 @@
 
                 <Button
                     Margin="0,16,0,16"
-                    Command="{Binding GoToFowTabCommand}"
+                    Command="{Binding GoToFlowTabCommand}"
                     CornerRadius="6"
                     HeightRequest="40"
                     HorizontalOptions="FillAndExpand"

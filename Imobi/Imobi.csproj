@@ -15,7 +15,6 @@
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.1.1" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.1.1" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
-    <PackageReference Include="Sharpnado.Forms.HorizontalListView" Version="1.3.0" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.848062" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />  
@@ -23,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\ProposalListView.xaml.cs">
+      <DependentUpon>ProposalListView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\NewProposalView.xaml.cs">
       <DependentUpon>NewProposalView.xaml</DependentUpon>
     </Compile>
@@ -48,7 +50,7 @@
     <EmbeddedResource Update="Views\HomeView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ListProposalFormView.xaml">
+    <EmbeddedResource Update="Views\ProposalListView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginView.xaml">
@@ -64,6 +66,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\NewProposalView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ProposalFlowView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ProposalFormView.xaml">

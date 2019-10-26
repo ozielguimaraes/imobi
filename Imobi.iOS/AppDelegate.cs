@@ -2,7 +2,6 @@
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
-using Sharpnado.Presentation.Forms.iOS;
 using UIKit;
 
 namespace Imobi.iOS
@@ -25,7 +24,6 @@ namespace Imobi.iOS
             global::Xamarin.Forms.Forms.SetFlags("Shell_Experimental", "Visual_Experimental", "CollectionView_Experimental", "FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init();
             AppCenter.Start(Constants.Constants.AppCenter.iOS.Key, typeof(Analytics), typeof(Crashes));
-            SharpnadoInitializer.Initialize();
             AiForms.Layouts.LayoutsInit.Init();
 
             LoadApplication(new App());

@@ -30,10 +30,19 @@
                     Source="ic_plus_circle_white"
                     WidthRequest="16" />
                 <Label Text="ADD NOVO DOCUMENTO" TextColor="{StaticResource TextColorDefault}" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BuyerSelected.IncludeAttachmentCommand}" />
+                </StackLayout.GestureRecognizers>
             </StackLayout>
-            <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding BuyerSelected.IncludeAttachmentCommand}" />
-            </StackLayout.GestureRecognizers>
+
+            <Button
+                Margin="0,16,0,16"
+                Command="{Binding GoToFormTabCommand}"
+                CornerRadius="6"
+                HeightRequest="40"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding CanGoToFormTab}"
+                Text="Próximo" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>
