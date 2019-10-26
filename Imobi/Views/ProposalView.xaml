@@ -224,18 +224,11 @@
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </StackLayout>
-                    <views:ProposalDocsView
-                        Margin="0,16,0,0"
-                        BindingContext="{Binding .}"
-                        IsVisible="{Binding IsDocsTabVisible}" />
-                    <views:ProposalFormView
-                        Margin="0,16,0,0"
-                        BindingContext="{Binding .}"
-                        IsVisible="{Binding IsFormTabVisible}" />
-                    <views:ProposalDocsView
-                        Margin="0,16,0,0"
-                        BindingContext="{Binding .}"
-                        IsVisible="{Binding IsFlowTabVisible}" />
+                    <views:ProposalDocsView Margin="0,16,0,0" IsVisible="{Binding IsDocsTabVisible}" />
+                    <views:ProposalFormView Margin="0,16,0,0" IsVisible="{Binding IsFormTabVisible}" />
+                    <StackLayout>
+                        <views:ListProposalFormView Margin="0,16,0,0" IsVisible="{Binding IsFlowTabVisible}" />
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

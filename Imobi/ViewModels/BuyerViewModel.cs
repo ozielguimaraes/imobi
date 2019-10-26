@@ -27,6 +27,7 @@ namespace Imobi.ViewModels
         {
             _fileManager = Bootstraper.Resolve<IFileManager>();
             Documents = new ObservableCollection<BuyerDocumentViewModel>();
+            CanAddNewFile = true;
         }
 
         public ICommand BuyerDocumentSelectedCommand => new Command<BuyerDocumentViewModel>(async (item) => await BuyerDocumentSelectedAsync(item));
@@ -66,7 +67,7 @@ namespace Imobi.ViewModels
             set
             {
                 _fileTypes = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(FileTypes));
                 FileTypesRemain = value;
             }
         }
@@ -79,7 +80,7 @@ namespace Imobi.ViewModels
             set
             {
                 _fileTypesRemain = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(FileTypesRemain));
                 CanAddNewFile = value?.Any() ?? false;
             }
         }

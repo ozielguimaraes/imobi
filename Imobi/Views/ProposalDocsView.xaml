@@ -7,8 +7,6 @@
     xmlns:contentViews="clr-namespace:Imobi.Views.ContentViews"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:renderedViews="clr-namespace:Sharpnado.Presentation.Forms.RenderedViews;assembly=Sharpnado.Presentation.Forms"
-    xmlns:templates="clr-namespace:Imobi.Templates"
     mc:Ignorable="d">
     <ContentView.Content>
         <StackLayout>

@@ -33,7 +33,7 @@ namespace Imobi.ViewModels
             set
             {
                 _buyerSelected = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(BuyerSelected));
 
                 ShowBuyerOptions = !(BuyerSelected is null);
             }

@@ -36,21 +36,21 @@
                 <Picker
                     Title="Escolaridade"
                     ItemDisplayBinding="{Binding Value}"
-                    ItemsSource="{Binding ScholarityList}"
+                    ItemsSource="{Binding BuyerSelected.Form.ScholarityList}"
                     SelectedItem="{Binding BuyerSelected.Form.Scholarity}" />
 
                 <Label Text="Gênero" />
                 <Picker
                     Title="Gênero"
                     ItemDisplayBinding="{Binding Value}"
-                    ItemsSource="{Binding GenreList}"
+                    ItemsSource="{Binding BuyerSelected.Form.GenreList}"
                     SelectedItem="{Binding BuyerSelected.Form.Genre}" />
 
                 <Label Text="Estado civil" />
                 <Picker
                     Title="Estado civil"
                     ItemDisplayBinding="{Binding Value}"
-                    ItemsSource="{Binding MaritalStatusList}"
+                    ItemsSource="{Binding BuyerSelected.Form.MaritalStatusList}"
                     SelectedItem="{Binding BuyerSelected.Form.MaritalStatus}" />
 
                 <Label Text="Nacionalidade" />
@@ -126,7 +126,7 @@
                 <Picker
                     Title="Tipo documento"
                     ItemDisplayBinding="{Binding Value}"
-                    ItemsSource="{Binding DocumentTypeList}"
+                    ItemsSource="{Binding BuyerSelected.Form.DocumentTypeList}"
                     SelectedItem="{Binding BuyerSelected.Form.DocumentType}" />
 
                 <Label Text="N° documento" />
@@ -165,7 +165,7 @@
                     MaxLength="20"
                     Placeholder="Ex: 98673571"
                     ReturnType="Next"
-                    Text="{Binding BuyerSelected.Form.NumberOfDependents}" />
+                    Text="{Binding BuyerSelected.Form.ProfessionalCategory}" />
 
                 <Label Text="Dependentes n°" />
                 <Entry
@@ -173,7 +173,15 @@
                     MaxLength="2"
                     Placeholder="Ex: 2"
                     ReturnType="Done"
-                    Text="{Binding BuyerSelected.Form.QuantidadeDependentes}" />
+                    Text="{Binding BuyerSelected.Form.NumberOfDependents}" />
+
+                <Button
+                    Margin="0,16,0,16"
+                    Command="{Binding GoToFowTabCommand}"
+                    CornerRadius="6"
+                    HeightRequest="40"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Próximo" />
             </StackLayout>
         </ScrollView>
     </ContentView.Content>
