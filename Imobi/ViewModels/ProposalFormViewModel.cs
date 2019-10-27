@@ -9,11 +9,6 @@ namespace Imobi.ViewModels
 {
     public class ProposalFormViewModel : BaseViewModel
     {
-        public ProposalFormViewModel()
-        {
-            //LoadPickers();
-        }
-
         private string cpf;
 
         public string Cpf

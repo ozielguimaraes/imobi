@@ -28,5 +28,10 @@
                 public const string Key = "ce7adff1-e1ef-45eb-8d29-7742ecd942a7";
             }
         }
+
+        public class Expressions
+        {
+            public const string NumbersOnly = @"[^\d]";
+        }
     }
 }

@@ -36,12 +36,16 @@
     <string>Assets.xcassets/AppIcon.appiconset</string>
 	
 	<key>NSCameraUsageDescription</key>
-	<string>This app needs access to the camera to take photos.</string>
+	<string>Este aplicativo irá acessar a câmera para enviar as documentações necessárias para a proposta.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app needs access to photos.</string>
+	<string>Este aplicativo irá acessar as suas fotos para enviar as documentações necessárias para a proposta.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>This app needs access to microphone.</string>
+	<string>Este aplicativo precisa acessar o microfone.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>This app needs access to the photo gallery.</string>
+	<string>Este aplicativo irá acessar a biblioteca para enviar as documentações necessárias para a proposta.</string>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
 </dict>
 </plist>
