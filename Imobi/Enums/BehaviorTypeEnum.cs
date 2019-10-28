@@ -10,7 +10,8 @@
         Date,
         CreditCardExpirationDate,
         Decimal,
+        ZipCode,
+        PersonName,
         NumbersOnly,
-        ZipCode
     }
 }

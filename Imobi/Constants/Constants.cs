@@ -32,6 +32,7 @@
         public class Expressions
         {
             public const string NumbersOnly = @"[^\d]";
+            public const string PersonName = @"^[A-Za-z]+[\s][A-Za-z]+[.][A-Za-z]+$";
         }
     }
 }

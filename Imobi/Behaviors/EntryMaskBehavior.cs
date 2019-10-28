@@ -19,7 +19,8 @@ namespace Imobi.Behaviors
         internal const int LENGTH_PHONE_SEM_MASCARA_10 = 10;
         internal const int LENGTH_PHONE_SEM_MASCARA_11 = 11;
         internal const int LENGTH_PHONE_SEM_MASCARA_14 = 14;
-        internal const int LENGTH_DECIMAL = 3;
+        internal const int LENGTH_DECIMAL = 2;
+        private static NumberStyles NumberStyles => NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands;
 
         private string _mask = string.Empty;
 
@@ -206,9 +207,18 @@ namespace Imobi.Behaviors
                     break;
 
                 case BehaviorTypeEnum.NumbersOnly:
+                    if (entryText is null) return;
                     if (entryText != args.OldTextValue)
                     {
                         entry.Text = Regex.Replace(entryText, Constants.Constants.Expressions.NumbersOnly, string.Empty);
+                    }
+                    break;
+
+                case BehaviorTypeEnum.PersonName:
+                    if (entryText is null) return;
+                    if (entryText != args.OldTextValue)
+                    {
+                        entry.Text = Regex.Replace(entryText, Constants.Constants.Expressions.PersonName, string.Empty);
                     }
                     break;
 
@@ -216,12 +226,18 @@ namespace Imobi.Behaviors
                     if (entryText != args.OldTextValue)
                     {
                         if (string.IsNullOrEmpty(entryText) || string.IsNullOrEmpty(args.OldTextValue)) return;
-                        var nvalue = Convert.ToDouble(entryText, CultureInfo.InvariantCulture);
-                        var ovalue = Convert.ToDouble(args.OldTextValue, CultureInfo.InvariantCulture) / 100;
-                        if (nvalue == ovalue) return;
-                        var valor = Convert.ToDecimal(Regex.Replace(entryText, Constants.Constants.Expressions.NumbersOnly, string.Empty), CultureInfo.InvariantCulture);
-                        valor /= 100;
-                        entry.Text = valor.ToString($"n{LENGTH_DECIMAL}");
+                        double.TryParse(entryText, NumberStyles, CultureInfo.InvariantCulture, out var newValue);
+                        double finalValue = 0;
+                        if (newValue != 0)
+                        {
+                            double.TryParse(args.OldTextValue, NumberStyles, CultureInfo.InvariantCulture, out var oldValue);
+
+                            if (newValue == oldValue) return;
+                            double.TryParse(Regex.Replace(entryText, Constants.Constants.Expressions.NumbersOnly, string.Empty), NumberStyles, CultureInfo.InvariantCulture, out var value);
+                            finalValue = value / 100;
+                        }
+
+                        entry.Text = finalValue.ToString(GetFormatForDecimalPlaces(LENGTH_DECIMAL));
                     }
 
                     break;
@@ -257,14 +273,6 @@ namespace Imobi.Behaviors
                 }
             }
 
-            //Mask for monetary values
-            if (_mask == "XXXXXXXXXX")
-            {
-                if (text is null) return;
-
-                text = CurrencyNumberValueConverter(text);
-            }
-
             if (string.IsNullOrWhiteSpace(text) || _positions is null) return;
 
             if (text.Length > _mask.Length)
@@ -285,11 +293,16 @@ namespace Imobi.Behaviors
                 entry.Text = text;
         }
 
-        private static string CurrencyNumberValueConverter(string text)
+        private static string GetFormatForDecimalPlaces(short decimalPlaces)
         {
-            var numbers = Regex.Replace(text, @"\D", "");
-            numbers = string.Format(new System.Globalization.CultureInfo("pt-BR"), "{0:N}", Convert.ToDecimal(numbers) / 100);
-            return numbers;
+            var builder = new StringBuilder("#")
+                .Append(CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator)
+                .Append("0")
+                .Append(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+
+            for (int i = 0; i < decimalPlaces; i++) builder.Append("0");
+
+            return builder.ToString();
         }
     }
 }
