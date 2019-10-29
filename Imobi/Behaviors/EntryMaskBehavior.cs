@@ -14,7 +14,6 @@ namespace Imobi.Behaviors
         public bool Formatted { get; set; }
         internal const int LENGTH_CPF = 11;
         internal const int LENGTH_CNPJ = 14;
-        internal const int LENGTH_DATE = 8;
         internal const int LENGTH_DATE_CARTAO_CREDITO = 6;
         internal const int LENGTH_PHONE_SEM_MASCARA_10 = 10;
         internal const int LENGTH_PHONE_SEM_MASCARA_11 = 11;
@@ -167,22 +166,10 @@ namespace Imobi.Behaviors
                     break;
 
                 case BehaviorTypeEnum.Date:
-                    if (entryLength == LENGTH_DATE && !Formatted)
-                    {
-                        entryText = Convert.ToUInt64(entryText).ToString(@"00/00/0000");
-                        Formatted = true;
-                    }
-                    else if (entryText?.Length > MaxLength)
-                    {
-                        entryText = entryText.Remove(entryText.Length - 1);
-                    }
-                    else if (entryText?.Length < MaxLength && Formatted)
-                    {
-                        Formatted = false;
-                    }
-
-                    entry.Text = entryText;
-                    entry.TextColor = entry.Text?.Length < MaxLength ? Color.Red : Color.Black;
+                    text = Regex.Replace(text, Constants.Constants.Expressions.NumbersOnly, string.Empty);
+                    if (text.Length > 10) text = text.Substring(0, 8);
+                    _mask = "XX/XX/XXXX";
+                    SetPositions();
 
                     break;
 
@@ -212,7 +199,7 @@ namespace Imobi.Behaviors
                     {
                         entry.Text = Regex.Replace(entryText, Constants.Constants.Expressions.NumbersOnly, string.Empty);
                     }
-                    break;
+                    return;
 
                 case BehaviorTypeEnum.PersonName:
                     if (entryText is null) return;
@@ -220,7 +207,7 @@ namespace Imobi.Behaviors
                     {
                         entry.Text = Regex.Replace(entryText, Constants.Constants.Expressions.PersonName, string.Empty);
                     }
-                    break;
+                    return;
 
                 case BehaviorTypeEnum.Decimal:
                     if (entryText != args.OldTextValue)
@@ -239,8 +226,7 @@ namespace Imobi.Behaviors
 
                         entry.Text = finalValue.ToString(GetFormatForDecimalPlaces(LENGTH_DECIMAL));
                     }
-
-                    break;
+                    return;
 
                 case BehaviorTypeEnum.ZipCode:
                     _mask = "XXXXX-XXX";

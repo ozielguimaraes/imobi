@@ -64,33 +64,19 @@
 
                 <Label Text="Nacionalidade" />
                 <Entry
+                    Keyboard="Text"
                     MaxLength="20"
                     Placeholder="Ex: Brasileira"
                     ReturnType="Next"
-                    Text="{Binding BuyerSelected.Form.Nationality}">
-                    <Entry.Keyboard>
-                        <Keyboard x:FactoryMethod="Create">
-                            <x:Arguments>
-                                <KeyboardFlags>Suggestions,CapitalizeWord</KeyboardFlags>
-                            </x:Arguments>
-                        </Keyboard>
-                    </Entry.Keyboard>
-                </Entry>
+                    Text="{Binding BuyerSelected.Form.Nationality}" />
 
                 <Label Text="Naturalidade" />
                 <Entry
+                    Keyboard="Text"
                     MaxLength="35"
                     Placeholder="Ex: Belo Horizonte"
                     ReturnType="Next"
-                    Text="{Binding BuyerSelected.Form.PlaceOfBirth}">
-                    <Entry.Keyboard>
-                        <Keyboard x:FactoryMethod="Create">
-                            <x:Arguments>
-                                <KeyboardFlags>Suggestions,CapitalizeWord</KeyboardFlags>
-                            </x:Arguments>
-                        </Keyboard>
-                    </Entry.Keyboard>
-                </Entry>
+                    Text="{Binding BuyerSelected.Form.PlaceOfBirth}" />
 
                 <Label Text="Valor FGTS" />
                 <Entry
@@ -105,33 +91,19 @@
 
                 <Label Text="Nome do pai" />
                 <Entry
+                    Keyboard="Text"
                     MaxLength="10"
                     Placeholder="Ex: João da Fonseca Souza"
                     ReturnType="Next"
-                    Text="{Binding BuyerSelected.Form.FathersName}">
-                    <Entry.Keyboard>
-                        <Keyboard x:FactoryMethod="Create">
-                            <x:Arguments>
-                                <KeyboardFlags>Suggestions,CapitalizeWord</KeyboardFlags>
-                            </x:Arguments>
-                        </Keyboard>
-                    </Entry.Keyboard>
-                </Entry>
+                    Text="{Binding BuyerSelected.Form.FathersName}" />
 
                 <Label Text="Nome da mãe" />
                 <Entry
+                    Keyboard="Text"
                     MaxLength="10"
                     Placeholder="Ex: Joaquina Rocha de Souza"
                     ReturnType="Next"
-                    Text="{Binding BuyerSelected.Form.MothersName}">
-                    <Entry.Keyboard>
-                        <Keyboard x:FactoryMethod="Create">
-                            <x:Arguments>
-                                <KeyboardFlags>Suggestions,CapitalizeWord</KeyboardFlags>
-                            </x:Arguments>
-                        </Keyboard>
-                    </Entry.Keyboard>
-                </Entry>
+                    Text="{Binding BuyerSelected.Form.MothersName}" />
 
                 <Label FontSize="Medium" Text="Documentos" />
 
@@ -156,18 +128,11 @@
 
                 <Label Text="Orgão expedidor" />
                 <Entry
+                    Keyboard="Text"
                     MaxLength="10"
                     Placeholder="Ex: SSP"
                     ReturnType="Next"
-                    Text="{Binding BuyerSelected.Form.DispatchingAgency}">
-                    <Entry.Keyboard>
-                        <Keyboard x:FactoryMethod="Create">
-                            <x:Arguments>
-                                <KeyboardFlags>Suggestions,CapitalizeCharacter</KeyboardFlags>
-                            </x:Arguments>
-                        </Keyboard>
-                    </Entry.Keyboard>
-                </Entry>
+                    Text="{Binding BuyerSelected.Form.DispatchingAgency}" />
 
                 <Label Text="Data de emissão" />
                 <Entry

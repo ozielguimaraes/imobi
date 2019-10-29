@@ -30,9 +30,9 @@ namespace Imobi.ViewModels
             }
         }
 
-        private DateTime _birthDate;
+        private string _birthDate;
 
-        public DateTime BirthDate
+        public string BirthDate
         {
             get { return _birthDate; }
             set { SetProperty(ref _birthDate, value); }
