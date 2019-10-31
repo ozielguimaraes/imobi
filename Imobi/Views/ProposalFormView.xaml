@@ -35,7 +35,7 @@
                     MaxLength="10"
                     Placeholder="Ex: 01/01/2001"
                     ReturnType="Next"
-                    Text="{Binding BuyerSelected.Form.BirthDate}">
+                    Text="{Binding BuyerSelected.Form.BirthDateString}">
                     <Entry.Behaviors>
                         <behaviors:EntryMaskBehavior Type="Date" />
                     </Entry.Behaviors>
@@ -140,7 +140,7 @@
                     MaxLength="10"
                     Placeholder="Ex: 01/01/2005"
                     ReturnType="Next"
-                    Text="{Binding BuyerSelected.Form.IssueDate}">
+                    Text="{Binding BuyerSelected.Form.IssueDateString}">
                     <Entry.Behaviors>
                         <behaviors:EntryMaskBehavior Type="Date" />
                     </Entry.Behaviors>
@@ -159,7 +159,7 @@
                     MaxLength="2"
                     Placeholder="Ex: 2"
                     ReturnType="Done"
-                    Text="{Binding BuyerSelected.Form.NumberOfDependents}">
+                    Text="{Binding BuyerSelected.Form.NumberOfDependentsString}">
                     <Entry.Behaviors>
                         <behaviors:EntryMaskBehavior Type="NumbersOnly" />
                     </Entry.Behaviors>

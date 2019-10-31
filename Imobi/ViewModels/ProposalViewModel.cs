@@ -17,7 +17,7 @@ namespace Imobi.ViewModels
         public ICommand GoToFormTabCommand => new Command(async () => await GoToFormTabAsync());
         public ICommand GoToFlowTabCommand => new Command(async () => await GoToFlowTabAsync());
 
-        private ProposalFlowViewModel _flow;
+        private ProposalFlowViewModel _flow = new ProposalFlowViewModel();
 
         public ProposalFlowViewModel Flow
         {

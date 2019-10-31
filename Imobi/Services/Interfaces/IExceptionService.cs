@@ -9,6 +9,8 @@ namespace Imobi.Services.Interfaces
 
         void TrackError(Exception ex, string messageError);
 
+        void TrackError(Exception ex, string className, string methodName, Dictionary<string, string> properties = null);
+
         void TrackError(Exception ex, Dictionary<string, string> properties = null);
     }
 }

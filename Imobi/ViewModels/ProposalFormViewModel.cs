@@ -30,9 +30,25 @@ namespace Imobi.ViewModels
             }
         }
 
-        private string _birthDate;
+        private string _birthDateString;
 
-        public string BirthDate
+        public string BirthDateString
+        {
+            get { return _birthDateString; }
+            set
+            {
+                _birthDateString = value;
+                if (value?.Length == 10)
+                {
+                    if (DateTime.TryParse(value, out _birthDate))
+                        OnPropertyChanged(nameof(BirthDate));
+                }
+            }
+        }
+
+        private DateTime _birthDate;
+
+        public DateTime BirthDate
         {
             get { return _birthDate; }
             set { SetProperty(ref _birthDate, value); }
@@ -126,6 +142,22 @@ namespace Imobi.ViewModels
             set { SetProperty(ref _dispatchingAgency, value); }
         }
 
+        private string _issueDateString;
+
+        public string IssueDateString
+        {
+            get { return _issueDateString; }
+            set
+            {
+                _issueDateString = value;
+                if (value?.Length == 10)
+                {
+                    if (DateTime.TryParse(value, out _issueDate))
+                        OnPropertyChanged(nameof(IssueDate));
+                }
+            }
+        }
+
         private DateTime _issueDate;
 
         public DateTime IssueDate
@@ -140,6 +172,22 @@ namespace Imobi.ViewModels
         {
             get { return _professionalCategory; }
             set { SetProperty(ref _professionalCategory, value); }
+        }
+
+        private string _numberOfDependentsString;
+
+        public string NumberOfDependentsString
+        {
+            get { return _numberOfDependentsString; }
+            set
+            {
+                _numberOfDependentsString = value;
+                if (!string.IsNullOrEmpty(_numberOfDependentsString))
+                {
+                    if (int.TryParse(value, out _numberOfDependents))
+                        OnPropertyChanged(nameof(NumberOfDependents));
+                }
+            }
         }
 
         private int _numberOfDependents;

@@ -28,9 +28,21 @@ namespace Imobi.Services
             Crashes.TrackError(e, properties);
         }
 
-        private void WriteError(Exception ex)
+        public void TrackError(Exception ex, string className, string methodName, Dictionary<string, string> properties)
         {
-            if (ex == null) return;
+            WriteError(ex, className, methodName);
+            properties = properties ?? new Dictionary<string, string>();
+
+            if (!string.IsNullOrWhiteSpace(className)) properties.Add("Class: ", className);
+            if (!string.IsNullOrWhiteSpace(methodName)) properties.Add("Method: ", methodName);
+            Crashes.TrackError(ex, properties);
+        }
+
+        private void WriteError(Exception ex, string className = null, string methodName = null)
+        {
+            if (ex is null) return;
+            if (!(className is null)) Debug.WriteLine($"Class: {className}");
+            if (!(methodName is null)) Debug.WriteLine($"Method: {methodName}");
 
             var error = ex.Message;
             Debug.WriteLine("------------- START --------------");
@@ -38,7 +50,7 @@ namespace Imobi.Services
             var stackTrace = new StackTrace(ex, true);
             var stackFrame = stackTrace.GetFrame(0);
 
-            if (stackFrame == null)
+            if (stackFrame is null)
             {
                 if (string.IsNullOrWhiteSpace(ex.Message)) Debug.WriteLine(ex.Message);
 

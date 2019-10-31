@@ -226,7 +226,10 @@
                     </StackLayout>
                     <views:ProposalDocsView Margin="0,16,0,0" IsVisible="{Binding IsDocsTabVisible}" />
                     <views:ProposalFormView Margin="0,16,0,0" IsVisible="{Binding IsFormTabVisible}" />
-                    <views:ProposalFlowView Margin="0,16,0,0" IsVisible="{Binding IsFlowTabVisible}" />
+                    <views:ProposalFlowView
+                        Margin="0,16,0,0"
+                        BindingContext="{Binding .}"
+                        IsVisible="{Binding IsFlowTabVisible}" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>
