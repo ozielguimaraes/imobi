@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 using Imobi.Enums;
+using Imobi.Extensions;
 using Imobi.IoC;
 using Imobi.Services.Interfaces;
 using Xamarin.Forms;
@@ -206,14 +207,15 @@ namespace Imobi.Behaviors
                         return;
 
                     case BehaviorTypeEnum.PersonName:
-                        if (entryText is null) return;
-                        if (entryText != args.OldTextValue)
+                        if (text is null) return;
+                        if (text != args.OldTextValue)
                         {
-                            entry.Text = Regex.Replace(entryText, Constants.Constants.Expressions.PersonName, string.Empty);
+                            entry.Text = text.GetPersonName();
                         }
                         return;
 
                     case BehaviorTypeEnum.Decimal:
+                        if (entryText is null) return;
                         if (entryText != args.OldTextValue)
                         {
                             if (string.IsNullOrEmpty(entryText) || string.IsNullOrEmpty(args.OldTextValue)) return;

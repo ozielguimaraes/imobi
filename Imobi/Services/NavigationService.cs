@@ -28,7 +28,8 @@ namespace Imobi.Services
 
             if (Application.Current.Properties.ContainsKey("Logged"))
             {
-                await NavigateToAsync<ProposalViewModel>();
+                await NavigateToAsync<MainViewModel>();
+                //await NavigateToAsync<ProposalViewModel>();
             }
             else
             {

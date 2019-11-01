@@ -27,7 +27,11 @@
                     MaxLength="50"
                     Placeholder="Ex: Fulano da Silva Júnior"
                     ReturnType="Next"
-                    Text="{Binding BuyerSelected.Form.FullName}" />
+                    Text="{Binding BuyerSelected.Form.FullName}">
+                    <Entry.Behaviors>
+                        <behaviors:EntryMaskBehavior Type="PersonName" />
+                    </Entry.Behaviors>
+                </Entry>
 
                 <Label Text="Data de nascimento" />
                 <Entry
@@ -68,7 +72,11 @@
                     MaxLength="20"
                     Placeholder="Ex: Brasileira"
                     ReturnType="Next"
-                    Text="{Binding BuyerSelected.Form.Nationality}" />
+                    Text="{Binding BuyerSelected.Form.Nationality}">
+                    <Entry.Behaviors>
+                        <behaviors:EntryMaskBehavior Type="PersonName" />
+                    </Entry.Behaviors>
+                </Entry>
 
                 <Label Text="Naturalidade" />
                 <Entry
@@ -76,7 +84,11 @@
                     MaxLength="35"
                     Placeholder="Ex: Belo Horizonte"
                     ReturnType="Next"
-                    Text="{Binding BuyerSelected.Form.PlaceOfBirth}" />
+                    Text="{Binding BuyerSelected.Form.PlaceOfBirth}">
+                    <Entry.Behaviors>
+                        <behaviors:EntryMaskBehavior Type="PersonName" />
+                    </Entry.Behaviors>
+                </Entry>
 
                 <Label Text="Valor FGTS" />
                 <Entry
@@ -95,7 +107,11 @@
                     MaxLength="10"
                     Placeholder="Ex: João da Fonseca Souza"
                     ReturnType="Next"
-                    Text="{Binding BuyerSelected.Form.FathersName}" />
+                    Text="{Binding BuyerSelected.Form.FathersName}">
+                    <Entry.Behaviors>
+                        <behaviors:EntryMaskBehavior Type="PersonName" />
+                    </Entry.Behaviors>
+                </Entry>
 
                 <Label Text="Nome da mãe" />
                 <Entry
@@ -103,7 +119,11 @@
                     MaxLength="10"
                     Placeholder="Ex: Joaquina Rocha de Souza"
                     ReturnType="Next"
-                    Text="{Binding BuyerSelected.Form.MothersName}" />
+                    Text="{Binding BuyerSelected.Form.MothersName}">
+                    <Entry.Behaviors>
+                        <behaviors:EntryMaskBehavior Type="PersonName" />
+                    </Entry.Behaviors>
+                </Entry>
 
                 <Label FontSize="Medium" Text="Documentos" />
 

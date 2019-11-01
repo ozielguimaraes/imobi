@@ -16,11 +16,13 @@ namespace Imobi.ViewModels
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
         protected IMessageService MessageService { get; private set; }
         protected IExceptionService ExceptionService { get; private set; }
+        protected INavigationService NavigationService { get; private set; }
 
         public BaseViewModel()
         {
             ExceptionService = Bootstraper.Resolve<IExceptionService>();
             MessageService = Bootstraper.Resolve<IMessageService>();
+            NavigationService = Bootstraper.Resolve<INavigationService>();
         }
 
         private bool isBusy = false;
