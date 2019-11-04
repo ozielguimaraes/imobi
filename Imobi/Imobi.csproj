@@ -22,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\ImobiNavigationPage.xaml.cs">
+      <DependentUpon>ImobiNavigationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ProposalListView.xaml.cs">
       <DependentUpon>ProposalListView.xaml</DependentUpon>
     </Compile>
@@ -38,7 +41,7 @@
     <EmbeddedResource Update="MasterDetailPageDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\AmilMobileNavigationPage.xaml">
+    <EmbeddedResource Update="Views\ImobiNavigationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\BuyerDocumentContentView.xaml">

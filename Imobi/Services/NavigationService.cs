@@ -98,7 +98,8 @@ namespace Imobi.Services
         {
             Page page = CreateAndBindPage(viewModelType, parameter);
 
-            if (page is MainView || page is RegisterView)
+            //if (page is MainView || page is RegisterView)
+            if (page is RegisterView)
             {
                 CurrentApplication.MainPage = page;
             }
@@ -110,7 +111,7 @@ namespace Imobi.Services
             {
                 var mainPage = CurrentApplication.MainPage as MainView;
 
-                if (mainPage.Detail is AmilMobileNavigationPage navigationPage)
+                if (mainPage.Detail is ImobiNavigationPage navigationPage)
                 {
                     var currentPage = navigationPage.CurrentPage;
 
@@ -121,7 +122,7 @@ namespace Imobi.Services
                 }
                 else
                 {
-                    navigationPage = new AmilMobileNavigationPage(page);
+                    navigationPage = new ImobiNavigationPage(page);
                     mainPage.Detail = navigationPage;
                 }
 
@@ -129,9 +130,9 @@ namespace Imobi.Services
             }
             else
             {
-                if (CurrentApplication.MainPage is AmilMobileNavigationPage navigationPage)
+                if (CurrentApplication.MainPage is ImobiNavigationPage navigationPage)
                     await navigationPage.PushAsync(page);
-                else CurrentApplication.MainPage = new AmilMobileNavigationPage(page);
+                else CurrentApplication.MainPage = new ImobiNavigationPage(page);
             }
 
             await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
@@ -173,6 +174,7 @@ namespace Imobi.Services
             _mappings.Add(typeof(MyWalletViewModel), typeof(MyWalletView));
             _mappings.Add(typeof(ProposalDocsViewModel), typeof(ProposalDocsView));
             _mappings.Add(typeof(ProposalViewModel), typeof(ProposalView));
+            _mappings.Add(typeof(ProposalListViewModel), typeof(ProposalListView));
             _mappings.Add(typeof(RegisterViewModel), typeof(RegisterView));
         }
     }

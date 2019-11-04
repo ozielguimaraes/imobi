@@ -4,14 +4,14 @@ using Xamarin.Forms.Xaml;
 namespace Imobi.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AmilMobileNavigationPage : NavigationPage
+    public partial class ImobiNavigationPage : NavigationPage
     {
-        public AmilMobileNavigationPage()
+        public ImobiNavigationPage()
         {
             InitializeComponent();
         }
 
-        public AmilMobileNavigationPage(Page root) : base(root)
+        public ImobiNavigationPage(Page root) : base(root)
         {
             InitializeComponent();
         }

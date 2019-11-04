@@ -1,6 +1,7 @@
 ﻿using Imobi.Enums;
 using Imobi.Models;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Imobi.ViewModels
@@ -9,16 +10,16 @@ namespace Imobi.ViewModels
     {
         public MenuViewModel()
         {
-            MenuItems = new ObservableCollection<MainMenuItem>();
-            LoadMenuItems();
+            LoadItems();
         }
 
-        private ObservableCollection<MainMenuItem> _menuItems;
+        public ICommand LoadMenuItemsCommand => new Command(LoadItems);
+        private ObservableCollection<MainMenuItem> _items = new ObservableCollection<MainMenuItem>();
 
-        public ObservableCollection<MainMenuItem> MenuItems
+        public ObservableCollection<MainMenuItem> Items
         {
-            get => _menuItems;
-            set => SetProperty(ref _menuItems, value);
+            get => _items;
+            set => SetProperty(ref _items, value);
         }
 
         private void OnMenuItemTapped(object menuItemTappedEventArgs)
@@ -34,13 +35,19 @@ namespace Imobi.ViewModels
             NavigationService.NavigateToAsync(type);
         }
 
-        private void LoadMenuItems()
+        private void LoadItems()
         {
-            MenuItems.Add(new MainMenuItem
+            Items.Add(new MainMenuItem
             {
                 MenuText = "Propostas",
-                ViewModelToLoad = typeof(MainViewModel),
+                ViewModelToLoad = typeof(ProposalListViewModel),
                 MenuItemType = MenuItemType.ProposalList
+            });
+            Items.Add(new MainMenuItem
+            {
+                MenuText = "Nova proposta",
+                ViewModelToLoad = typeof(ProposalViewModel),
+                MenuItemType = MenuItemType.ProposalNew
             });
         }
     }

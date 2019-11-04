@@ -38,26 +38,24 @@
                                         <ColumnDefinition Width="50" />
                                     </Grid.ColumnDefinitions>
 
-                                    <BoxView
-                                        Grid.Row="0"
+                                    <!--<BoxView
                                         Grid.RowSpan="4"
                                         Grid.Column="0"
-                                        Color="#28abe1" />
+                                        Color="#28abe1" />-->
 
                                     <Label
-                                        Grid.Row="0"
                                         Grid.Column="1"
                                         FontAttributes="Bold"
                                         FontSize="12"
                                         HorizontalOptions="Center"
-                                        Text="{Binding Numero, StringFormat='N° {0:}'}"
+                                        Text="{Binding Number, StringFormat='N° {0:}'}"
                                         TextColor="Black" />
                                     <Label
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         FontSize="10"
                                         HorizontalTextAlignment="Center"
-                                        Text="{Binding Cliente}"
+                                        Text="{Binding Client}"
                                         TextColor="Black" />
 
                                     <Grid
@@ -69,15 +67,15 @@
                                             BackgroundColor="Transparent"
                                             HeightRequest="55"
                                             HorizontalOptions="FillAndExpand"
-                                            Progress="{Binding Conclusao.PercentagemConclusao, StringFormat='0.{0}'}"
-                                            ProgressColor="{Binding Conclusao.GetColor}"
-                                            RingProgressColor="{Binding Conclusao.GetColor}"
+                                            Progress="{Binding Conclusion.PercentageCompletion, StringFormat='0.{0}'}"
+                                            ProgressColor="{Binding Conclusion.GetColor}"
+                                            RingProgressColor="{Binding Conclusion.GetColor}"
                                             RingThickness="4"
                                             VerticalOptions="EndAndExpand" />
                                         <Label
                                             Margin="28,15,0,0"
-                                            Text="{Binding Conclusao.PercentagemConclusao, StringFormat='{0} %'}"
-                                            TextColor="{Binding Conclusao.GetColor}" />
+                                            Text="{Binding Conclusion.PercentageCompletion, StringFormat='{0} %'}"
+                                            TextColor="{Binding Conclusion.GetColor}" />
                                     </Grid>
 
                                     <BoxView
@@ -98,13 +96,13 @@
 
                                         <Label
                                             FontSize="12"
-                                            Text="{Binding UltimaMovimentacao}"
+                                            Text="{Binding LastMovement}"
                                             VerticalOptions="EndAndExpand" />
                                         <BoxView
                                             Margin="0,5"
                                             BackgroundColor="#CCCCCC"
                                             HeightRequest="1" />
-                                        <Label FontSize="12" Text="{Binding PenultimaMovimentacao}" />
+                                        <Label FontSize="12" Text="{Binding PenultimateMovement}" />
                                     </FlexLayout>
 
                                     <Label
@@ -119,7 +117,7 @@
                                         Grid.Column="3"
                                         FontAttributes="Bold"
                                         HorizontalOptions="StartAndExpand"
-                                        Text="{Binding Empreendimento}" />
+                                        Text="{Binding Venture}" />
 
                                     <Label
                                         Grid.Row="2"
@@ -131,7 +129,7 @@
                                         Grid.Row="3"
                                         Grid.Column="4"
                                         FontAttributes="Bold"
-                                        Text="{Binding Torre}" />
+                                        Text="{Binding Tower}" />
 
                                     <Label
                                         Grid.Row="2"
@@ -147,7 +145,7 @@
                                         Margin="0,0,5,0"
                                         FontAttributes="Bold"
                                         HorizontalOptions="EndAndExpand"
-                                        Text="{Binding Unidade}" />
+                                        Text="{Binding Unity}" />
                                 </Grid>
                             </Frame>
                         </ViewCell>
