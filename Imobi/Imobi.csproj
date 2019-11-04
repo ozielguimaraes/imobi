@@ -32,7 +32,7 @@
     <Compile Update="Views\NewProposalView.xaml.cs">
       <DependentUpon>NewProposalView.xaml</DependentUpon>
     </Compile>
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.947036" />  
   </ItemGroup>
 
   <ItemGroup>
