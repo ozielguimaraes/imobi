@@ -10,7 +10,6 @@
     <ContentPage.Content>
         <StackLayout Margin="0,8,0,0">
             <ListView
-                x:Name="ItemsListView"
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
                 ItemsSource="{Binding Items}">

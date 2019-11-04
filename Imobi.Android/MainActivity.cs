@@ -7,6 +7,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Android.Support.V7.App;
+using FFImageLoading.Forms.Platform;
 
 namespace Imobi.Droid
 {
@@ -25,10 +26,12 @@ namespace Imobi.Droid
 
             base.OnCreate(savedInstanceState);
 
-            global::Xamarin.Forms.Forms.SetFlags("Shell_Experimental", "Visual_Experimental", "CollectionView_Experimental", "FastRenderers_Experimental");
+            global::Xamarin.Forms.Forms.SetFlags("Shell_Experimental", "Visual_Experimental", "FastRenderers_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            CachedImageRenderer.Init(true);
             AppCenter.Start(Constants.Constants.AppCenter.Android.Key, typeof(Analytics), typeof(Crashes));
 
             LoadApplication(new App());

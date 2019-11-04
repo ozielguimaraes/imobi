@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using FFImageLoading.Forms.Platform;
+using Foundation;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -21,8 +22,11 @@ namespace Imobi.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.SetFlags("Shell_Experimental", "Visual_Experimental", "CollectionView_Experimental", "FastRenderers_Experimental");
+            global::Xamarin.Forms.Forms.SetFlags("Shell_Experimental", "Visual_Experimental", "FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init();
+
+            CachedImageRenderer.Init();
+
             AppCenter.Start(Constants.Constants.AppCenter.iOS.Key, typeof(Analytics), typeof(Crashes));
             AiForms.Layouts.LayoutsInit.Init();
 
