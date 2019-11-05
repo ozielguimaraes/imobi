@@ -9,12 +9,20 @@
     mc:Ignorable="d">
     <ContentView.Content>
         <Frame
+            HasShadow="False"
             Padding="0"
-            BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
             HeightRequest="70"
+            BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
             HorizontalOptions="Start"
-            VerticalOptions="Start"
-            WidthRequest="65">
+            VerticalOptions="Start">
+            <Frame.WidthRequest>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <OnPlatform.Platforms>
+                        <On Platform="Android" Value="65" />
+                        <On Platform="iOS" Value="75" />
+                    </OnPlatform.Platforms>
+                </OnPlatform>
+            </Frame.WidthRequest>
             <StackLayout>
                 <Image
                     Margin="0,5,5,0"

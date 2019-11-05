@@ -42,6 +42,7 @@
                             VerticalOptions="CenterAndExpand" />
                         <components:ImageCircle
                             FillColor="{StaticResource TitleColorDefault}"
+                            VerticalOptions="CenterAndExpand"
                             HeightRequest="16"
                             WidthRequest="16" />
                     </StackLayout>
@@ -113,16 +114,12 @@
                             <TapGestureRecognizer Command="{Binding EnableBuyerRegisterCommand}" />
                         </Frame.GestureRecognizers>
                     </Frame>
-                    <CollectionView
-                        BackgroundColor="Red"
+                    <ListView
                         HeightRequest="60"
                         HorizontalOptions="EndAndExpand"
                         IsVisible="{Binding ShowBuyers, Mode=OneWay}"
                         ItemsSource="{Binding Buyers}">
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Horizontal" />
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
+                        <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Padding="10">
                                     <Grid.RowDefinitions>
@@ -153,8 +150,8 @@
                                         VerticalOptions="End" />
                                 </Grid>
                             </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackLayout>
                 <StackLayout
                     Margin="0,16,0,0"

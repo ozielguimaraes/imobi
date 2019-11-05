@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behaviors="clr-namespace:Imobi.Behaviors"
+    xmlns:components="clr-namespace:Imobi.Views.Components"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -185,8 +186,10 @@
                     </Entry.Behaviors>
                 </Entry>
 
-                <Button
+                <components:ButtonRounded
                     Margin="0,16,0,16"
+                    TextColor="{StaticResource ButtonTextColor}"
+                    BackgroundColor="{StaticResource ButtonBackgroundColor}"
                     Command="{Binding GoToFlowTabCommand}"
                     CornerRadius="6"
                     HeightRequest="40"

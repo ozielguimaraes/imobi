@@ -9,22 +9,24 @@
     <Application.Resources>
         <Color x:Key="TitleColorDefault">White</Color>
         <Color x:Key="TextColorDefault">#ececec</Color>
-
-        <!--  Label  -->
-        <Color x:Key="LabelTextColorPrimary">#ececec</Color>
-        <!--  Entry  -->
-        <Color x:Key="EntryTextColorPrimary">#c1c1c1</Color>
-        <Color x:Key="EntryPlaceholderColorPrimary">#c9c9c9</Color>
-
         <Color x:Key="BackgroundColorPage">#1e2541</Color>
         <Color x:Key="BackgroundColorBuyerFrame">#2a3263</Color>
-
+        
+        
+        <!--  Button  -->
+        <Color x:Key="ButtonBackgroundColor">#c1c1c1</Color>
+        <Color x:Key="ButtonTextColor">#000</Color>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="16" />
         </Style>
+        <!--  Label  -->
+        <Color x:Key="LabelTextColorPrimary">#ececec</Color>
         <Style TargetType="Label">
             <Setter Property="TextColor" Value="{StaticResource TextColorDefault}" />
         </Style>
+        <!--  Entry  -->
+        <Color x:Key="EntryTextColorPrimary">#c1c1c1</Color>
+        <Color x:Key="EntryPlaceholderColorPrimary">#c9c9c9</Color>
         <Style TargetType="Entry">
             <Setter Property="TextColor" Value="{StaticResource EntryTextColorPrimary}" />
             <Setter Property="PlaceholderColor" Value="{StaticResource EntryPlaceholderColorPrimary}" />
