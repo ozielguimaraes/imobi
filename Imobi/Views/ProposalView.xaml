@@ -7,8 +7,8 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:Imobi.Views"
+    Title="{Binding Title}"
     BackgroundColor="{StaticResource BackgroundColorPage}"
-    NavigationPage.HasNavigationBar="false"
     mc:Ignorable="d">
     <ContentPage.Content>
         <ScrollView>

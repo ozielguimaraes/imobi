@@ -13,7 +13,6 @@
         <StackLayout>
             <StackLayout BackgroundColor="#00ACC1" HeightRequest="80">
                 <Label
-                    x:Name="menuTitle"
                     FontSize="Small"
                     HorizontalOptions="Center"
                     Text="Bem Vindo(a)"
@@ -67,7 +66,7 @@
                 <Label
                     Margin="10,0,0,0"
                     FontSize="Small"
-                    Text="Binding AppVersion}"
+                    Text="{Binding AppVersion, StringFormat='Versão {0}'}"
                     TextColor="#3f3f3f" />
 
                 <Label

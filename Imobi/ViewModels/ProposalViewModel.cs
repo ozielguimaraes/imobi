@@ -10,6 +10,7 @@ namespace Imobi.ViewModels
     {
         public ProposalViewModel()
         {
+            Title = "Proposta";
         }
 
         public ICommand EnableBuyerRegisterCommand => new Command(async () => await EnableBuyerRegisterAsync());

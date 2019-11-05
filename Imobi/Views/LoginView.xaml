@@ -12,7 +12,10 @@
             <StackLayout>
                 <Label Text="Welcome to Xamarin.Forms!\nLOGIN" />
                 <Entry Placeholder="Login" />
-                <components:ButtonRounded HorizontalOptions="FillAndExpand" Text="Login" />
+                <components:ButtonRounded
+                    Command="{Binding SigninCommand}"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Login" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

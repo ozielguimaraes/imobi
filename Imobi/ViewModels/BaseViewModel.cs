@@ -8,6 +8,7 @@ using Imobi.Services;
 using System.Threading.Tasks;
 using Imobi.IoC;
 using Imobi.Services.Interfaces;
+using Xamarin.Essentials;
 
 namespace Imobi.ViewModels
 {
@@ -39,6 +40,11 @@ namespace Imobi.ViewModels
         {
             get { return title; }
             set { SetProperty(ref title, value); }
+        }
+
+        public string AppVersion
+        {
+            get { return VersionTracking.CurrentVersion; }
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,

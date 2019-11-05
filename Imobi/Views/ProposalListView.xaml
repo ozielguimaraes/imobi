@@ -78,14 +78,12 @@
                                     </Grid>
 
                                     <BoxView
-                                        Grid.Row="0"
                                         Grid.RowSpan="4"
                                         Grid.Column="2"
                                         BackgroundColor="#CCCCCC"
                                         WidthRequest="1" />
 
                                     <FlexLayout
-                                        Grid.Row="0"
                                         Grid.RowSpan="3"
                                         Grid.Column="3"
                                         Grid.ColumnSpan="3"

@@ -23,13 +23,9 @@ namespace Imobi.Services
 
         public async Task InitializeAsync()
         {
-            if (!Application.Current.Properties.ContainsKey("Logged"))
-                Application.Current.Properties.Add("Logged", true);
-
             if (Application.Current.Properties.ContainsKey("Logged"))
             {
                 await NavigateToAsync<MainViewModel>();
-                //await NavigateToAsync<ProposalViewModel>();
             }
             else
             {
