@@ -7,12 +7,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Application.Resources>
+        <!--  Global Styles  -->
+        <Color x:Key="PrimaryColor">#1e2541</Color>
+        <Color x:Key="PrimaryDarkColor">#2d2e30</Color>
+        <Color x:Key="Accent">#0d104fe3</Color>
+
         <Color x:Key="TitleColorDefault">White</Color>
         <Color x:Key="TextColorDefault">#ececec</Color>
-        <Color x:Key="BackgroundColorPage">#1e2541</Color>
+        <Color x:Key="PageBackgroundColor">#1e2541</Color>
         <Color x:Key="BackgroundColorBuyerFrame">#2a3263</Color>
-        
-        
+
         <!--  Button  -->
         <Color x:Key="ButtonBackgroundColor">#c1c1c1</Color>
         <Color x:Key="ButtonTextColor">#000</Color>
@@ -21,6 +25,7 @@
         </Style>
         <!--  Label  -->
         <Color x:Key="LabelTextColorPrimary">#ececec</Color>
+        <Color x:Key="LabelTextColorSecondary">#d0d0d0</Color>
         <Style TargetType="Label">
             <Setter Property="TextColor" Value="{StaticResource TextColorDefault}" />
         </Style>

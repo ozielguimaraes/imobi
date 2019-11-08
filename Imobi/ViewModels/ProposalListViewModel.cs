@@ -11,6 +11,11 @@ namespace Imobi.ViewModels
 {
     public class ProposalListViewModel : BaseViewModel
     {
+        public ProposalListViewModel()
+        {
+            Title = "Propostas";
+        }
+
         public ObservableCollection<ProposalDto> Items { get; set; } = new ObservableCollection<ProposalDto>();
         public ICommand LoadItemsCommand => new Command(async () => await LoadItems());
 

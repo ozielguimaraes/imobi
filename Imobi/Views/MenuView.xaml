@@ -74,7 +74,7 @@
                     Margin="10,0,0,0"
                     FontSize="Micro"
                     Text="Powered By: Oziel Guimarães"
-                    TextColor="{StaticResource LabelTextColorPrimary}" />
+                    TextColor="{StaticResource LabelTextColorSecondary}" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>

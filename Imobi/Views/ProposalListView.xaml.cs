@@ -1,4 +1,5 @@
-﻿using Imobi.ViewModels;
+﻿using Imobi.Dtos;
+using Imobi.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,6 +11,17 @@ namespace Imobi.Views
         public ProposalListView()
         {
             InitializeComponent();
+        }
+
+        public async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            if (!(args.SelectedItem is ProposalDto item)) return;
+            // Manually deselect item.
+            ItemsListView.SelectedItem = null;
+
+            var vm = (ProposalListViewModel)BindingContext;
+
+            await vm.NavigationService.NavigateToAsync<ProposalViewModel>(item);
         }
 
         protected override void OnAppearing()

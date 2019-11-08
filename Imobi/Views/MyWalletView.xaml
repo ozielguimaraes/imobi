@@ -6,13 +6,13 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="{Binding Title}"
-    BackgroundColor="{StaticResource BackgroundColorPage}"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
     mc:Ignorable="d">
     <ContentPage.Content>
         <StackLayout>
             <Label
                 HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
+                Text="Aqui vai ficar MINHA CARTEIRA!"
                 VerticalOptions="CenterAndExpand" />
             <Label
                 HorizontalOptions="CenterAndExpand"
