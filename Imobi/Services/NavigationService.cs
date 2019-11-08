@@ -23,7 +23,7 @@ namespace Imobi.Services
 
         public async Task InitializeAsync()
         {
-            if (Application.Current.Properties.ContainsKey("Logged"))
+            if (Application.Current.Properties?.ContainsKey("Logged") ?? false)
             {
                 await NavigateToAsync<MainViewModel>();
             }
@@ -103,7 +103,7 @@ namespace Imobi.Services
             {
                 CurrentApplication.MainPage = page;
             }
-            else if (CurrentApplication.MainPage is MainView)
+            else if (CurrentApplication.MainPage is MyWalletView)
             {
                 var mainPage = CurrentApplication.MainPage as MainView;
 
@@ -128,7 +128,21 @@ namespace Imobi.Services
             {
                 if (CurrentApplication.MainPage is ImobiNavigationPage navigationPage)
                     await navigationPage.PushAsync(page);
-                else CurrentApplication.MainPage = new ImobiNavigationPage(page);
+                else
+                {
+                    if (page is MainView mainView)
+                    {
+                        Page detailPage = CreateAndBindPage(typeof(MyWalletViewModel), parameter);
+
+                        mainView.Detail = new ImobiNavigationPage(detailPage);
+                        CurrentApplication.MainPage = mainView;
+                    }
+                    else
+                    {
+                        CurrentApplication.MainPage = new ImobiNavigationPage(page);
+                    }
+                    //else CurrentApplication.MainPage = new ImobiNavigationPage(page);
+                }
             }
 
             await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);

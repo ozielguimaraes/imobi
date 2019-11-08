@@ -12,7 +12,4 @@
     <MasterDetailPage.Master>
         <views:MenuView BindingContext="{Binding Menu}" />
     </MasterDetailPage.Master>
-    <MasterDetailPage.Detail>
-        <views:MyWalletView />
-    </MasterDetailPage.Detail>
 </MasterDetailPage>
