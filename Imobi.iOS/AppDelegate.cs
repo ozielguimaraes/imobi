@@ -3,6 +3,7 @@ using Foundation;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using ProgressRingControl.Forms.Plugin.iOS;
 using UIKit;
 
 namespace Imobi.iOS
@@ -31,6 +32,7 @@ namespace Imobi.iOS
             AiForms.Layouts.LayoutsInit.Init();
 
             LoadApplication(new App());
+            ProgressRingRenderer.Init();
 
             return base.FinishedLaunching(app, options);
         }

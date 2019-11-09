@@ -26,8 +26,8 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-<CodesignProvision>Santa Helena - AdHoc - Oziel</CodesignProvision>
-<CodesignKey>iPhone Distribution: Santa Helena Assistencia Medica SA (HN93LA76ZZ)</CodesignKey>
+    <CodesignProvision>Santa Helena - AdHoc - Oziel</CodesignProvision>
+    <CodesignKey>iPhone Distribution: Santa Helena Assistencia Medica SA (HN93LA76ZZ)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -152,6 +152,9 @@
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Media">
       <Version>4.0.1.5</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Forms.ProgressRing">
+      <Version>0.1.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
       <Version>2.4.11.982</Version>
