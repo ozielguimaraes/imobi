@@ -12,13 +12,16 @@ namespace Imobi.Services
     public class NavigationService : INavigationService
     {
         private readonly Dictionary<Type, Type> _mappings;
+        private readonly Dictionary<Type, Type> _mappingsDetailPage;
 
         protected Application CurrentApplication => Application.Current;
 
         public NavigationService()
         {
             _mappings = new Dictionary<Type, Type>();
+            _mappingsDetailPage = new Dictionary<Type, Type>();
             CreatePageViewModelMappings();
+            CreatePageDetailsViewModelMappings();
         }
 
         public async Task InitializeAsync()
@@ -92,60 +95,94 @@ namespace Imobi.Services
 
         protected virtual async Task InternalNavigateToAsync(Type viewModelType, object parameter)
         {
-            Page page = CreateAndBindPage(viewModelType, parameter);
+            try
+            {
+                Page page = CreateAndBindPage(viewModelType, parameter);
 
-            //if (page is MainView || page is RegisterView)
-            if (page is RegisterView)
-            {
-                CurrentApplication.MainPage = page;
-            }
-            else if (page is LoginView)
-            {
-                CurrentApplication.MainPage = page;
-            }
-            else if (CurrentApplication.MainPage is MyWalletView)
-            {
-                var mainPage = CurrentApplication.MainPage as MainView;
-
-                if (mainPage.Detail is ImobiNavigationPage navigationPage)
+                //When the app load for the first time
+                if (CurrentApplication.MainPage is null)
                 {
-                    var currentPage = navigationPage.CurrentPage;
+                    var mainView = page as MainView;
+                    Page detailPage = CreateAndBindPage(typeof(MyWalletViewModel), parameter);
 
-                    if (currentPage.GetType() != page.GetType())
-                    {
-                        await navigationPage.PushAsync(page);
-                    }
+                    mainView.Detail = new ImobiNavigationPage(detailPage);
+                    CurrentApplication.MainPage = mainView;
+                }
+                else if (page is RegisterView)
+                {
+                    CurrentApplication.MainPage = page;
+                }
+                else if (page is LoginView)
+                {
+                    CurrentApplication.MainPage = page;
                 }
                 else
                 {
-                    navigationPage = new ImobiNavigationPage(page);
-                    mainPage.Detail = navigationPage;
+                    if (CurrentApplication.MainPage is MainView mainView)
+                    {
+                        bool result = mainView == null;
+                        bool resultIs = mainView is null;
+                        var asdsd = (MainView)CurrentApplication.MainPage;
+                        await mainView.Detail.Navigation.PushAsync(page);
+                    }
                 }
+                //else if (IsDetailPage(page))
+                //{
+                //}
+                ////Is detail page
+                //else if (_mappingsDetailPage.ContainsKey(viewModelType))
+                //{
+                //    await CurrentApplication.MainPage.Navigation.PushAsync(page);
+                //}
+                //else if (CurrentApplication.MainPage is MyWalletView)
+                //{
+                //    var mainPage = CurrentApplication.MainPage as MainView;
 
-                mainPage.IsPresented = false;
+                //    if (mainPage.Detail is ImobiNavigationPage navigationPage)
+                //    {
+                //        var currentPage = navigationPage.CurrentPage;
+
+                //        if (currentPage.GetType() != page.GetType())
+                //        {
+                //            await navigationPage.PushAsync(page);
+                //        }
+                //    }
+                //    else
+                //    {
+                //        navigationPage = new ImobiNavigationPage(page);
+                //        mainPage.Detail = navigationPage;
+                //    }
+
+                //    mainPage.IsPresented = false;
+                //}
+                //else
+                //{
+                //    if (CurrentApplication.MainPage is ImobiNavigationPage navigationPage)
+                //        await navigationPage.PushAsync(page);
+                //    else
+                //    {
+                //        if (page is MainView mainView)
+                //        {
+                //            Page detailPage = CreateAndBindPage(typeof(MyWalletViewModel), parameter);
+
+                //            mainView.Detail = new ImobiNavigationPage(detailPage);
+                //            CurrentApplication.MainPage = mainView;
+                //        }
+                //        else
+                //        {
+                //            CurrentApplication.MainPage = new ImobiNavigationPage(page);
+                //        }
+                //        //else CurrentApplication.MainPage = new ImobiNavigationPage(page);
+                //    }
+                //}
+
+                await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
             }
-            else
+            catch (Exception ex)
             {
-                if (CurrentApplication.MainPage is ImobiNavigationPage navigationPage)
-                    await navigationPage.PushAsync(page);
-                else
-                {
-                    if (page is MainView mainView)
-                    {
-                        Page detailPage = CreateAndBindPage(typeof(MyWalletViewModel), parameter);
-
-                        mainView.Detail = new ImobiNavigationPage(detailPage);
-                        CurrentApplication.MainPage = mainView;
-                    }
-                    else
-                    {
-                        CurrentApplication.MainPage = new ImobiNavigationPage(page);
-                    }
-                    //else CurrentApplication.MainPage = new ImobiNavigationPage(page);
-                }
+                var exceptionService = Bootstraper.Resolve<IExceptionService>();
+                exceptionService.TrackError(ex, nameof(NavigationService), nameof(InternalNavigateToAsync));
             }
-
-            await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
         }
 
         protected Type GetPageTypeForViewModel(Type viewModelType)
@@ -186,6 +223,16 @@ namespace Imobi.Services
             _mappings.Add(typeof(ProposalViewModel), typeof(ProposalView));
             _mappings.Add(typeof(ProposalListViewModel), typeof(ProposalListView));
             _mappings.Add(typeof(RegisterViewModel), typeof(RegisterView));
+        }
+
+        private void CreatePageDetailsViewModelMappings()
+        {
+            _mappingsDetailPage.Add(typeof(ProposalViewModel), typeof(ProposalView));
+        }
+
+        private bool IsDetailPage()
+        {
+            return true;
         }
     }
 }
