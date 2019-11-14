@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using Imobi.Dtos;
+using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -161,6 +163,34 @@ namespace Imobi.ViewModels
             IsFlowTabVisible = true;
             IsDocsTabVisible = false;
             IsFormTabVisible = false;
+        }
+
+        public override async Task InitializeAsync(object parameter)
+        {
+            try
+            {
+                if (parameter is ProposalDto item)
+                {
+                    if (!IsBusy) IsBusy = true;
+                    //TODO Get buyers from servive
+                    Buyers = new ObservableCollection<BuyerViewModel>();
+                    Buyers.Add(new BuyerViewModel
+                    {
+                        Form = new ProposalFormViewModel
+                        {
+                            Cpf = "000.000.001-91",
+                            FullName = item.Client
+                        },
+                        Documents = new ObservableCollection<BuyerDocumentViewModel>()
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionService.TrackError(ex, nameof(ProposalViewModel), nameof(InitializeAsync));
+                await MessageService.ShowAsync("Não foi possível carregar a proposta");
+            }
+            finally { IsBusy = false; }
         }
     }
 }

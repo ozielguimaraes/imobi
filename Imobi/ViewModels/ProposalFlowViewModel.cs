@@ -11,7 +11,7 @@ namespace Imobi.ViewModels
     {
         public ICommand LoadPreKeysCommand => new Command(async () => await LoadPreKeys());
         public ICommand NewPreKeyCommand => new Command(async () => await AddNewPreKey());
-        public ICommand DeletePreKeyCommand => new Command<PreKeyViewModel>(async (item) => await DeletePreChave(item));
+        public ICommand DeletePreKeyCommand => new Command<PreKeyViewModel>(async (item) => await DeletePreChaveAsync(item));
 
         private ObservableCollection<PreKeyViewModel> _preKeys = new ObservableCollection<PreKeyViewModel>();
 
@@ -104,7 +104,7 @@ namespace Imobi.ViewModels
             }
             catch (Exception ex)
             {
-                ExceptionService.TrackError(ex, nameof(ProposalFlowViewModel), "LoadPreKeys");
+                ExceptionService.TrackError(ex, nameof(ProposalFlowViewModel), nameof(LoadPreKeys));
             }
             finally
             {
@@ -137,7 +137,7 @@ namespace Imobi.ViewModels
             }
             catch (Exception ex)
             {
-                ExceptionService.TrackError(ex, nameof(ProposalFlowViewModel), "AddNewPreKey");
+                ExceptionService.TrackError(ex, nameof(ProposalFlowViewModel), nameof(AddNewPreKey));
             }
             finally
             {
@@ -145,7 +145,7 @@ namespace Imobi.ViewModels
             }
         }
 
-        private async Task DeletePreChave(PreKeyViewModel item)
+        private async Task DeletePreChaveAsync(PreKeyViewModel item)
         {
             if (IsBusy) return;
 
@@ -160,7 +160,7 @@ namespace Imobi.ViewModels
             }
             catch (Exception ex)
             {
-                ExceptionService.TrackError(ex, nameof(ProposalFlowViewModel), "DeletePreChave");
+                ExceptionService.TrackError(ex, nameof(ProposalFlowViewModel), nameof(DeletePreChaveAsync));
             }
             finally
             {

@@ -10,22 +10,31 @@ namespace Imobi.Services
     {
         public void TrackError(string messageError)
         {
-            Debug.WriteLine("------------- START --------------");
-            Debug.WriteLine(messageError);
-            Debug.WriteLine("-------------- END -----------------");
+            if (string.IsNullOrWhiteSpace(messageError)) return;
+
+            WriteError(messageError);
+
+#if (!DEBUG)
             Crashes.TrackError(null, new Dictionary<string, string> { { "error", messageError } });
+#endif
         }
 
         public void TrackError(Exception e, string messageError)
         {
+            if (!string.IsNullOrWhiteSpace(messageError)) Debug.WriteLine(messageError);
             WriteError(e);
+
+#if (!DEBUG)
             Crashes.TrackError(e, new Dictionary<string, string> { { "error", messageError } });
+#endif
         }
 
         public void TrackError(Exception e, Dictionary<string, string> properties)
         {
             WriteError(e);
+#if (!DEBUG)
             Crashes.TrackError(e, properties);
+#endif
         }
 
         public void TrackError(Exception ex, string className, string methodName, Dictionary<string, string> properties)
@@ -35,7 +44,16 @@ namespace Imobi.Services
 
             if (!string.IsNullOrWhiteSpace(className)) properties.Add("Class: ", className);
             if (!string.IsNullOrWhiteSpace(methodName)) properties.Add("Method: ", methodName);
+#if (!DEBUG)
             Crashes.TrackError(ex, properties);
+#endif
+        }
+
+        private void WriteError(string messageError)
+        {
+            Debug.WriteLine("------------- START --------------");
+            Debug.WriteLine(messageError);
+            Debug.WriteLine("-------------- END -----------------");
         }
 
         private void WriteError(Exception ex, string className = null, string methodName = null)

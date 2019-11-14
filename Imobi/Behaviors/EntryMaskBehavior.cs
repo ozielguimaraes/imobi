@@ -287,7 +287,7 @@ namespace Imobi.Behaviors
             catch (Exception ex)
             {
                 var exceptionService = Bootstraper.Resolve<IExceptionService>();
-                exceptionService.TrackError(ex, nameof(EntryMaskBehavior), "OnEntryTextChanged");
+                exceptionService.TrackError(ex, nameof(EntryMaskBehavior), nameof(OnEntryTextChanged));
             }
         }
 
