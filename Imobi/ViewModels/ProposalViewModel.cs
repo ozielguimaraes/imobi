@@ -169,20 +169,21 @@ namespace Imobi.ViewModels
         {
             try
             {
+                if (parameter is null) return;
+
                 if (parameter is ProposalDto item)
                 {
                     if (!IsBusy) IsBusy = true;
                     //TODO Get buyers from servive
                     Buyers = new ObservableCollection<BuyerViewModel>();
-                    Buyers.Add(new BuyerViewModel
-                    {
-                        Form = new ProposalFormViewModel
-                        {
-                            Cpf = "000.000.001-91",
-                            FullName = item.Client
-                        },
-                        Documents = new ObservableCollection<BuyerDocumentViewModel>()
-                    });
+                    //Buyers.Add(new BuyerViewModel
+                    //{
+                    //    Form = new ProposalFormViewModel
+                    //    {
+                    //        Cpf = "000.000.001-91",
+                    //        FullName = item.Client
+                    //    },
+                    //});
                 }
             }
             catch (Exception ex)

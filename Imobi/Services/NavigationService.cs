@@ -99,16 +99,7 @@ namespace Imobi.Services
             {
                 Page page = CreateAndBindPage(viewModelType, parameter);
 
-                //When the app load for the first time
-                if (CurrentApplication.MainPage is null)
-                {
-                    var mainView = page as MainView;
-                    Page detailPage = CreateAndBindPage(typeof(MyWalletViewModel), parameter);
-
-                    mainView.Detail = new ImobiNavigationPage(detailPage);
-                    CurrentApplication.MainPage = mainView;
-                }
-                else if (page is RegisterView)
+                if (page is RegisterView)
                 {
                     CurrentApplication.MainPage = page;
                 }
@@ -116,15 +107,24 @@ namespace Imobi.Services
                 {
                     CurrentApplication.MainPage = page;
                 }
+                //When the user was already login and dindt pass throw login page
+                else if (page is MasterDetailPage masterDetail && CurrentApplication.MainPage is null)
+                {
+                    masterDetail.Detail = new ImobiNavigationPage(GetHomePage(parameter));
+                    CurrentApplication.MainPage = masterDetail;
+                }
+                //When the user pass throw login page with success
+                else if (CurrentApplication.MainPage is LoginView && page is MasterDetailPage masterDetailPage)
+                {
+                    masterDetailPage.Detail = new ImobiNavigationPage(GetHomePage(parameter));
+
+                    await RemoveLastFromBackStackAsync();
+                    await CurrentApplication.MainPage.Navigation.PushModalAsync(masterDetailPage);
+                }
                 else
                 {
-                    if (CurrentApplication.MainPage is MainView mainView)
-                    {
-                        bool result = mainView == null;
-                        bool resultIs = mainView is null;
-                        var asdsd = (MainView)CurrentApplication.MainPage;
-                        await mainView.Detail.Navigation.PushAsync(page);
-                    }
+                    (CurrentApplication.MainPage as MasterDetailPage).IsPresented = false;
+                    await (CurrentApplication.MainPage as MasterDetailPage).Navigation.PushModalAsync(new ImobiNavigationPage(page));
                 }
                 //else if (IsDetailPage(page))
                 //{
@@ -181,8 +181,14 @@ namespace Imobi.Services
             catch (Exception ex)
             {
                 var exceptionService = Bootstraper.Resolve<IExceptionService>();
+
                 exceptionService.TrackError(ex, nameof(NavigationService), nameof(InternalNavigateToAsync));
             }
+        }
+
+        private Page GetHomePage(object parameter)
+        {
+            return CreateAndBindPage(typeof(MyWalletViewModel), parameter);
         }
 
         protected Type GetPageTypeForViewModel(Type viewModelType)
