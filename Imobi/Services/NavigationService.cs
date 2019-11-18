@@ -26,14 +26,21 @@ namespace Imobi.Services
 
         public async Task InitializeAsync()
         {
-            if (Application.Current.Properties?.ContainsKey("Logged") ?? false)
+            try
             {
-                await NavigateToAsync<MainViewModel>();
+                if (Application.Current.Properties?.ContainsKey("Logged") ?? false)
+                {
+                    await NavigateToAsync<MainViewModel>();
+                }
+                else
+                {
+                    await NavigateToAsync<LoginViewModel>();
+                    //await NavigateToAsync<RegistrationViewModel>();
+                }
             }
-            else
+            catch(Exception ex)
             {
-                await NavigateToAsync<LoginViewModel>();
-                //await NavigateToAsync<RegistrationViewModel>();
+
             }
         }
 
@@ -99,34 +106,55 @@ namespace Imobi.Services
             {
                 Page page = CreateAndBindPage(viewModelType, parameter);
 
-                //When the app load for the first time
-                if (CurrentApplication.MainPage is null)
-                {
-                    var mainView = page as MainView;
-                    Page detailPage = CreateAndBindPage(typeof(MyWalletViewModel), parameter);
-
-                    mainView.Detail = new ImobiNavigationPage(detailPage);
-                    CurrentApplication.MainPage = mainView;
-                }
-                else if (page is RegisterView)
+                if (page is RegisterView)
                 {
                     CurrentApplication.MainPage = page;
                 }
                 else if (page is LoginView)
                 {
+                    //   //When the app load for the first time
+                    //if (CurrentApplication.MainPage is null)
+                    //   {
+                    //       var mainView = page as MainView;
+                    //       Page detailPage = CreateAndBindPage(typeof(MyWalletViewModel), parameter);
+
+                    //       mainView.Detail = new ImobiNavigationPage(detailPage);
+                    //       CurrentApplication.MainPage = mainView;
+                    //   }
                     CurrentApplication.MainPage = page;
+                }
+                else if (CurrentApplication.MainPage is LoginView)
+                {
+                    Page detailPage = CreateAndBindPage(typeof(MyWalletViewModel), parameter);
+                    var mainView = page as MainView;
+                    mainView.Detail = new ImobiNavigationPage(detailPage);
+                    CurrentApplication.MainPage = mainView;
                 }
                 else
                 {
-                    if (CurrentApplication.MainPage is MainView mainView)
+                    if (CurrentApplication.MainPage is MasterDetailPage masterDetailPage)
                     {
-                        bool result = mainView == null;
-                        bool resultIs = mainView is null;
-                        var asdsd = (MainView)CurrentApplication.MainPage;
-                        await mainView.Detail.Navigation.PushAsync(page);
+                        await masterDetailPage.Detail.Navigation.PushAsync(page);
+                    }
+                    else
+                    {
+                        await CurrentApplication.MainPage.Navigation.PushAsync(page);
+
+                        Page detailPage = CreateAndBindPage(typeof(MyWalletViewModel), parameter);
+
+                        //mainView.Detail = new ImobiNavigationPage(detailPage);
+                        //CurrentApplication.MainPage = mainView;
                     }
                 }
-                //else if (IsDetailPage(page))
+                // else
+                //{
+                //        if (page is MasterDetailPage masterDetailPage)
+                //            await masterDetailPage.Detail.Navigation.PushAsync(page);
+                //        else await page.Navigation.PushAsync(page);
+
+                    
+                //}
+                //else if (IsMasterDetailPage(page))
                 //{
                 //}
                 ////Is detail page
@@ -228,11 +256,6 @@ namespace Imobi.Services
         private void CreatePageDetailsViewModelMappings()
         {
             _mappingsDetailPage.Add(typeof(ProposalViewModel), typeof(ProposalView));
-        }
-
-        private bool IsDetailPage()
-        {
-            return true;
         }
     }
 }

@@ -13,29 +13,29 @@ namespace Imobi.Services
             Debug.WriteLine("------------- START --------------");
             Debug.WriteLine(messageError);
             Debug.WriteLine("-------------- END -----------------");
-            Crashes.TrackError(null, new Dictionary<string, string> { { "error", messageError } });
+            //Crashes.TrackError(null, new Dictionary<string, string> { { "error", messageError } });
         }
 
         public void TrackError(Exception e, string messageError)
         {
             WriteError(e);
-            Crashes.TrackError(e, new Dictionary<string, string> { { "error", messageError } });
+            //Crashes.TrackError(e, new Dictionary<string, string> { { "error", messageError } });
         }
 
         public void TrackError(Exception e, Dictionary<string, string> properties)
         {
             WriteError(e);
-            Crashes.TrackError(e, properties);
+            //Crashes.TrackError(e, properties);
         }
 
         public void TrackError(Exception ex, string className, string methodName, Dictionary<string, string> properties)
         {
+            if (!string.IsNullOrWhiteSpace(className)) properties.Add("Class: ", className);
+            if (!string.IsNullOrWhiteSpace(methodName)) properties.Add("Method: ", methodName);
             WriteError(ex, className, methodName);
             properties = properties ?? new Dictionary<string, string>();
 
-            if (!string.IsNullOrWhiteSpace(className)) properties.Add("Class: ", className);
-            if (!string.IsNullOrWhiteSpace(methodName)) properties.Add("Method: ", methodName);
-            Crashes.TrackError(ex, properties);
+            //Crashes.TrackError(ex, properties);
         }
 
         private void WriteError(Exception ex, string className = null, string methodName = null)

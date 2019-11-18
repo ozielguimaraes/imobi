@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms;
 using Imobi.IoC;
 using Imobi.Services.Interfaces;
+using System.Threading.Tasks;
 
 namespace Imobi
 {
@@ -10,7 +11,6 @@ namespace Imobi
         {
             InitializeComponent();
             InitializeApp();
-            InitializeNavigation();
         }
 
         private void InitializeApp()
@@ -18,15 +18,19 @@ namespace Imobi
             Bootstraper.RegisterDependencies();
         }
 
-        private async void InitializeNavigation()
+        private async Task InitializeNavigationAsync()
         {
             var navigationService = Bootstraper.Resolve<INavigationService>();
             await navigationService.InitializeAsync();
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
-            // Handle when your app starts
+            base.OnStart();
+
+            await InitializeNavigationAsync();
+
+            base.OnResume();
         }
 
         protected override void OnSleep()

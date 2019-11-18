@@ -89,5 +89,6 @@
 
   <ItemGroup>
     <Folder Include="Controls\" />
+    <Folder Include="Controls\ProgressBarCircle\" />
   </ItemGroup>
 </Project>
