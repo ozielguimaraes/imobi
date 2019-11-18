@@ -123,28 +123,24 @@ namespace Imobi.Services
                     //   }
                     CurrentApplication.MainPage = page;
                 }
-                else if (CurrentApplication.MainPage is LoginView)
+                //When the user was already login and dindt pass throw login page
+                else if (page is MasterDetailPage masterDetail && CurrentApplication.MainPage is null)
                 {
-                    Page detailPage = CreateAndBindPage(typeof(MyWalletViewModel), parameter);
-                    var mainView = page as MainView;
-                    mainView.Detail = new ImobiNavigationPage(detailPage);
-                    CurrentApplication.MainPage = mainView;
+                    masterDetail.Detail = new ImobiNavigationPage(GetHomePage(parameter));
+                    CurrentApplication.MainPage = masterDetail;
+                }
+                //When the user pass throw login page with success
+                else if (CurrentApplication.MainPage is LoginView && page is MasterDetailPage masterDetailPage)
+                {
+                    masterDetailPage.Detail = new ImobiNavigationPage(GetHomePage(parameter));
+
+                    await RemoveLastFromBackStackAsync();
+                    await CurrentApplication.MainPage.Navigation.PushModalAsync(masterDetailPage);
                 }
                 else
                 {
-                    if (CurrentApplication.MainPage is MasterDetailPage masterDetailPage)
-                    {
-                        await masterDetailPage.Detail.Navigation.PushAsync(page);
-                    }
-                    else
-                    {
-                        await CurrentApplication.MainPage.Navigation.PushAsync(page);
-
-                        Page detailPage = CreateAndBindPage(typeof(MyWalletViewModel), parameter);
-
-                        //mainView.Detail = new ImobiNavigationPage(detailPage);
-                        //CurrentApplication.MainPage = mainView;
-                    }
+                    (CurrentApplication.MainPage as MasterDetailPage).IsPresented = false;
+                    await (CurrentApplication.MainPage as MasterDetailPage).Navigation.PushModalAsync(new ImobiNavigationPage(page));
                 }
                 // else
                 //{
@@ -209,8 +205,14 @@ namespace Imobi.Services
             catch (Exception ex)
             {
                 var exceptionService = Bootstraper.Resolve<IExceptionService>();
+
                 exceptionService.TrackError(ex, nameof(NavigationService), nameof(InternalNavigateToAsync));
             }
+        }
+
+        private Page GetHomePage(object parameter)
+        {
+            return CreateAndBindPage(typeof(MyWalletViewModel), parameter);
         }
 
         protected Type GetPageTypeForViewModel(Type viewModelType)

@@ -10,32 +10,51 @@ namespace Imobi.Services
     {
         public void TrackError(string messageError)
         {
-            Debug.WriteLine("------------- START --------------");
-            Debug.WriteLine(messageError);
-            Debug.WriteLine("-------------- END -----------------");
-            //Crashes.TrackError(null, new Dictionary<string, string> { { "error", messageError } });
+            if (string.IsNullOrWhiteSpace(messageError)) return;
+
+            WriteError(messageError);
+
+#if (!DEBUG)
+            Crashes.TrackError(null, new Dictionary<string, string> { { "error", messageError } });
+#endif
         }
 
         public void TrackError(Exception e, string messageError)
         {
+            if (!string.IsNullOrWhiteSpace(messageError)) Debug.WriteLine(messageError);
             WriteError(e);
-            //Crashes.TrackError(e, new Dictionary<string, string> { { "error", messageError } });
+
+#if (!DEBUG)
+            Crashes.TrackError(e, new Dictionary<string, string> { { "error", messageError } });
+#endif
         }
 
         public void TrackError(Exception e, Dictionary<string, string> properties)
         {
             WriteError(e);
-            //Crashes.TrackError(e, properties);
+#if (!DEBUG)
+            Crashes.TrackError(e, properties);
+#endif
         }
 
         public void TrackError(Exception ex, string className, string methodName, Dictionary<string, string> properties)
         {
-            if (!string.IsNullOrWhiteSpace(className)) properties.Add("Class: ", className);
             if (!string.IsNullOrWhiteSpace(methodName)) properties.Add("Method: ", methodName);
             WriteError(ex, className, methodName);
             properties = properties ?? new Dictionary<string, string>();
 
-            //Crashes.TrackError(ex, properties);
+#if (!DEBUG)
+            Crashes.TrackError(ex, properties);
+#endif
+        }
+
+        private void WriteError(string messageError)
+        {
+            Debug.WriteLine("------------- START --------------");
+            Debug.WriteLine(messageError);
+            Debug.WriteLine("-------------- END -----------------");
+            if (!string.IsNullOrWhiteSpace(methodName)) properties.Add("Method: ", methodName);
+            if (!string.IsNullOrWhiteSpace(className)) properties.Add("Class: ", className);
         }
 
         private void WriteError(Exception ex, string className = null, string methodName = null)
