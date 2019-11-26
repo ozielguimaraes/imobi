@@ -256,7 +256,5 @@
   <ItemGroup>
     <Content Include="Linker.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Renderers\ProgressBarCircle\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

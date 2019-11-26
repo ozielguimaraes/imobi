@@ -92,6 +92,7 @@
     <Compile Include="Managers\File\ImageResizer.cs" />
     <Compile Include="Renderers\BoxGradientViewRenderer.cs" />
     <Compile Include="Renderers\ImageCircleRenderer.cs" />
+    <Compile Include="Renderers\ProgressBarCircle\ProgressBarCircleRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

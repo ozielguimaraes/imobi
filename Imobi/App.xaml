@@ -36,5 +36,10 @@
             <Setter Property="TextColor" Value="{StaticResource EntryTextColorPrimary}" />
             <Setter Property="PlaceholderColor" Value="{StaticResource EntryPlaceholderColorPrimary}" />
         </Style>
+        <!--  Picker  -->
+        <Style TargetType="Picker">
+            <Setter Property="TextColor" Value="{StaticResource EntryTextColorPrimary}" />
+            <Setter Property="TitleColor" Value="{StaticResource EntryPlaceholderColorPrimary}" />
+        </Style>
     </Application.Resources>
 </Application>

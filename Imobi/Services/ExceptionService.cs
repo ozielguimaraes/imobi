@@ -53,8 +53,8 @@ namespace Imobi.Services
             Debug.WriteLine("------------- START --------------");
             Debug.WriteLine(messageError);
             Debug.WriteLine("-------------- END -----------------");
-            if (!string.IsNullOrWhiteSpace(methodName)) properties.Add("Method: ", methodName);
-            if (!string.IsNullOrWhiteSpace(className)) properties.Add("Class: ", className);
+            //if (!string.IsNullOrWhiteSpace(methodName)) properties.Add("Method: ", methodName);
+            //if (!string.IsNullOrWhiteSpace(className)) properties.Add("Class: ", className);
         }
 
         private void WriteError(Exception ex, string className = null, string methodName = null)

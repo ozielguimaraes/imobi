@@ -188,13 +188,13 @@
 
                 <components:ButtonRounded
                     Margin="0,16,0,16"
-                    TextColor="{StaticResource ButtonTextColor}"
                     BackgroundColor="{StaticResource ButtonBackgroundColor}"
                     Command="{Binding GoToFlowTabCommand}"
                     CornerRadius="6"
                     HeightRequest="40"
                     HorizontalOptions="FillAndExpand"
-                    Text="Próximo" />
+                    Text="Próximo"
+                    TextColor="{StaticResource ButtonTextColor}" />
             </StackLayout>
         </ScrollView>
     </ContentView.Content>
