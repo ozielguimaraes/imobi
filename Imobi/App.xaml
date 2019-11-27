@@ -3,6 +3,7 @@
     x:Class="Imobi.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:Imobi.Views.Components"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -18,11 +19,15 @@
         <Color x:Key="BackgroundColorBuyerFrame">#2a3263</Color>
 
         <!--  Button  -->
-        <Color x:Key="ButtonBackgroundColor">#c1c1c1</Color>
-        <Color x:Key="ButtonTextColor">#000</Color>
-        <Style TargetType="Button">
+        <Color x:Key="ButtonBackgroundColorPrimary">#004741</Color>
+        <Color x:Key="ButtonTextColorPrimary">#424040</Color>
+        <Style x:Key="ButtonPrimary" TargetType="Button">
             <Setter Property="FontSize" Value="16" />
+            <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColorPrimary}" />
+            <Setter Property="TextColor" Value="{StaticResource ButtonTextColorPrimary}" />
         </Style>
+        <Style BaseResourceKey="ButtonPrimary" TargetType="Button" />
+        <Style BaseResourceKey="ButtonPrimary" TargetType="components:ButtonRounded" />
         <!--  Label  -->
         <Color x:Key="LabelTextColorPrimary">#ececec</Color>
         <Color x:Key="LabelTextColorSecondary">#d0d0d0</Color>

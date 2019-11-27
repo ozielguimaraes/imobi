@@ -179,7 +179,7 @@
                     Keyboard="Numeric"
                     MaxLength="2"
                     Placeholder="Ex: 2"
-                    ReturnType="Done"
+                    ReturnType="Send"
                     Text="{Binding BuyerSelected.Form.NumberOfDependentsString}">
                     <Entry.Behaviors>
                         <behaviors:EntryMaskBehavior Type="NumbersOnly" />
@@ -188,13 +188,11 @@
 
                 <components:ButtonRounded
                     Margin="0,16,0,16"
-                    BackgroundColor="{StaticResource ButtonBackgroundColor}"
                     Command="{Binding GoToFlowTabCommand}"
                     CornerRadius="6"
                     HeightRequest="40"
                     HorizontalOptions="FillAndExpand"
-                    Text="Próximo"
-                    TextColor="{StaticResource ButtonTextColor}" />
+                    Text="Próximo" />
             </StackLayout>
         </ScrollView>
     </ContentView.Content>
