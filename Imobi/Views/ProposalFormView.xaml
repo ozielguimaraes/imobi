@@ -186,7 +186,7 @@
                     </Entry.Behaviors>
                 </Entry>
 
-                <components:ButtonRounded
+                <Button
                     Margin="0,16,0,16"
                     Command="{Binding GoToFlowTabCommand}"
                     CornerRadius="6"

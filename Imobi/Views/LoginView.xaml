@@ -8,11 +8,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <ContentPage.Content>
-        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+        <ScrollView Margin="10,0" HorizontalOptions="FillAndExpand">
             <StackLayout>
+                <Image Source="tab_about.png" VerticalOptions="CenterAndExpand" />
                 <Label Text="Welcome to Xamarin.Forms!\nLOGIN" />
                 <Entry Placeholder="Login" />
-                <components:ButtonRounded
+                <Button
+                    Margin="0,0,0,30"
                     Command="{Binding SigninCommand}"
                     HorizontalOptions="FillAndExpand"
                     Text="Login" />
