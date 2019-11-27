@@ -10,25 +10,25 @@ namespace Imobi.ViewModels
 {
     public class ProposalViewModel : BaseViewModel
     {
-        public ProposalViewModel()
+        #region Public Properties
+
+        public bool AllFiledsFilled
         {
-            Title = "Proposta";
+            get => _allFiledsFilled;
+            set => SetProperty(ref _allFiledsFilled, value);
         }
 
-        public ICommand EnableBuyerRegisterCommand => new Command(async () => await EnableBuyerRegisterAsync());
-        public ICommand GoToDocsTabCommand => new Command(async () => await GoToDocsTabAsync());
-        public ICommand GoToFormTabCommand => new Command(async () => await GoToFormTabAsync());
-        public ICommand GoToFlowTabCommand => new Command(async () => await GoToFlowTabAsync());
-
-        private ProposalFlowViewModel _flow = new ProposalFlowViewModel();
-
-        public ProposalFlowViewModel Flow
+        public ObservableCollection<BuyerViewModel> Buyers
         {
-            get => _flow;
-            set => SetProperty(ref _flow, value);
-        }
+            get => _buyers;
+            set
+            {
+                _buyers = value;
+                OnPropertyChanged();
 
-        private BuyerViewModel _buyerSelected;
+                ShowBuyers = Buyers?.Any() ?? false;
+            }
+        }
 
         public BuyerViewModel BuyerSelected
         {
@@ -43,7 +43,11 @@ namespace Imobi.ViewModels
             }
         }
 
-        private bool _canGoToFormTab;
+        public bool CanGoToFlowTab
+        {
+            get => _canGoToFlowTab;
+            set => SetProperty(ref _canGoToFlowTab, value);
+        }
 
         public bool CanGoToFormTab
         {
@@ -51,23 +55,19 @@ namespace Imobi.ViewModels
             set => SetProperty(ref _canGoToFormTab, value);
         }
 
-        private bool _allFiledsFilled;
+        public ICommand EnableBuyerRegisterCommand => new Command(async () => await EnableBuyerRegisterAsync());
 
-        public bool AllFiledsFilled
+        public ProposalFlowViewModel Flow
         {
-            get => _allFiledsFilled;
-            set => SetProperty(ref _allFiledsFilled, value);
+            get => _flow;
+            set => SetProperty(ref _flow, value);
         }
 
-        private bool _canGoToFlowTab;
+        public ICommand GoToDocsTabCommand => new Command(async () => GoToDocsTab());
 
-        public bool CanGoToFlowTab
-        {
-            get => _canGoToFlowTab;
-            set => SetProperty(ref _canGoToFlowTab, value);
-        }
+        public ICommand GoToFlowTabCommand => new Command(async () => GoToFlowTab());
 
-        private bool _isDocsTabVisible;
+        public ICommand GoToFormTabCommand => new Command(async () => GoToFormTab());
 
         public bool IsDocsTabVisible
         {
@@ -75,7 +75,11 @@ namespace Imobi.ViewModels
             set => SetProperty(ref _isDocsTabVisible, value);
         }
 
-        private bool _isFormTabVisible;
+        public bool IsFlowTabVisible
+        {
+            get => _isFlowTabVisible;
+            set => SetProperty(ref _isFlowTabVisible, value);
+        }
 
         public bool IsFormTabVisible
         {
@@ -83,15 +87,11 @@ namespace Imobi.ViewModels
             set => SetProperty(ref _isFormTabVisible, value);
         }
 
-        private bool _isFlowTabVisible;
-
-        public bool IsFlowTabVisible
+        public bool ShowBuyerOptions
         {
-            get => _isFlowTabVisible;
-            set => SetProperty(ref _isFlowTabVisible, value);
+            get => _showBuyerOptions;
+            set => SetProperty(ref _showBuyerOptions, value);
         }
-
-        private bool _showBuyers;
 
         public bool ShowBuyers
         {
@@ -99,71 +99,48 @@ namespace Imobi.ViewModels
             set => SetProperty(ref _showBuyers, value);
         }
 
-        private bool _showBuyerOptions;
+        #endregion Public Properties
 
-        public bool ShowBuyerOptions
-        {
-            get => _showBuyerOptions;
-            set => SetProperty(ref _showBuyerOptions, value);
-        }
+
+
+        #region Private Fields + Structs
+
+        private bool _allFiledsFilled;
 
         private ObservableCollection<BuyerViewModel> _buyers;
 
-        public ObservableCollection<BuyerViewModel> Buyers
-        {
-            get => _buyers;
-            set
-            {
-                _buyers = value;
-                OnPropertyChanged();
+        private BuyerViewModel _buyerSelected;
 
-                ShowBuyers = Buyers?.Any() ?? false;
-            }
+        private bool _canGoToFlowTab;
+
+        private bool _canGoToFormTab;
+
+        private ProposalFlowViewModel _flow = new ProposalFlowViewModel();
+
+        private bool _isDocsTabVisible;
+
+        private bool _isFlowTabVisible;
+
+        private bool _isFormTabVisible;
+
+        private bool _showBuyerOptions;
+
+        private bool _showBuyers;
+
+        #endregion Private Fields + Structs
+
+        #region Public Constructors + Destructors
+
+        public ProposalViewModel()
+        {
+            Title = "Proposta";
         }
 
-        private async Task EnableBuyerRegisterAsync()
-        {
-            BuyerSelected = new BuyerViewModel();
-            EnableDocsTab();
-        }
+        #endregion Public Constructors + Destructors
 
-        private async Task GoToDocsTabAsync()
-        {
-            EnableDocsTab();
-        }
 
-        private async Task GoToFormTabAsync()
-        {
-            EnableFormTab();
-        }
 
-        private async Task GoToFlowTabAsync()
-        {
-            EnableFlowTab();
-        }
-
-        private void EnableDocsTab()
-        {
-            IsDocsTabVisible = true;
-            IsFlowTabVisible = false;
-            IsFormTabVisible = false;
-        }
-
-        private void EnableFormTab()
-        {
-            IsFormTabVisible = true;
-            IsFlowTabVisible = false;
-            IsDocsTabVisible = false;
-            BuyerSelected.Form = BuyerSelected.Form ?? new ProposalFormViewModel();
-            BuyerSelected.Form.LoadPickers();
-        }
-
-        private void EnableFlowTab()
-        {
-            IsFlowTabVisible = true;
-            IsDocsTabVisible = false;
-            IsFormTabVisible = false;
-        }
+        #region Public Methods
 
         public override async Task InitializeAsync(object parameter)
         {
@@ -193,5 +170,57 @@ namespace Imobi.ViewModels
             }
             finally { IsBusy = false; }
         }
+
+        #endregion Public Methods
+
+
+
+        #region Private Methods
+
+        private async Task EnableBuyerRegisterAsync()
+        {
+            BuyerSelected = new BuyerViewModel();
+            EnableDocsTab();
+        }
+
+        private void EnableDocsTab()
+        {
+            IsDocsTabVisible = true;
+            IsFlowTabVisible = false;
+            IsFormTabVisible = false;
+        }
+
+        private void EnableFlowTab()
+        {
+            IsFlowTabVisible = true;
+            IsDocsTabVisible = false;
+            IsFormTabVisible = false;
+        }
+
+        private void EnableFormTab()
+        {
+            IsFormTabVisible = true;
+            IsFlowTabVisible = false;
+            IsDocsTabVisible = false;
+            BuyerSelected.Form = BuyerSelected.Form ?? new ProposalFormViewModel();
+            BuyerSelected.Form.LoadPickers();
+        }
+
+        private void GoToDocsTab()
+        {
+            EnableDocsTab();
+        }
+
+        private void GoToFlowTab()
+        {
+            EnableFlowTab();
+        }
+
+        private void GoToFormTab()
+        {
+            EnableFormTab();
+        }
+
+        #endregion Private Methods
     }
 }
