@@ -11,10 +11,22 @@ namespace Imobi.Services
 {
     public class NavigationService : INavigationService
     {
+        #region Protected Properties
+
+        protected Application CurrentApplication => Application.Current;
+
+        #endregion Protected Properties
+
+
+
+        #region Private Fields + Structs
+
         private readonly Dictionary<Type, Type> _mappings;
         private readonly Dictionary<Type, Type> _mappingsDetailPage;
 
-        protected Application CurrentApplication => Application.Current;
+        #endregion Private Fields + Structs
+
+        #region Public Constructors + Destructors
 
         public NavigationService()
         {
@@ -22,6 +34,17 @@ namespace Imobi.Services
             _mappingsDetailPage = new Dictionary<Type, Type>();
             CreatePageViewModelMappings();
             CreatePageDetailsViewModelMappings();
+        }
+
+        #endregion Public Constructors + Destructors
+
+
+
+        #region Public Methods
+
+        public async Task ClearBackStack()
+        {
+            await CurrentApplication.MainPage.Navigation.PopToRootAsync();
         }
 
         public async Task InitializeAsync()
@@ -34,13 +57,24 @@ namespace Imobi.Services
                 }
                 else
                 {
-                    await NavigateToAsync<LoginViewModel>();
+                    await NavigateToAsync<AttendanceChannelViewModel>();
                     //await NavigateToAsync<RegistrationViewModel>();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+            }
+        }
 
+        public async Task NavigateBackAsync()
+        {
+            if (CurrentApplication.MainPage is MainView mainPage)
+            {
+                await mainPage.Detail.Navigation.PopAsync();
+            }
+            else if (CurrentApplication.MainPage != null)
+            {
+                await CurrentApplication.MainPage.Navigation.PopAsync();
             }
         }
 
@@ -59,25 +93,16 @@ namespace Imobi.Services
             return InternalNavigateToAsync(viewModelType, null);
         }
 
-        public async Task ClearBackStack()
-        {
-            await CurrentApplication.MainPage.Navigation.PopToRootAsync();
-        }
-
         public Task NavigateToAsync(Type viewModelType, object parameter)
         {
             return InternalNavigateToAsync(viewModelType, parameter);
         }
 
-        public async Task NavigateBackAsync()
+        public async Task PopToRootAsync()
         {
             if (CurrentApplication.MainPage is MainView mainPage)
             {
-                await mainPage.Detail.Navigation.PopAsync();
-            }
-            else if (CurrentApplication.MainPage != null)
-            {
-                await CurrentApplication.MainPage.Navigation.PopAsync();
+                await mainPage.Detail.Navigation.PopToRootAsync();
             }
         }
 
@@ -92,12 +117,36 @@ namespace Imobi.Services
             return Task.FromResult(true);
         }
 
-        public async Task PopToRootAsync()
+        #endregion Public Methods
+
+
+
+        #region Protected Methods
+
+        protected Page CreateAndBindPage(Type viewModelType, object parameter)
         {
-            if (CurrentApplication.MainPage is MainView mainPage)
+            Type pageType = GetPageTypeForViewModel(viewModelType);
+
+            if (pageType is null)
             {
-                await mainPage.Detail.Navigation.PopToRootAsync();
+                throw new Exception($"Mapping type for {viewModelType} is not a page");
             }
+
+            Page page = Activator.CreateInstance(pageType) as Page;
+            BaseViewModel viewModel = Bootstraper.Resolve(viewModelType) as BaseViewModel;
+            page.BindingContext = viewModel;
+
+            return page;
+        }
+
+        protected Type GetPageTypeForViewModel(Type viewModelType)
+        {
+            if (!_mappings.ContainsKey(viewModelType))
+            {
+                throw new KeyNotFoundException($"No map for ${viewModelType} was found on navigation mappings");
+            }
+
+            return _mappings[viewModelType];
         }
 
         protected virtual async Task InternalNavigateToAsync(Type viewModelType, object parameter)
@@ -148,7 +197,6 @@ namespace Imobi.Services
                 //            await masterDetailPage.Detail.Navigation.PushAsync(page);
                 //        else await page.Navigation.PushAsync(page);
 
-                    
                 //}
                 //else if (IsMasterDetailPage(page))
                 //{
@@ -210,35 +258,13 @@ namespace Imobi.Services
             }
         }
 
-        private Page GetHomePage(object parameter)
+        #endregion Protected Methods
+
+        #region Private Methods
+
+        private void CreatePageDetailsViewModelMappings()
         {
-            return CreateAndBindPage(typeof(MyWalletViewModel), parameter);
-        }
-
-        protected Type GetPageTypeForViewModel(Type viewModelType)
-        {
-            if (!_mappings.ContainsKey(viewModelType))
-            {
-                throw new KeyNotFoundException($"No map for ${viewModelType} was found on navigation mappings");
-            }
-
-            return _mappings[viewModelType];
-        }
-
-        protected Page CreateAndBindPage(Type viewModelType, object parameter)
-        {
-            Type pageType = GetPageTypeForViewModel(viewModelType);
-
-            if (pageType is null)
-            {
-                throw new Exception($"Mapping type for {viewModelType} is not a page");
-            }
-
-            Page page = Activator.CreateInstance(pageType) as Page;
-            BaseViewModel viewModel = Bootstraper.Resolve(viewModelType) as BaseViewModel;
-            page.BindingContext = viewModel;
-
-            return page;
+            _mappingsDetailPage.Add(typeof(ProposalViewModel), typeof(ProposalView));
         }
 
         //map to join VM and VIEW dont need ViewModel Locator others cases is resolve trought Utility.ViewModelLocator
@@ -253,11 +279,14 @@ namespace Imobi.Services
             _mappings.Add(typeof(ProposalViewModel), typeof(ProposalView));
             _mappings.Add(typeof(ProposalListViewModel), typeof(ProposalListView));
             _mappings.Add(typeof(RegisterViewModel), typeof(RegisterView));
+            _mappings.Add(typeof(AttendanceChannelViewModel), typeof(AttendanceChannelView));
         }
 
-        private void CreatePageDetailsViewModelMappings()
+        private Page GetHomePage(object parameter)
         {
-            _mappingsDetailPage.Add(typeof(ProposalViewModel), typeof(ProposalView));
+            return CreateAndBindPage(typeof(MyWalletViewModel), parameter);
         }
+
+        #endregion Private Methods
     }
 }

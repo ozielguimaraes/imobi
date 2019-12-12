@@ -24,6 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\AttendanceChannelView.xaml.cs">
+      <DependentUpon>AttendanceChannelView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ImobiNavigationPage.xaml.cs">
       <DependentUpon>ImobiNavigationPage.xaml</DependentUpon>
     </Compile>
@@ -38,6 +41,9 @@
 
   <ItemGroup>
     <EmbeddedResource Update="MasterDetailPageDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AttendanceChannelView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ImobiNavigationPage.xaml">

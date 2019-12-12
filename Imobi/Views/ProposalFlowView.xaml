@@ -81,11 +81,7 @@
                             ReturnType="Next"
                             Text="{Binding Flow.NewPreKey.NumberOfInstallmentsString}"
                             TextColor="Black"
-                            VerticalOptions="End">
-                            <Entry.Behaviors>
-                                <behaviors:EntryMaskBehavior Type="NumbersOnly" />
-                            </Entry.Behaviors>
-                        </Entry>
+                            VerticalOptions="End" />
 
                         <Label
                             Grid.Column="2"

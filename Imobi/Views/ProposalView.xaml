@@ -30,50 +30,6 @@
                         WidthRequest="24" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <StackLayout
-                        HorizontalOptions="FillAndExpand"
-                        Orientation="Horizontal"
-                        Spacing="0"
-                        VerticalOptions="Start">
-                        <components:BoxGradientView
-                            ColorsList="#c1c1c1,#1c2340"
-                            HeightRequest="2"
-                            HorizontalOptions="FillAndExpand"
-                            Mode="ToTopLeft"
-                            VerticalOptions="CenterAndExpand" />
-                        <components:ImageCircle
-                            FillColor="{StaticResource TitleColorDefault}"
-                            HeightRequest="16"
-                            VerticalOptions="CenterAndExpand"
-                            WidthRequest="16" />
-                    </StackLayout>
-                    <Label
-                        Grid.Column="1"
-                        Margin="8,0,8,0"
-                        FontAttributes="Bold"
-                        FontSize="Medium"
-                        HorizontalOptions="Center"
-                        Text="ON PROPOSTA"
-                        TextColor="{StaticResource TitleColorDefault}" />
-                    <StackLayout
-                        Grid.Column="2"
-                        HorizontalOptions="FillAndExpand"
-                        Orientation="Horizontal"
-                        Spacing="0"
-                        VerticalOptions="Start">
-                        <components:ImageCircle
-                            FillColor="{StaticResource TitleColorDefault}"
-                            HeightRequest="16"
-                            VerticalOptions="CenterAndExpand"
-                            WidthRequest="16" />
-                        <components:BoxGradientView
-                            ColorsList="#ffffff,#1c2340"
-                            HeightRequest="2"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="CenterAndExpand" />
-                    </StackLayout>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
                     <StackLayout HorizontalOptions="StartAndExpand">
                         <Label Text="FINANCIADO" TextColor="{StaticResource TextColorDefault}" />
                         <Label Text="R$ 300,000,88" TextColor="{StaticResource TextColorDefault}" />
