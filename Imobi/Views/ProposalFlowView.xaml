@@ -28,8 +28,9 @@
                 <Frame
                     Margin="0,0,0,6"
                     Padding="0"
+                    BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
                     CornerRadius="5">
-                    <Grid BackgroundColor="White">
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="1" />
@@ -43,17 +44,6 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <!--<BoxView
-                                Grid.RowSpan="4"
-                                Color="#28abe1" />-->
-
-                        <Label
-                            Grid.Column="1"
-                            Margin="0,0,5,0"
-                            FontAttributes="Bold"
-                            FontSize="13"
-                            Text="Parcela"
-                            TextColor="Black" />
 
                         <BoxView
                             Grid.Row="1"
@@ -65,8 +55,7 @@
                             Grid.Column="1"
                             Margin="5,0"
                             FontSize="Micro"
-                            Text="Qtde Parcela"
-                            TextColor="Black" />
+                            Text="Qtde Parcela" />
 
                         <Entry
                             Grid.Row="2"
@@ -80,7 +69,6 @@
                             PlaceholderColor="#c6c6c5"
                             ReturnType="Next"
                             Text="{Binding Flow.NewPreKey.NumberOfInstallmentsString}"
-                            TextColor="Black"
                             VerticalOptions="End" />
 
                         <Label
@@ -88,8 +76,7 @@
                             Margin="0,0,5,0"
                             FontAttributes="Bold"
                             FontSize="13"
-                            Text="Periodicidade"
-                            TextColor="Black" />
+                            Text="Periodicidade" />
 
                         <BoxView
                             Grid.Row="1"
@@ -101,9 +88,35 @@
                             Grid.Column="2"
                             Margin="5,0"
                             FontSize="Micro"
-                            Text="Valor"
-                            TextColor="Black" />
+                            Text="Valor" />
 
+                        <Entry
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            Margin="0,5,0,0"
+                            FontSize="12"
+                            Keyboard="Numeric"
+                            MaxLength="10"
+                            Placeholder="Ex: 98.600,00"
+                            Text="{Binding Flow.NewPreKey.Value}"
+                            VerticalOptions="End" />
+                        <!--<Entry
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            Margin="0,5,0,0"
+                            BackgroundColor="Transparent"
+                            FontSize="12"
+                            Keyboard="Numeric"
+                            MaxLength="10"
+                            Placeholder="Ex: 98.600,00"
+                            PlaceholderColor="#c6c6c5"
+                            Text="{Binding Flow.NewPreKey.Value}"
+                            TextColor="Black"
+                            VerticalOptions="End">
+                            <Entry.Behaviors>
+                                <behaviors:EntryMaskBehavior Type="Decimal" />
+                            </Entry.Behaviors>
+                        </Entry>-->
 
                         <BoxView
                             Grid.RowSpan="4"
@@ -123,123 +136,114 @@
                     </Grid>
                 </Frame>
 
-                <al:RepeatableFlex
-                    AlignItems="Start"
-                    Direction="Row"
-                    ItemsSource="{Binding Flow.PreKeys}"
-                    JustifyContent="Start"
-                    Wrap="Wrap">
-                    <al:RepeatableFlex.ItemTemplate>
+                <FlexLayout BindableLayout.ItemsSource="{Binding Flow.PreKeys}" Direction="Column">
+                    <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <FlexLayout>
-                                    <Frame
-                                        Margin="0,0,0,6"
-                                        Padding="0"
-                                        CornerRadius="5"
-                                        OutlineColor="Red">
-                                        <Grid BackgroundColor="White">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="1" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="5" />
-                                                <ColumnDefinition Width="1*" />
-                                                <ColumnDefinition Width="2*" />
-                                                <ColumnDefinition Width="1" />
-                                                <ColumnDefinition Width="1*" />
-                                                <ColumnDefinition Width="1*" />
-                                            </Grid.ColumnDefinitions>
+                            <StackLayout>
+                                <Frame
+                                    Margin="0,0,0,6"
+                                    Padding="0"
+                                    BackgroundColor="{StaticResource BackgroundColorBuyerFrame}"
+                                    CornerRadius="5">
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal" Spacing="0">
+                                            <StackLayout HorizontalOptions="FillAndExpand">
+                                                <FlexLayout Margin="8,0,0,8">
+                                                    <Label
+                                                        Margin="0,0,5,0"
+                                                        FlexLayout.Grow="1"
+                                                        FontAttributes="Bold"
+                                                        FontSize="13">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Pré" />
+                                                                <Span Text="{x:Static x:Environment.NewLine}" />
+                                                                <Span Text="Chaves" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
 
-                                            <BoxView Grid.RowSpan="4" Color="#28abe1" />
+                                                    <Label
+                                                        Margin="0,0,5,0"
+                                                        FlexLayout.Grow="2"
+                                                        FontAttributes="Bold"
+                                                        FontSize="13">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Financiamento" />
+                                                                <Span Text="{x:Static x:Environment.NewLine}" />
+                                                                <Span Text="Direto" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </FlexLayout>
 
-                                            <Label
-                                                Grid.Column="1"
-                                                Margin="0,0,5,0"
-                                                FontAttributes="Bold"
-                                                FontSize="13"
-                                                Text="Pré Chaves"
-                                                TextColor="Black" />
+                                                <BoxView
+                                                    HeightRequest="1"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Color="#c6c6c6" />
 
-                                            <BoxView
-                                                Grid.Row="1"
-                                                Grid.Column="1"
-                                                Grid.ColumnSpan="3"
-                                                Color="#c6c6c6" />
+                                                <FlexLayout Margin="8,0,0,8">
+                                                    <Label FlexLayout.Grow="1" FontSize="Micro">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Qtd Parcelas" />
+                                                                <Span Text="{x:Static x:Environment.NewLine}" />
+                                                                <Span Text="{Binding NumberOfInstallments}" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
 
-                                            <Label
-                                                Grid.Row="2"
-                                                Grid.Column="1"
-                                                FontSize="Micro"
-                                                Text="{Binding NumberOfInstallmentsString, StringFormat='Qtd Parcelas:&#10; {0}'}"
-                                                TextColor="Black" />
+                                                    <Label FlexLayout.Grow="2" FontSize="Micro">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Valor" />
+                                                                <Span Text="{x:Static x:Environment.NewLine}" />
+                                                                <Span Text="{Binding Value}" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </FlexLayout>
+                                            </StackLayout>
 
-                                            <Label
-                                                Grid.Column="2"
-                                                Margin="0,0,5,0"
-                                                FontAttributes="Bold"
-                                                FontSize="13"
-                                                Text="Financiamento Direto"
-                                                TextColor="Black" />
+                                            <BoxView WidthRequest="1" Color="#c6c6c6" />
+                                            <StackLayout Margin="8,0,0,0" HorizontalOptions="End">
+                                                <Label
+                                                    FontSize="13"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="Vencimento"
+                                                    VerticalOptions="Start" />
+                                                <StackLayout Padding="0,0,8,0" Orientation="Horizontal">
+                                                    <Label
+                                                        FontSize="13"
+                                                        HorizontalOptions="StartAndExpand"
+                                                        Text="Primeiro" />
+                                                    <Label
+                                                        FontSize="13"
+                                                        HorizontalOptions="End"
+                                                        Text="Último" />
+                                                </StackLayout>
+                                                <StackLayout Padding="0,0,8,0" Orientation="Horizontal">
+                                                    <Label
+                                                        FontSize="10"
+                                                        HorizontalOptions="StartAndExpand"
+                                                        Text="{Binding FirstExpirationDate, StringFormat='{0:dd-MM-yy}'}"
+                                                        TextColor="#28abe1" />
 
-                                            <Label
-                                                Grid.Row="2"
-                                                Grid.Column="2"
-                                                FontSize="Micro"
-                                                Text="{Binding Value, StringFormat='Valor:&#10; {0:N}'}"
-                                                TextColor="Black" />
-
-                                            <BoxView
-                                                Grid.RowSpan="4"
-                                                Grid.Column="3"
-                                                Color="#c6c6c6" />
-
-                                            <Label
-                                                Grid.Column="4"
-                                                Grid.ColumnSpan="2"
-                                                FontSize="13"
-                                                HorizontalTextAlignment="Center"
-                                                Text="Vencimento"
-                                                TextColor="Black"
-                                                VerticalOptions="Start" />
-
-                                            <Label
-                                                Grid.Row="2"
-                                                Grid.Column="4"
-                                                FontSize="13"
-                                                Text="Primeiro"
-                                                TextColor="Black" />
-
-                                            <Label
-                                                Grid.Row="3"
-                                                Grid.Column="4"
-                                                FontSize="10"
-                                                Text="{Binding FirstExpirationDate, StringFormat='{0:dd-MM-yy}'}"
-                                                TextColor="#28abe1" />
-
-                                            <Label
-                                                Grid.Row="2"
-                                                Grid.Column="5"
-                                                FontSize="13"
-                                                Text="Último"
-                                                TextColor="Black" />
-
-                                            <Label
-                                                Grid.Row="3"
-                                                Grid.Column="5"
-                                                FontSize="10"
-                                                Text="{Binding LastExpirationDate, StringFormat='{0:dd-MM-yy}'}"
-                                                TextColor="#28abe1" />
-                                        </Grid>
-                                    </Frame>
-                                </FlexLayout>
-                            </ViewCell>
+                                                    <Label
+                                                        FontSize="10"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        Text="{Binding LastExpirationDate, StringFormat='{0:dd-MM-yy}'}"
+                                                        TextColor="#28abe1" />
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
                         </DataTemplate>
-                    </al:RepeatableFlex.ItemTemplate>
-                </al:RepeatableFlex>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
             </StackLayout>
         </StackLayout>
     </ContentView.Content>

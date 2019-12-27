@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -18,7 +19,11 @@ namespace Imobi.ViewModels
         public ObservableCollection<PreKeyViewModel> PreKeys
         {
             get { return _preKeys; }
-            set { SetProperty(ref _preKeys, value); }
+            set
+            {
+                _preKeys = value;
+                RaisePropertyChanged(() => PreKeys);
+            }
         }
 
         private string _venture = "Selecione ...";
@@ -132,8 +137,6 @@ namespace Imobi.ViewModels
                 }
                 PreKeys.Add(NewPreKey);
                 NewPreKey = new PreKeyViewModel();
-
-                await Task.Delay(500);
             }
             catch (Exception ex)
             {

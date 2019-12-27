@@ -13,7 +13,7 @@ using Imobi.Validations;
 
 namespace Imobi.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : ExtendedBindableObject, INotifyPropertyChanged
     {
         #region Public Properties
 
