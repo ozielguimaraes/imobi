@@ -98,7 +98,7 @@
                     ReturnType="Next"
                     Text="{Binding BuyerSelected.Form.FgtsValue.Value}">
                     <Entry.Behaviors>
-                        <behaviors:EntryMaskBehavior Mask="XXXXXXXXXX" />
+                        <behaviors:EntryMaskBehavior Type="Decimal" />
                     </Entry.Behaviors>
                 </Entry>
 

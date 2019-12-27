@@ -251,17 +251,9 @@ namespace Imobi.Behaviors
 
                 case BehaviorTypeEnum.Decimal:
 
-                    if (entryText != args.OldTextValue)
-                    {
-                        //string strNumber = entryText.RemoveNonNumbers();
+                    if (text is null) return;
 
-                        if (entryText?.Length > LENGTH_DECIMAL)
-                        {
-                            var pos = entryText.Length - LENGTH_DECIMAL;
-                            entryText = entryText.Insert(pos, ",");
-                            entry.Text = string.Format("{0:N2}", Convert.ToDecimal(entryText));
-                        }
-                    }
+                    entry.Text = CurrencyNumberValueConverter(text);
 
                     break;
 
@@ -297,17 +289,7 @@ namespace Imobi.Behaviors
                 }
             }
 
-            //var txtValue = "";
-
-            //Mascaras para o valor monetario
-            if (_mask == "XXXXXXXXXX")
-            {
-                if (text == null) return;
-
-                text = CurrencyNumberValueConverter(text);
-            }
-
-            if (string.IsNullOrWhiteSpace(text) || _positions == null) return;
+            if (string.IsNullOrWhiteSpace(text) || _positions is null) return;
 
             if (text.Length > _mask.Length)
             {

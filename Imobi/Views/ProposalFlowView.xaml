@@ -104,23 +104,6 @@
                             Text="Valor"
                             TextColor="Black" />
 
-                        <Entry
-                            Grid.Row="2"
-                            Grid.Column="2"
-                            Margin="0,5,0,0"
-                            BackgroundColor="Transparent"
-                            FontSize="12"
-                            Keyboard="Numeric"
-                            MaxLength="10"
-                            Placeholder="Ex: 98.600,00"
-                            PlaceholderColor="#c6c6c5"
-                            Text="{Binding Flow.NewPreKey.Value}"
-                            TextColor="Black"
-                            VerticalOptions="End">
-                            <Entry.Behaviors>
-                                <behaviors:EntryMaskBehavior Type="Decimal" />
-                            </Entry.Behaviors>
-                        </Entry>
 
                         <BoxView
                             Grid.RowSpan="4"

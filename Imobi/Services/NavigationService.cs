@@ -180,68 +180,23 @@ namespace Imobi.Services
                 }
                 else
                 {
-                    if (CurrentApplication.MainPage is ImobiNavigationPage)
+                    if (CurrentApplication.MainPage is MasterDetailPage masterDetail1)
                     {
+                        var master = new MainView
+                        {
+                            Detail = new ImobiNavigationPage(page),
+                            Master = GetMenuPage()
+                        };
+                        
+                        (CurrentApplication.MainPage as MasterDetailPage).IsPresented = false;
+                        await (CurrentApplication.MainPage as MasterDetailPage).Navigation.PushModalAsync(master);
                     }
-                    (CurrentApplication.MainPage as MasterDetailPage).IsPresented = false;
-                    await (CurrentApplication.MainPage as MasterDetailPage).Navigation.PushModalAsync(new ImobiNavigationPage(page));
+                    else
+                    {
+                        (CurrentApplication.MainPage as MasterDetailPage).IsPresented = false;
+                        await (CurrentApplication.MainPage as MasterDetailPage).Navigation.PushAsync(new ImobiNavigationPage(page));
+                    } 
                 }
-                // else
-                //{
-                //        if (page is MasterDetailPage masterDetailPage)
-                //            await masterDetailPage.Detail.Navigation.PushAsync(page);
-                //        else await page.Navigation.PushAsync(page);
-
-                //}
-                //else if (IsMasterDetailPage(page))
-                //{
-                //}
-                ////Is detail page
-                //else if (_mappingsDetailPage.ContainsKey(viewModelType))
-                //{
-                //    await CurrentApplication.MainPage.Navigation.PushAsync(page);
-                //}
-                //else if (CurrentApplication.MainPage is MyWalletView)
-                //{
-                //    var mainPage = CurrentApplication.MainPage as MainView;
-
-                //    if (mainPage.Detail is ImobiNavigationPage navigationPage)
-                //    {
-                //        var currentPage = navigationPage.CurrentPage;
-
-                //        if (currentPage.GetType() != page.GetType())
-                //        {
-                //            await navigationPage.PushAsync(page);
-                //        }
-                //    }
-                //    else
-                //    {
-                //        navigationPage = new ImobiNavigationPage(page);
-                //        mainPage.Detail = navigationPage;
-                //    }
-
-                //    mainPage.IsPresented = false;
-                //}
-                //else
-                //{
-                //    if (CurrentApplication.MainPage is ImobiNavigationPage navigationPage)
-                //        await navigationPage.PushAsync(page);
-                //    else
-                //    {
-                //        if (page is MainView mainView)
-                //        {
-                //            Page detailPage = CreateAndBindPage(typeof(MyWalletViewModel), parameter);
-
-                //            mainView.Detail = new ImobiNavigationPage(detailPage);
-                //            CurrentApplication.MainPage = mainView;
-                //        }
-                //        else
-                //        {
-                //            CurrentApplication.MainPage = new ImobiNavigationPage(page);
-                //        }
-                //        //else CurrentApplication.MainPage = new ImobiNavigationPage(page);
-                //    }
-                //}
 
                 await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
             }
@@ -280,6 +235,13 @@ namespace Imobi.Services
         {
             return CreateAndBindPage(typeof(MyWalletViewModel), parameter);
         }
+        
+
+        private Page GetMenuPage()
+        {
+            return CreateAndBindPage(typeof(MenuViewModel), null);
+        }
+
 
         #endregion Private Methods
     }
