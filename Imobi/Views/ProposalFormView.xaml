@@ -96,9 +96,9 @@
                     Keyboard="Numeric"
                     Placeholder="Ex: 12.200,00"
                     ReturnType="Next"
-                    Text="{Binding BuyerSelected.Form.FgtsValue}">
+                    Text="{Binding BuyerSelected.Form.FgtsValue.Value}">
                     <Entry.Behaviors>
-                        <behaviors:EntryMaskBehavior Type="Decimal" />
+                        <behaviors:EntryMaskBehavior Mask="XXXXXXXXXX" />
                     </Entry.Behaviors>
                 </Entry>
 

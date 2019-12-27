@@ -57,7 +57,7 @@ namespace Imobi.Services
                 }
                 else
                 {
-                    await NavigateToAsync<AttendanceChannelViewModel>();
+                    await NavigateToAsync<LoginViewModel>();
                     //await NavigateToAsync<RegistrationViewModel>();
                 }
             }
@@ -172,22 +172,17 @@ namespace Imobi.Services
                     //   }
                     CurrentApplication.MainPage = page;
                 }
-                //When the user was already login and dindt pass throw login page
-                else if (page is MasterDetailPage masterDetail && CurrentApplication.MainPage is null)
+                //When the user was already login and dindt pass throw login page or pass throw login page with success
+                else if (page is MasterDetailPage masterDetail && (CurrentApplication.MainPage is null || CurrentApplication.MainPage is LoginView))
                 {
                     masterDetail.Detail = new ImobiNavigationPage(GetHomePage(parameter));
                     CurrentApplication.MainPage = masterDetail;
                 }
-                //When the user pass throw login page with success
-                else if (CurrentApplication.MainPage is LoginView && page is MasterDetailPage masterDetailPage)
-                {
-                    masterDetailPage.Detail = new ImobiNavigationPage(GetHomePage(parameter));
-
-                    await RemoveLastFromBackStackAsync();
-                    await CurrentApplication.MainPage.Navigation.PushModalAsync(masterDetailPage);
-                }
                 else
                 {
+                    if (CurrentApplication.MainPage is ImobiNavigationPage)
+                    {
+                    }
                     (CurrentApplication.MainPage as MasterDetailPage).IsPresented = false;
                     await (CurrentApplication.MainPage as MasterDetailPage).Navigation.PushModalAsync(new ImobiNavigationPage(page));
                 }
@@ -279,7 +274,6 @@ namespace Imobi.Services
             _mappings.Add(typeof(ProposalViewModel), typeof(ProposalView));
             _mappings.Add(typeof(ProposalListViewModel), typeof(ProposalListView));
             _mappings.Add(typeof(RegisterViewModel), typeof(RegisterView));
-            _mappings.Add(typeof(AttendanceChannelViewModel), typeof(AttendanceChannelView));
         }
 
         private Page GetHomePage(object parameter)

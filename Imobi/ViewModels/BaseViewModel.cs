@@ -9,15 +9,57 @@ using System.Threading.Tasks;
 using Imobi.IoC;
 using Imobi.Services.Interfaces;
 using Xamarin.Essentials;
+using Imobi.Validations;
 
 namespace Imobi.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        #region Public Properties
+
+        public string AppVersion
+        {
+            get { return VersionTracking.CurrentVersion; }
+        }
+
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
-        protected IMessageService MessageService { get; private set; }
-        protected IExceptionService ExceptionService { get; private set; }
+
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set { SetProperty(ref isBusy, value); }
+        }
+
         public INavigationService NavigationService { get; private set; }
+
+        public string Title
+        {
+            get { return title; }
+            set { SetProperty(ref title, value); }
+        }
+
+        #endregion Public Properties
+
+
+
+        #region Protected Properties
+
+        protected IExceptionService ExceptionService { get; private set; }
+        protected IMessageService MessageService { get; private set; }
+
+        #endregion Protected Properties
+
+
+
+        #region Private Fields + Structs
+
+        private bool isBusy = false;
+
+        private string title = string.Empty;
+
+        #endregion Private Fields + Structs
+
+        #region Public Constructors + Destructors
 
         public BaseViewModel()
         {
@@ -26,29 +68,25 @@ namespace Imobi.ViewModels
             NavigationService = Bootstraper.Resolve<INavigationService>();
         }
 
-        private bool isBusy = false;
+        #endregion Public Constructors + Destructors
 
-        public bool IsBusy
+
+
+        #region Public Methods
+
+        public virtual Task InitializeAsync(object data)
         {
-            get { return isBusy; }
-            set { SetProperty(ref isBusy, value); }
+            return Task.FromResult(false);
         }
 
-        private string title = string.Empty;
+        #endregion Public Methods
 
-        public string Title
-        {
-            get { return title; }
-            set { SetProperty(ref title, value); }
-        }
 
-        public string AppVersion
-        {
-            get { return VersionTracking.CurrentVersion; }
-        }
+
+        #region Protected Methods
 
         protected bool SetProperty<T>(ref T backingStore, T value,
-            [CallerMemberName]string propertyName = "",
+                    [CallerMemberName]string propertyName = "",
             Action onChanged = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
@@ -59,6 +97,8 @@ namespace Imobi.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
+
+        #endregion Protected Methods
 
         #region INotifyPropertyChanged
 
@@ -73,10 +113,5 @@ namespace Imobi.ViewModels
         }
 
         #endregion INotifyPropertyChanged
-
-        public virtual Task InitializeAsync(object data)
-        {
-            return Task.FromResult(false);
-        }
     }
 }

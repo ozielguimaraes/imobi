@@ -2,7 +2,7 @@
 
 namespace Imobi.Behaviors
 {
-    public class ToUpperCaseBehavior : BehaviorBase<Entry>
+    public class ToUpperCaseBehavior : BaseBehavior<Entry>
     {
         private static readonly BindablePropertyKey IsUpperCasePropertyKey = BindableProperty.CreateReadOnly("IsUpperCase", typeof(bool), typeof(ToUpperCaseBehavior), true);
 

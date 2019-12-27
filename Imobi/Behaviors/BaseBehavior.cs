@@ -3,9 +3,17 @@ using Xamarin.Forms;
 
 namespace Imobi.Behaviors
 {
-    public class BehaviorBase<T> : Behavior<T> where T : BindableObject
+    public class BaseBehavior<T> : Behavior<T> where T : BindableObject
     {
+        #region Public Properties
+
         public T AssociatedObject { get; private set; }
+
+        #endregion Public Properties
+
+
+
+        #region Protected Methods
 
         protected override void OnAttachedTo(T bindable)
         {
@@ -17,6 +25,12 @@ namespace Imobi.Behaviors
             bindable.BindingContextChanged += OnBindingContextChanged;
         }
 
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+            BindingContext = AssociatedObject.BindingContext;
+        }
+
         protected override void OnDetachingFrom(T bindable)
         {
             base.OnDetachingFrom(bindable);
@@ -24,15 +38,15 @@ namespace Imobi.Behaviors
             AssociatedObject = null;
         }
 
+        #endregion Protected Methods
+
+        #region Private Methods
+
         private void OnBindingContextChanged(object sender, EventArgs e)
         {
             OnBindingContextChanged();
         }
 
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
-            BindingContext = AssociatedObject.BindingContext;
-        }
+        #endregion Private Methods
     }
 }

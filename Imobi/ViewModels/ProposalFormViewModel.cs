@@ -1,6 +1,7 @@
 ﻿using Imobi.Attributes;
 using Imobi.Enums;
 using Imobi.Extensions;
+using Imobi.Validations.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,28 +10,13 @@ namespace Imobi.ViewModels
 {
     public class ProposalFormViewModel : BaseViewModel
     {
-        private string cpf;
+        #region Public Properties
 
-        public string Cpf
+        public DateTime BirthDate
         {
-            get { return cpf; }
-            set { SetProperty(ref cpf, value); }
+            get { return _birthDate; }
+            set { SetProperty(ref _birthDate, value); }
         }
-
-        private string _fullName;
-
-        public string FullName
-        {
-            get { return _fullName; }
-            set
-            {
-                _fullName = value;
-                OnPropertyChanged();
-                ShortName = value?.Split(' ').FirstOrDefault() ?? string.Empty;
-            }
-        }
-
-        private string _birthDateString;
 
         public string BirthDateString
         {
@@ -46,95 +32,11 @@ namespace Imobi.ViewModels
             }
         }
 
-        private DateTime _birthDate;
-
-        public DateTime BirthDate
+        public string Cpf
         {
-            get { return _birthDate; }
-            set { SetProperty(ref _birthDate, value); }
+            get { return cpf; }
+            set { SetProperty(ref cpf, value); }
         }
-
-        private EnumValueDataAttribute _scholarity;
-
-        public EnumValueDataAttribute Scholarity
-        {
-            get { return _scholarity; }
-            set { SetProperty(ref _scholarity, value); }
-        }
-
-        private EnumValueDataAttribute _genre;
-
-        public EnumValueDataAttribute Genre
-        {
-            get { return _genre; }
-            set { SetProperty(ref _genre, value); }
-        }
-
-        private EnumValueDataAttribute _maritalStatus;
-
-        public EnumValueDataAttribute MaritalStatus
-        {
-            get { return _maritalStatus; }
-            set { SetProperty(ref _maritalStatus, value); }
-        }
-
-        private string _nationality;
-
-        public string Nationality
-        {
-            get { return _nationality; }
-            set { SetProperty(ref _nationality, value); }
-        }
-
-        private string _placeOfBirth;
-
-        public string PlaceOfBirth
-        {
-            get { return _placeOfBirth; }
-            set { SetProperty(ref _placeOfBirth, value); }
-        }
-
-        private decimal _fgtsValue;
-
-        public decimal FgtsValue
-        {
-            get { return _fgtsValue; }
-            set { SetProperty(ref _fgtsValue, value); }
-        }
-
-        private string _fathersName;
-
-        public string FathersName
-        {
-            get { return _fathersName; }
-            set { SetProperty(ref _fathersName, value); }
-        }
-
-        private string _mothersName;
-
-        public string MothersName
-        {
-            get { return _mothersName; }
-            set { SetProperty(ref _mothersName, value); }
-        }
-
-        private EnumValueDataAttribute _documentType;
-
-        public EnumValueDataAttribute DocumentType
-        {
-            get { return _documentType; }
-            set { SetProperty(ref _documentType, value); }
-        }
-
-        private string _documentNumber;
-
-        public string DocumentNumber
-        {
-            get { return _documentNumber; }
-            set { SetProperty(ref _documentNumber, value); }
-        }
-
-        private string _dispatchingAgency;
 
         public string DispatchingAgency
         {
@@ -142,7 +44,64 @@ namespace Imobi.ViewModels
             set { SetProperty(ref _dispatchingAgency, value); }
         }
 
-        private string _issueDateString;
+        public string DocumentNumber
+        {
+            get { return _documentNumber; }
+            set { SetProperty(ref _documentNumber, value); }
+        }
+
+        public EnumValueDataAttribute DocumentType
+        {
+            get { return _documentType; }
+            set { SetProperty(ref _documentType, value); }
+        }
+
+        public List<EnumValueDataAttribute> DocumentTypeList
+        {
+            get { return _documentTypeList; }
+            set { SetProperty(ref _documentTypeList, value); }
+        }
+
+        public string FathersName
+        {
+            get { return _fathersName; }
+            set { SetProperty(ref _fathersName, value); }
+        }
+
+        public ValidableObject<decimal> FgtsValue
+        {
+            get { return _fgtsValue; }
+            set { SetProperty(ref _fgtsValue, value); }
+        }
+
+        public string FullName
+        {
+            get { return _fullName; }
+            set
+            {
+                _fullName = value;
+                OnPropertyChanged();
+                ShortName = value?.Split(' ').FirstOrDefault() ?? string.Empty;
+            }
+        }
+
+        public EnumValueDataAttribute Genre
+        {
+            get { return _genre; }
+            set { SetProperty(ref _genre, value); }
+        }
+
+        public List<EnumValueDataAttribute> GenreList
+        {
+            get { return _genreList; }
+            set { SetProperty(ref _genreList, value); }
+        }
+
+        public DateTime IssueDate
+        {
+            get { return _issueDate; }
+            set { SetProperty(ref _issueDate, value); }
+        }
 
         public string IssueDateString
         {
@@ -158,23 +117,35 @@ namespace Imobi.ViewModels
             }
         }
 
-        private DateTime _issueDate;
-
-        public DateTime IssueDate
+        public EnumValueDataAttribute MaritalStatus
         {
-            get { return _issueDate; }
-            set { SetProperty(ref _issueDate, value); }
+            get { return _maritalStatus; }
+            set { SetProperty(ref _maritalStatus, value); }
         }
 
-        private string _professionalCategory;
-
-        public string ProfessionalCategory
+        public List<EnumValueDataAttribute> MaritalStatusList
         {
-            get { return _professionalCategory; }
-            set { SetProperty(ref _professionalCategory, value); }
+            get { return _maritalStatusList; }
+            set { SetProperty(ref _maritalStatusList, value); }
         }
 
-        private string _numberOfDependentsString;
+        public string MothersName
+        {
+            get { return _mothersName; }
+            set { SetProperty(ref _mothersName, value); }
+        }
+
+        public string Nationality
+        {
+            get { return _nationality; }
+            set { SetProperty(ref _nationality, value); }
+        }
+
+        public int NumberOfDependents
+        {
+            get { return _numberOfDependents; }
+            set { SetProperty(ref _numberOfDependents, value); }
+        }
 
         public string NumberOfDependentsString
         {
@@ -190,39 +161,23 @@ namespace Imobi.ViewModels
             }
         }
 
-        private int _numberOfDependents;
-
-        public int NumberOfDependents
+        public string PlaceOfBirth
         {
-            get { return _numberOfDependents; }
-            set { SetProperty(ref _numberOfDependents, value); }
+            get { return _placeOfBirth; }
+            set { SetProperty(ref _placeOfBirth, value); }
         }
 
-        private string _shortName;
-
-        public string ShortName
+        public string ProfessionalCategory
         {
-            get { return _shortName; }
-            set { SetProperty(ref _shortName, value); }
+            get { return _professionalCategory; }
+            set { SetProperty(ref _professionalCategory, value); }
         }
 
-        private List<EnumValueDataAttribute> _maritalStatusList;
-
-        public List<EnumValueDataAttribute> MaritalStatusList
+        public EnumValueDataAttribute Scholarity
         {
-            get { return _maritalStatusList; }
-            set { SetProperty(ref _maritalStatusList, value); }
+            get { return _scholarity; }
+            set { SetProperty(ref _scholarity, value); }
         }
-
-        private List<EnumValueDataAttribute> _documentTypeList;
-
-        public List<EnumValueDataAttribute> DocumentTypeList
-        {
-            get { return _documentTypeList; }
-            set { SetProperty(ref _documentTypeList, value); }
-        }
-
-        private List<EnumValueDataAttribute> _scholarityList;
 
         public List<EnumValueDataAttribute> ScholarityList
         {
@@ -230,13 +185,49 @@ namespace Imobi.ViewModels
             set { SetProperty(ref _scholarityList, value); }
         }
 
-        private List<EnumValueDataAttribute> _genreList;
-
-        public List<EnumValueDataAttribute> GenreList
+        public string ShortName
         {
-            get { return _genreList; }
-            set { SetProperty(ref _genreList, value); }
+            get { return _shortName; }
+            set { SetProperty(ref _shortName, value); }
         }
+
+        #endregion Public Properties
+
+
+
+        #region Private Fields + Structs
+
+        private DateTime _birthDate;
+        private string _birthDateString;
+        private string _dispatchingAgency;
+        private string _documentNumber;
+        private EnumValueDataAttribute _documentType;
+        private List<EnumValueDataAttribute> _documentTypeList;
+        private string _fathersName;
+        private ValidableObject<decimal> _fgtsValue;
+        private string _fullName;
+        private EnumValueDataAttribute _genre;
+        private List<EnumValueDataAttribute> _genreList;
+        private DateTime _issueDate;
+        private string _issueDateString;
+        private EnumValueDataAttribute _maritalStatus;
+        private List<EnumValueDataAttribute> _maritalStatusList;
+        private string _mothersName;
+        private string _nationality;
+        private int _numberOfDependents;
+        private string _numberOfDependentsString;
+        private string _placeOfBirth;
+        private string _professionalCategory;
+        private EnumValueDataAttribute _scholarity;
+        private List<EnumValueDataAttribute> _scholarityList;
+        private string _shortName;
+        private string cpf;
+
+        #endregion Private Fields + Structs
+
+
+
+        #region Public Methods
 
         public void LoadPickers()
         {
@@ -245,5 +236,7 @@ namespace Imobi.ViewModels
             ScholarityList = EnumExtension.ConvertToList<ScholarityEnum>();
             GenreList = EnumExtension.ConvertToList<GenreEnum>();
         }
+
+        #endregion Public Methods
     }
 }

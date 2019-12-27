@@ -27,7 +27,6 @@ namespace Imobi.IoC
             var builder = new ContainerBuilder();
 
             //ViewModels
-            builder.RegisterType<AttendanceChannelViewModel>();
             builder.RegisterType<HomeViewModel>();
             builder.RegisterType<MainViewModel>();
             builder.RegisterType<LoginViewModel>();
