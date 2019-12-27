@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Imobi.IoC;
 using Imobi.Managers.File.Interfaces;
+using Imobi.Services.Interfaces;
 using Imobi.Validations;
 using Imobi.Validations.Interfaces;
 using Plugin.FilePicker;
@@ -126,7 +127,8 @@ namespace Imobi.Managers.File
             catch (Exception ex)
             {
                 var message = ex.Message;
-                //TODO LOG this error
+                Bootstraper.Resolve<IExceptionService>()?.TrackError(ex, nameof(FileManager), nameof(TakePhotoAsync));
+
                 return null;
             }
         }

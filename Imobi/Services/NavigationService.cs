@@ -161,15 +161,6 @@ namespace Imobi.Services
                 }
                 else if (page is LoginView)
                 {
-                    //   //When the app load for the first time
-                    //if (CurrentApplication.MainPage is null)
-                    //   {
-                    //       var mainView = page as MainView;
-                    //       Page detailPage = CreateAndBindPage(typeof(MyWalletViewModel), parameter);
-
-                    //       mainView.Detail = new ImobiNavigationPage(detailPage);
-                    //       CurrentApplication.MainPage = mainView;
-                    //   }
                     CurrentApplication.MainPage = page;
                 }
                 //When the user was already login and dindt pass throw login page or pass throw login page with success

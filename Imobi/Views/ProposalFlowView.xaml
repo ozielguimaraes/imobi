@@ -94,29 +94,18 @@
                             Grid.Row="2"
                             Grid.Column="2"
                             Margin="0,5,0,0"
-                            FontSize="12"
-                            Keyboard="Numeric"
-                            MaxLength="10"
-                            Placeholder="Ex: 98.600,00"
-                            Text="{Binding Flow.NewPreKey.Value}"
-                            VerticalOptions="End" />
-                        <!--<Entry
-                            Grid.Row="2"
-                            Grid.Column="2"
-                            Margin="0,5,0,0"
                             BackgroundColor="Transparent"
                             FontSize="12"
                             Keyboard="Numeric"
                             MaxLength="10"
                             Placeholder="Ex: 98.600,00"
                             PlaceholderColor="#c6c6c5"
-                            Text="{Binding Flow.NewPreKey.Value}"
-                            TextColor="Black"
+                            Text="{Binding Flow.NewPreKey.Value.Value}"
                             VerticalOptions="End">
                             <Entry.Behaviors>
                                 <behaviors:EntryMaskBehavior Type="Decimal" />
                             </Entry.Behaviors>
-                        </Entry>-->
+                        </Entry>
 
                         <BoxView
                             Grid.RowSpan="4"
@@ -199,7 +188,6 @@
                                                             <FormattedString>
                                                                 <Span Text="Valor" />
                                                                 <Span Text="{x:Static x:Environment.NewLine}" />
-                                                                <Span Text="{Binding Value}" />
                                                             </FormattedString>
                                                         </Label.FormattedText>
                                                     </Label>

@@ -130,7 +130,7 @@ namespace Imobi.ViewModels
                     await MessageService.ShowAsync("Campo quantidade é obrigatório");
                     return;
                 }
-                if (NewPreKey.Value == 0)
+                if (NewPreKey.Value.Value == 0)
                 {
                     await MessageService.ShowAsync("Campo valor é obrigatório");
                     return;

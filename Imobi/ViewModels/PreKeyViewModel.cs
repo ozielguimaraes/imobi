@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Imobi.Validations.Base;
+using System;
 
 namespace Imobi.ViewModels
 {
@@ -29,9 +30,9 @@ namespace Imobi.ViewModels
             set { SetProperty(ref _numberOfInstallments, value); }
         }
 
-        private decimal _value;
+        private ValidableObject<decimal> _value = new ValidableObject<decimal>();
 
-        public decimal Value
+        public ValidableObject<decimal> Value
         {
             get { return _value; }
             set { SetProperty(ref _value, value); }

@@ -101,9 +101,9 @@ namespace Imobi.Behaviors
 
             var entryText = args?.NewTextValue;
             var entryLength = entryText?.Length;
-            var entryVal = 0M;
             var text = entry?.Text;
 
+            decimal entryVal;
             switch (Type)
             {
                 case BehaviorTypeEnum.CPFCNPJ:
@@ -152,7 +152,6 @@ namespace Imobi.Behaviors
                     }
                     else if (entryText?.Length < MaxLength && Formatted)
                     {
-                        //entryText = entryText.RemoveNonNumbers();
                         Formatted = false;
                     }
 
@@ -240,7 +239,6 @@ namespace Imobi.Behaviors
                     }
                     else if (entryText?.Length < MaxLength && Formatted)
                     {
-                        //entryText = entryText.RemoveNonNumbers();
                         Formatted = false;
                     }
 
@@ -252,8 +250,11 @@ namespace Imobi.Behaviors
                 case BehaviorTypeEnum.Decimal:
 
                     if (text is null) return;
-
-                    entry.Text = CurrencyNumberValueConverter(text);
+                    var value = CurrencyNumberValueConverter(text);
+                    if (entryText != value)
+                    {
+                        entry.Text = value;
+                    }
 
                     break;
 
