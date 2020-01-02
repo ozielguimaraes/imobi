@@ -73,6 +73,9 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
       <Version>2.4.11.982</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Analytics.Impl">
+      <Version>60.1142.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.947036" />
     <PackageReference Include="Xamarin.Android.Support.ViewPager" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
@@ -95,8 +98,10 @@
     <Compile Include="Renderers\ProgressBarCircle\ProgressBarCircleRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EventTrackerService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <GoogleServicesJson Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />

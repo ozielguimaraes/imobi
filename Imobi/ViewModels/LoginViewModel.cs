@@ -10,9 +10,13 @@ namespace Imobi.ViewModels
 
         private async Task SigninAsync()
         {
+
+            EventTrackerService.SendEvent("Usuário efetuando o login", "testeparam", "AQUI TEM QUE APARECER");
+
             if (!Application.Current.Properties.ContainsKey("Logged"))
                 Application.Current.Properties.Add("Logged", true);
 
+            EventTrackerService.SendEvent("Usuário efetuando o login");
             await NavigationService.NavigateToAsync<MainViewModel>();
         }
     }

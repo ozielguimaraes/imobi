@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "881115225768",
+    "firebase_url": "https://imobi-8330f.firebaseio.com",
+    "project_id": "imobi-8330f",
+    "storage_bucket": "imobi-8330f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881115225768:android:acce768c19d187bd61ec9d",
+        "android_client_info": {
+          "package_name": "com.companyname.imobi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "881115225768-pesd1p57t2o90keq2ug83if41frnuhv5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.companyname.imobi",
+            "certificate_hash": "863b039af4e276716b38e7b9cac1ec5462801a6b"
+          }
+        },
+        {
+          "client_id": "881115225768-290p2e331git2851naq679icfnp7t7nt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdRGrX-YtFZT9rKH4oAwtP0n3wvoJOHAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "881115225768-290p2e331git2851naq679icfnp7t7nt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

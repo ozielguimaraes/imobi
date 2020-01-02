@@ -15,7 +15,10 @@ namespace Imobi.ViewModels
 {
     public class BaseViewModel : ExtendedBindableObject, INotifyPropertyChanged
     {
-        #region Public Properties
+        public readonly INavigationService NavigationService;
+        protected readonly IEventTrackerService EventTrackerService;
+        protected readonly IExceptionService ExceptionService;
+        protected readonly IMessageService MessageService;
 
         public string AppVersion
         {
@@ -30,60 +33,28 @@ namespace Imobi.ViewModels
             set { SetProperty(ref isBusy, value); }
         }
 
-        public INavigationService NavigationService { get; private set; }
-
         public string Title
         {
             get { return title; }
             set { SetProperty(ref title, value); }
         }
 
-        #endregion Public Properties
-
-
-
-        #region Protected Properties
-
-        protected IExceptionService ExceptionService { get; private set; }
-        protected IMessageService MessageService { get; private set; }
-
-        #endregion Protected Properties
-
-
-
-        #region Private Fields + Structs
-
         private bool isBusy = false;
 
         private string title = string.Empty;
-
-        #endregion Private Fields + Structs
-
-        #region Public Constructors + Destructors
 
         public BaseViewModel()
         {
             ExceptionService = Bootstraper.Resolve<IExceptionService>();
             MessageService = Bootstraper.Resolve<IMessageService>();
             NavigationService = Bootstraper.Resolve<INavigationService>();
+            EventTrackerService = DependencyService.Get<IEventTrackerService>();
         }
-
-        #endregion Public Constructors + Destructors
-
-
-
-        #region Public Methods
 
         public virtual Task InitializeAsync(object data)
         {
             return Task.FromResult(false);
         }
-
-        #endregion Public Methods
-
-
-
-        #region Protected Methods
 
         protected bool SetProperty<T>(ref T backingStore, T value,
                     [CallerMemberName]string propertyName = "",
@@ -97,21 +68,5 @@ namespace Imobi.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
-
-        #endregion Protected Methods
-
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            var changed = PropertyChanged;
-            if (changed is null) return;
-
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion INotifyPropertyChanged
     }
 }
