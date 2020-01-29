@@ -10,9 +10,6 @@ namespace Imobi.ViewModels
 
         private async Task SigninAsync()
         {
-            if (!Application.Current.Properties.ContainsKey("Logged"))
-                Application.Current.Properties.Add("Logged", true);
-
             await NavigationService.NavigateToAsync<MainViewModel>();
         }
     }

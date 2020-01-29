@@ -30,13 +30,15 @@ namespace Imobi.ViewModels
             set { SetProperty(ref _numberOfInstallments, value); }
         }
 
-        private ValidableObject<decimal> _value = new ValidableObject<decimal>();
+        private ValidableObject<string> _value = new ValidableObject<string>();
 
-        public ValidableObject<decimal> Value
+        public ValidableObject<string> Value
         {
             get { return _value; }
             set { SetProperty(ref _value, value); }
         }
+
+        public decimal FinalValue { get; private set; }
 
         private DateTime _firstExpirationDate;
 
@@ -57,6 +59,17 @@ namespace Imobi.ViewModels
         private DateTime CalculateLastExpirationDate()
         {
             return FirstExpirationDate.AddMonths(NumberOfInstallments);
+        }
+
+        internal void FillValueProperty()
+        {
+            FinalValue = GetValue();
+        }
+
+        public decimal GetValue()
+        {
+            decimal.TryParse(Value.Value, out var value);
+            return value;
         }
     }
 }

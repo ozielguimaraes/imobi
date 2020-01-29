@@ -12,15 +12,7 @@ namespace Imobi.IoC
 {
     public class Bootstraper
     {
-        #region Private Fields + Structs
-
         private static IContainer _container;
-
-        #endregion Private Fields + Structs
-
-
-
-        #region Public Methods
 
         public static void RegisterDependencies()
         {
@@ -64,7 +56,5 @@ namespace Imobi.IoC
         {
             return _container.Resolve<T>();
         }
-
-        #endregion Public Methods
     }
 }

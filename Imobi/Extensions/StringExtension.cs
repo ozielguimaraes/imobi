@@ -5,8 +5,6 @@ namespace Imobi.Extensions
 {
     public static class StringExtension
     {
-        #region Public Methods
-
         public static string GetPersonName(this string text)
         {
             return Regex.Replace(text, Constants.Constants.Expressions.PersonName, string.Empty);
@@ -23,7 +21,5 @@ namespace Imobi.Extensions
 
             return sb.ToString();
         }
-
-        #endregion Public Methods
     }
 }

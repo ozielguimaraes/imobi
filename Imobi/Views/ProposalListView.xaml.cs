@@ -20,8 +20,7 @@ namespace Imobi.Views
             ItemsListView.SelectedItem = null;
 
             var vm = (ProposalListViewModel)BindingContext;
-
-            await vm.NavigationService.NavigateToAsync<ProposalViewModel>(item);
+            vm.ItemSelectedCommand.Execute(item);
         }
 
         protected override void OnAppearing()

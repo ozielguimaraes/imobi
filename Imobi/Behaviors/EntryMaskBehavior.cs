@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using Imobi.Enums;
 using Imobi.Extensions;
+using Imobi.Globalization;
 using Xamarin.Forms;
 
 namespace Imobi.Behaviors
 {
     public class EntryMaskBehavior : BaseBehavior<Entry>
     {
-        #region Public Properties
-
         public bool Formatted { get; set; }
 
         public string Mask
@@ -31,12 +29,6 @@ namespace Imobi.Behaviors
             set { SetValue(TypeProperty, value); }
         }
 
-        #endregion Public Properties
-
-
-
-        #region Public Fields + Structs
-
         public static readonly BindableProperty TypeProperty =
      BindableProperty.Create(nameof(Type), typeof(BehaviorTypeEnum), typeof(EntryMaskBehavior), BehaviorTypeEnum.None, propertyChanged: (bindableObject, oldValue, newValue) =>
      {
@@ -44,33 +36,18 @@ namespace Imobi.Behaviors
          customView.Type = (BehaviorTypeEnum)newValue;
      });
 
-        #endregion Public Fields + Structs
-
-        #region Internal Fields + Structs
-
         internal const int LENGTH_CNPJ = 14;
         internal const int LENGTH_CPF = 11;
         internal const int LENGTH_DATE = 8;
         internal const int LENGTH_DATE_CARTAO_CREDITO = 6;
         internal const int LENGTH_DECIMAL = 2;
-        internal const int LENGTH_PHONE_SEM_MASCARA_10 = 10;
-        internal const int LENGTH_PHONE_SEM_MASCARA_11 = 11;
-        internal const int LENGTH_PHONE_SEM_MASCARA_14 = 14;
-
-        #endregion Internal Fields + Structs
-
-
-
-        #region Private Fields + Structs
+        internal const int LENGTH_PHONE_WITHOUT_MASK_10 = 10;
+        internal const int LENGTH_PHONE_WITHOUT_MASK_11 = 11;
+        internal const int LENGTH_PHONE_WITHOUT_MASK_14 = 14;
+        internal const string DECIMAL_MASK = "XXXXXXXXXXXX";
 
         private string _mask = "";
         private IDictionary<int, char> _positions;
-
-        #endregion Private Fields + Structs
-
-
-
-        #region Protected Methods
 
         protected override void OnAttachedTo(Entry entry)
         {
@@ -84,15 +61,9 @@ namespace Imobi.Behaviors
             base.OnDetachingFrom(entry);
         }
 
-        #endregion Protected Methods
-
-        #region Private Methods
-
         private static string CurrencyNumberValueConverter(string text)
         {
-            var numbers = Regex.Replace(text, @"\D", "");
-            numbers = string.Format(new System.Globalization.CultureInfo("pt-BR"), "{0:N}", Convert.ToDecimal(numbers) / 100);
-            return numbers;
+            return (Convert.ToDecimal(text.NumbersOnly()) / 100).ToString("N", AppCulture.Get());
         }
 
         private void OnEntryTextChanged(object sender, TextChangedEventArgs args)
@@ -177,7 +148,7 @@ namespace Imobi.Behaviors
                     break;
 
                 case BehaviorTypeEnum.Phone:
-                    if ((entryLength == LENGTH_PHONE_SEM_MASCARA_11 || entryLength == LENGTH_PHONE_SEM_MASCARA_14))
+                    if ((entryLength == LENGTH_PHONE_WITHOUT_MASK_11 || entryLength == LENGTH_PHONE_WITHOUT_MASK_14))
                     {
                         //entryText = entryText.RemoveNonNumbers();
                         entryVal = Convert.ToUInt64(entryText);
@@ -195,14 +166,14 @@ namespace Imobi.Behaviors
                     {
                         entryText = entryText.Remove(entryText.Length - 1);
                     }
-                    else if (entryText?.Length < LENGTH_PHONE_SEM_MASCARA_14 && Formatted)
+                    else if (entryText?.Length < LENGTH_PHONE_WITHOUT_MASK_14 && Formatted)
                     {
                         //entryText = entry.Text.RemoveNonNumbers();
                         Formatted = false;
                     }
 
                     entry.Text = entryText;
-                    entry.TextColor = entry.Text?.Length < LENGTH_PHONE_SEM_MASCARA_11 ? Color.Red : Color.Black;
+                    entry.TextColor = entry.Text?.Length < LENGTH_PHONE_WITHOUT_MASK_11 ? Color.Red : Color.Black;
 
                     break;
 
@@ -248,13 +219,11 @@ namespace Imobi.Behaviors
                     break;
 
                 case BehaviorTypeEnum.Decimal:
-
+                    Mask = DECIMAL_MASK;
+                    SetPositions();
                     if (text is null) return;
-                    var value = CurrencyNumberValueConverter(text);
-                    if (entryText != value)
-                    {
-                        entry.Text = value;
-                    }
+
+                    text = CurrencyNumberValueConverter(text);
 
                     break;
 
@@ -325,7 +294,5 @@ namespace Imobi.Behaviors
 
             _positions = list;
         }
-
-        #endregion Private Methods
     }
 }

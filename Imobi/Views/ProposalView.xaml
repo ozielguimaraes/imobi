@@ -200,8 +200,8 @@
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </StackLayout>
-                    <views:ProposalDocsView Margin="0,16,0,0" IsVisible="{Binding IsDocsTabVisible}" />
-                    <views:ProposalFormView Margin="0,16,0,0" IsVisible="{Binding IsFormTabVisible}" />
+                    <!--<views:ProposalDocsView Margin="0,16,0,0" IsVisible="{Binding IsDocsTabVisible}" />-->
+                    <!--<views:ProposalFormView Margin="0,16,0,0" IsVisible="{Binding IsFormTabVisible}" />-->
                     <views:ProposalFlowView
                         Margin="0,16,0,0"
                         BindingContext="{Binding .}"

@@ -17,9 +17,15 @@ namespace Imobi.ViewModels
         }
 
         public ObservableCollection<ProposalDto> Items { get; set; } = new ObservableCollection<ProposalDto>();
-        public ICommand LoadItemsCommand => new Command(async () => await LoadItems());
+        public ICommand ItemSelectedCommand => new Command<ProposalDto>(async (item) => await ItemSelectedAsync(item));
+        public ICommand LoadItemsCommand => new Command(async () => await LoadItemsAsync());
 
-        private async Task LoadItems()
+        private async Task ItemSelectedAsync(ProposalDto item)
+        {
+            await NavigationService.NavigateToAsync<ProposalViewModel>(item);
+        }
+
+        private async Task LoadItemsAsync()
         {
             if (IsBusy) return;
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Imobi.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -130,11 +131,13 @@ namespace Imobi.ViewModels
                     await MessageService.ShowAsync("Campo quantidade é obrigatório");
                     return;
                 }
-                if (NewPreKey.Value.Value == 0)
+                if (NewPreKey.GetValue() == 0)
                 {
                     await MessageService.ShowAsync("Campo valor é obrigatório");
                     return;
                 }
+
+                NewPreKey.FillValueProperty();
                 PreKeys.Add(NewPreKey);
                 NewPreKey = new PreKeyViewModel();
             }
@@ -170,6 +173,8 @@ namespace Imobi.ViewModels
                 IsBusy = false;
             }
         }
+
+        
 
         private ObservableCollection<PreKeyViewModel> MockValues()
         {

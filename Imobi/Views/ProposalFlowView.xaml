@@ -21,7 +21,7 @@
                 <StackLayout Grid.Column="1" Margin="0,8,0,0">
                     <Label Text="{Binding Flow.Venture}" />
                     <Label Text="{Binding Flow.Tower}" />
-                    <Label Text="{Binding Flow.Unity, StringFormat='UN. {0}'}" />
+                    <!--<Label Text="{Binding Flow.Unity, StringFormat='UN. {0}'}" />-->
                 </StackLayout>
             </Grid>
             <StackLayout Margin="0,16,0,0">
@@ -97,7 +97,7 @@
                             BackgroundColor="Transparent"
                             FontSize="12"
                             Keyboard="Numeric"
-                            MaxLength="10"
+                            MaxLength="14"
                             Placeholder="Ex: 98.600,00"
                             PlaceholderColor="#c6c6c5"
                             Text="{Binding Flow.NewPreKey.Value.Value}"
@@ -188,6 +188,7 @@
                                                             <FormattedString>
                                                                 <Span Text="Valor" />
                                                                 <Span Text="{x:Static x:Environment.NewLine}" />
+                                                                <Span Text="{Binding FinalValue, StringFormat='{0:N}'}" />
                                                             </FormattedString>
                                                         </Label.FormattedText>
                                                     </Label>

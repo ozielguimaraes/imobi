@@ -11,22 +11,10 @@ namespace Imobi.Services
 {
     public class NavigationService : INavigationService
     {
-        #region Protected Properties
-
         protected Application CurrentApplication => Application.Current;
-
-        #endregion Protected Properties
-
-
-
-        #region Private Fields + Structs
 
         private readonly Dictionary<Type, Type> _mappings;
         private readonly Dictionary<Type, Type> _mappingsDetailPage;
-
-        #endregion Private Fields + Structs
-
-        #region Public Constructors + Destructors
 
         public NavigationService()
         {
@@ -35,12 +23,6 @@ namespace Imobi.Services
             CreatePageViewModelMappings();
             CreatePageDetailsViewModelMappings();
         }
-
-        #endregion Public Constructors + Destructors
-
-
-
-        #region Public Methods
 
         public async Task ClearBackStack()
         {
@@ -51,6 +33,9 @@ namespace Imobi.Services
         {
             try
             {
+                if (!Application.Current.Properties.ContainsKey("Logged"))
+                    Application.Current.Properties.Add("Logged", true);
+
                 if (Application.Current.Properties?.ContainsKey("Logged") ?? false)
                 {
                     await NavigateToAsync<MainViewModel>();
@@ -58,7 +43,6 @@ namespace Imobi.Services
                 else
                 {
                     await NavigateToAsync<LoginViewModel>();
-                    //await NavigateToAsync<RegistrationViewModel>();
                 }
             }
             catch (Exception ex)
@@ -117,12 +101,6 @@ namespace Imobi.Services
             return Task.FromResult(true);
         }
 
-        #endregion Public Methods
-
-
-
-        #region Protected Methods
-
         protected Page CreateAndBindPage(Type viewModelType, object parameter)
         {
             Type pageType = GetPageTypeForViewModel(viewModelType);
@@ -178,7 +156,7 @@ namespace Imobi.Services
                             Detail = new ImobiNavigationPage(page),
                             Master = GetMenuPage()
                         };
-                        
+
                         (CurrentApplication.MainPage as MasterDetailPage).IsPresented = false;
                         await (CurrentApplication.MainPage as MasterDetailPage).Navigation.PushModalAsync(master);
                     }
@@ -186,7 +164,7 @@ namespace Imobi.Services
                     {
                         (CurrentApplication.MainPage as MasterDetailPage).IsPresented = false;
                         await (CurrentApplication.MainPage as MasterDetailPage).Navigation.PushAsync(new ImobiNavigationPage(page));
-                    } 
+                    }
                 }
 
                 await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
@@ -198,10 +176,6 @@ namespace Imobi.Services
                 exceptionService.TrackError(ex, nameof(NavigationService), nameof(InternalNavigateToAsync));
             }
         }
-
-        #endregion Protected Methods
-
-        #region Private Methods
 
         private void CreatePageDetailsViewModelMappings()
         {
@@ -226,14 +200,10 @@ namespace Imobi.Services
         {
             return CreateAndBindPage(typeof(MyWalletViewModel), parameter);
         }
-        
 
         private Page GetMenuPage()
         {
             return CreateAndBindPage(typeof(MenuViewModel), null);
         }
-
-
-        #endregion Private Methods
     }
 }
