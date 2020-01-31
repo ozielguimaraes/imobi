@@ -167,22 +167,24 @@
                                 <TapGestureRecognizer Command="{Binding GoToDocsTabCommand}" />
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
-                        <StackLayout HorizontalOptions="CenterAndExpand">
-                            <Label
-                                FontAttributes="Bold"
-                                FontSize="Medium"
-                                Text="Ficha"
-                                TextColor="{StaticResource TitleColorDefault}" />
-                            <BoxView
-                                HeightRequest="1"
-                                HorizontalOptions="CenterAndExpand"
-                                IsVisible="{Binding IsFormTabVisible}"
-                                VerticalOptions="CenterAndExpand"
-                                Color="White" />
-                            <StackLayout.GestureRecognizers>
+                        <Frame BackgroundColor="#d3d3d3" HorizontalOptions="CenterAndExpand">
+                            <StackLayout>
+                                <Label
+                                    FontAttributes="Bold" HorizontalOptions=""
+                                    FontSize="Medium"
+                                    Text="Ficha"
+                                    TextColor="{StaticResource TitleColorDefault}" />
+                                <BoxView
+                                    HeightRequest="1"
+                                    HorizontalOptions="CenterAndExpand"
+                                    IsVisible="{Binding IsFormTabVisible}"
+                                    VerticalOptions="CenterAndExpand"
+                                    Color="White" />
+                            </StackLayout>
+                            <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding GoToFormTabCommand}" />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
+                            </Frame.GestureRecognizers>
+                        </Frame>
                         <StackLayout HorizontalOptions="EndAndExpand">
                             <Label
                                 FontAttributes="Bold"
@@ -200,8 +202,8 @@
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </StackLayout>
-                    <!--<views:ProposalDocsView Margin="0,16,0,0" IsVisible="{Binding IsDocsTabVisible}" />-->
-                    <!--<views:ProposalFormView Margin="0,16,0,0" IsVisible="{Binding IsFormTabVisible}" />-->
+                    <views:ProposalDocsView Margin="0,16,0,0" IsVisible="{Binding IsDocsTabVisible}" />
+                    <views:ProposalFormView Margin="0,16,0,0" IsVisible="{Binding IsFormTabVisible}" />
                     <views:ProposalFlowView
                         Margin="0,16,0,0"
                         BindingContext="{Binding .}"

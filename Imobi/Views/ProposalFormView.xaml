@@ -179,7 +179,7 @@
                     Keyboard="Numeric"
                     MaxLength="2"
                     Placeholder="Ex: 2"
-                    ReturnType="Send"
+                    ReturnType="Done"
                     Text="{Binding BuyerSelected.Form.NumberOfDependentsString}">
                     <Entry.Behaviors>
                         <behaviors:EntryMaskBehavior Type="NumbersOnly" />

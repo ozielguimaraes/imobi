@@ -173,28 +173,27 @@ namespace Imobi.Behaviors
                     }
 
                     entry.Text = entryText;
-                    entry.TextColor = entry.Text?.Length < LENGTH_PHONE_WITHOUT_MASK_11 ? Color.Red : Color.Black;
 
                     break;
 
                 case BehaviorTypeEnum.Date:
-                    if (entryLength == LENGTH_DATE && !Formatted)
-                    {
-                        entryText = Convert.ToUInt64(entryText).ToString(@"00/00/0000");
-                        Formatted = true;
-                    }
-                    else if (entryText?.Length > MaxLength)
-                    {
-                        entryText = entryText.Remove(entryText.Length - 1);
-                    }
-                    else if (entryText?.Length < MaxLength && Formatted)
-                    {
-                        //entryText = entryText.RemoveNonNumbers();
-                        Formatted = false;
-                    }
+                    Mask = "XX/XX/XXXX";
+                    //if (entryLength == LENGTH_DATE && !Formatted)
+                    //{
+                    //    entryText = Convert.ToUInt64(entryText).ToString(@"00/00/0000");
+                    //    Formatted = true;
+                    //}
+                    //else if (entryText?.Length > MaxLength)
+                    //{
+                    //    entryText = entryText.Remove(entryText.Length - 1);
+                    //}
+                    //else if (entryText?.Length < MaxLength && Formatted)
+                    //{
+                    //    //entryText = entryText.RemoveNonNumbers();
+                    //    Formatted = false;
+                    //}
 
                     entry.Text = entryText;
-                    entry.TextColor = entry.Text?.Length < MaxLength ? Color.Red : Color.Black;
 
                     break;
 
@@ -214,7 +213,6 @@ namespace Imobi.Behaviors
                     }
 
                     entry.Text = entryText;
-                    entry.TextColor = entry.Text?.Length < MaxLength ? Color.Red : Color.Black;
 
                     break;
 

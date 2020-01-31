@@ -1,8 +1,5 @@
-﻿using Imobi.Extensions;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -173,8 +170,6 @@ namespace Imobi.ViewModels
                 IsBusy = false;
             }
         }
-
-        
 
         private ObservableCollection<PreKeyViewModel> MockValues()
         {
