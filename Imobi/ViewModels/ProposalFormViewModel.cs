@@ -10,6 +10,7 @@ namespace Imobi.ViewModels
 {
     public class ProposalFormViewModel : BaseViewModel
     {
+        public decimal FgtsFinalValue { get; private set; }
         public DateTime BirthDate
         {
             get { return _birthDate; }
@@ -66,7 +67,7 @@ namespace Imobi.ViewModels
             set { SetProperty(ref _fathersName, value); }
         }
 
-        public ValidableObject<decimal> FgtsValue
+        public ValidableObject<string> FgtsValue
         {
             get { return _fgtsValue; }
             set { SetProperty(ref _fgtsValue, value); }
@@ -196,7 +197,7 @@ namespace Imobi.ViewModels
         private EnumValueDataAttribute _documentType;
         private List<EnumValueDataAttribute> _documentTypeList;
         private string _fathersName;
-        private ValidableObject<decimal> _fgtsValue;
+        private ValidableObject<string> _fgtsValue = new ValidableObject<string>();
         private string _fullName;
         private EnumValueDataAttribute _genre;
         private List<EnumValueDataAttribute> _genreList;
@@ -221,6 +222,17 @@ namespace Imobi.ViewModels
             DocumentTypeList = EnumExtension.ConvertToList<DocumentTypeEnum>();
             ScholarityList = EnumExtension.ConvertToList<ScholarityEnum>();
             GenreList = EnumExtension.ConvertToList<GenreEnum>();
+        }
+
+        internal void FillFgtsFinalValueProperty()
+        {
+            FgtsFinalValue = GetFgtsValue();
+        }
+
+        public decimal GetFgtsValue()
+        {
+            decimal.TryParse(FgtsValue.Value, out var value);
+            return value;
         }
     }
 }

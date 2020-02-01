@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Imobi.Constants;
 using Imobi.Enums;
 using Imobi.Extensions;
 using Imobi.Globalization;
@@ -38,13 +39,14 @@ namespace Imobi.Behaviors
 
         internal const int LENGTH_CNPJ = 14;
         internal const int LENGTH_CPF = 11;
-        internal const int LENGTH_DATE = 8;
+        internal const int LENGTH_DATE = 10;
         internal const int LENGTH_DATE_CARTAO_CREDITO = 6;
         internal const int LENGTH_DECIMAL = 2;
         internal const int LENGTH_PHONE_WITHOUT_MASK_10 = 10;
         internal const int LENGTH_PHONE_WITHOUT_MASK_11 = 11;
         internal const int LENGTH_PHONE_WITHOUT_MASK_14 = 14;
-        internal const string DECIMAL_MASK = "XXXXXXXXXXXX";
+        internal const string DECIMAL_MASK = "XXXXXXXXXXXXXX";
+        internal const string DATE_MASK = "XX/XX/XXXX";
 
         private string _mask = "";
         private IDictionary<int, char> _positions;
@@ -117,17 +119,16 @@ namespace Imobi.Behaviors
                         entryText = entryVal.ToString(@"00\.000\.000\/0000\-00");
                         Formatted = true;
                     }
-                    else if (entryText?.Length > MaxLength)
+                    else if (entryText?.Length > _mask.Length)
                     {
                         entryText = entryText.Remove(entryText.Length - 1);
                     }
-                    else if (entryText?.Length < MaxLength && Formatted)
+                    else if (entryText?.Length < _mask.Length && Formatted)
                     {
                         Formatted = false;
                     }
 
                     entry.Text = entryText;
-                    entry.TextColor = entry.Text?.Length < MaxLength ? Color.Red : Color.Black;
 
                     break;
 
@@ -150,7 +151,6 @@ namespace Imobi.Behaviors
                 case BehaviorTypeEnum.Phone:
                     if ((entryLength == LENGTH_PHONE_WITHOUT_MASK_11 || entryLength == LENGTH_PHONE_WITHOUT_MASK_14))
                     {
-                        //entryText = entryText.RemoveNonNumbers();
                         entryVal = Convert.ToUInt64(entryText);
                         entryText = string.Format("{0:(##) ####-####}", entryVal);
                         Formatted = true;
@@ -168,7 +168,6 @@ namespace Imobi.Behaviors
                     }
                     else if (entryText?.Length < LENGTH_PHONE_WITHOUT_MASK_14 && Formatted)
                     {
-                        //entryText = entry.Text.RemoveNonNumbers();
                         Formatted = false;
                     }
 
@@ -177,21 +176,19 @@ namespace Imobi.Behaviors
                     break;
 
                 case BehaviorTypeEnum.Date:
-                    Mask = "XX/XX/XXXX";
-                    //if (entryLength == LENGTH_DATE && !Formatted)
-                    //{
-                    //    entryText = Convert.ToUInt64(entryText).ToString(@"00/00/0000");
-                    //    Formatted = true;
-                    //}
-                    //else if (entryText?.Length > MaxLength)
-                    //{
-                    //    entryText = entryText.Remove(entryText.Length - 1);
-                    //}
-                    //else if (entryText?.Length < MaxLength && Formatted)
-                    //{
-                    //    //entryText = entryText.RemoveNonNumbers();
-                    //    Formatted = false;
-                    //}
+                    Mask = DATE_MASK;
+                    if (entryLength == LENGTH_DATE && !Formatted)
+                    {
+                        Formatted = true;
+                    }
+                    else if (entryText?.Length > _mask.Length)
+                    {
+                        entryText = entryText.Remove(entryText.Length - 1);
+                    }
+                    else if (entryText?.Length < _mask.Length && Formatted)
+                    {
+                        Formatted = false;
+                    }
 
                     entry.Text = entryText;
 
