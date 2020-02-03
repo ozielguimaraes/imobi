@@ -3,47 +3,55 @@
     x:Class="Imobi.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:components="clr-namespace:Imobi.Views.Components"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:dictionary="clr-namespace:Imobi.Resources.Dictionaries"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Application.Resources>
-        <!--  Global Styles  -->
-        <Color x:Key="PrimaryColor">#111526</Color>
-        <Color x:Key="PrimaryDarkColor">#2d2e30</Color>
-        <Color x:Key="Accent">#0d104fe3</Color>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <dictionary:ContantsStylesValues />
+            </ResourceDictionary.MergedDictionaries>
 
-        <Color x:Key="TitleColorDefault">White</Color>
-        <Color x:Key="TextColorDefault">#ececec</Color>
-        <Color x:Key="PageBackgroundColor">#111526</Color>
-        <Color x:Key="BackgroundColorBuyerFrame">#1e244a</Color>
+            <Color x:Key="PrimaryColor">#111526</Color>
+            <Color x:Key="SecondaryColor">LightGray</Color>
+            <Color x:Key="TertiaryColor">Gray</Color>
 
-        <!--  Button  -->
-        <Color x:Key="ButtonBackgroundColorPrimary">#004741</Color>
-        <Color x:Key="ButtonTextColorPrimary">#fff</Color>
-        <Style x:Key="ButtonPrimary" TargetType="Button">
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColorPrimary}" />
-            <Setter Property="TextColor" Value="{StaticResource ButtonTextColorPrimary}" />
-        </Style>
-        <Style BaseResourceKey="ButtonPrimary" TargetType="Button" />
-        <!--  Label  -->
-        <Color x:Key="LabelTextColorPrimary">#f7f7f7</Color>
-        <Color x:Key="LabelTextColorSecondary">#d0d0d0</Color>
-        <Style TargetType="Label">
-            <Setter Property="TextColor" Value="{StaticResource LabelTextColorPrimary}" />
-        </Style>
-        <!--  Entry  -->
-        <Color x:Key="EntryTextColorPrimary">#fafafa</Color>
-        <Color x:Key="EntryPlaceholderColorPrimary">#c9c9c9</Color>
-        <Style TargetType="Entry">
-            <Setter Property="TextColor" Value="{StaticResource EntryTextColorPrimary}" />
-            <Setter Property="PlaceholderColor" Value="{StaticResource EntryPlaceholderColorPrimary}" />
-        </Style>
-        <!--  Picker  -->
-        <Style TargetType="Picker">
-            <Setter Property="TextColor" Value="{StaticResource EntryTextColorPrimary}" />
-            <Setter Property="TitleColor" Value="{StaticResource EntryPlaceholderColorPrimary}" />
-        </Style>
+            <Color x:Key="SuccessColor">Green</Color>
+            <Color x:Key="InformativeColor">Blue</Color>
+            <Color x:Key="WarningColor">Yellow</Color>
+            <Color x:Key="ErrorColor">Red</Color>
+            #284329fa
+            <!--  Global Styles  -->
+            <Color x:Key="PrimaryDarkColor">#2d2e30</Color>
+
+            <Color x:Key="Accent">#0d104fe3</Color>
+
+            <Color x:Key="TitleColorDefault">White</Color>
+            <Color x:Key="TextColorDefault">#ececec</Color>
+            <Color x:Key="PageBackgroundColor">#111526</Color>
+            <Color x:Key="BackgroundColorBuyerFrame">#1e244a</Color>
+
+            <!--  Label  -->
+            <Color x:Key="LabelTextColorPrimary">#f7f7f7</Color>
+            <Color x:Key="LabelTextColorSecondary">#d0d0d0</Color>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource LabelTextColorPrimary}" />
+            </Style>
+
+            <!--  Entry  -->
+            <Color x:Key="EntryTextColorPrimary">#fafafa</Color>
+            <Color x:Key="EntryPlaceholderColorPrimary">#c9c9c9</Color>
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource EntryTextColorPrimary}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource EntryPlaceholderColorPrimary}" />
+            </Style>
+
+            <!--  Picker  -->
+            <Style TargetType="Picker">
+                <Setter Property="TextColor" Value="{StaticResource EntryTextColorPrimary}" />
+                <Setter Property="TitleColor" Value="{StaticResource EntryPlaceholderColorPrimary}" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

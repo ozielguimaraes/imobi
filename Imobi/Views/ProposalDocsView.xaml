@@ -41,8 +41,17 @@
                 CornerRadius="6"
                 HeightRequest="40"
                 HorizontalOptions="FillAndExpand"
-                IsVisible="{Binding CanGoToFormTab}"
-                Text="Próximo" />
+                Text="Próximo"
+                TextColor="Red">
+                <Button.Triggers>
+                    <DataTrigger
+                        Binding="{Binding CanGoToFormTab}"
+                        TargetType="Button"
+                        Value="False">
+                        <Setter Property="Style" Value="{StaticResource}" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
         </StackLayout>
     </ContentView.Content>
 </ContentView>

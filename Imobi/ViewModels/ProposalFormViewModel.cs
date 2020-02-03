@@ -10,8 +10,6 @@ namespace Imobi.ViewModels
 {
     public class ProposalFormViewModel : BaseViewModel
     {
-        #region Public Properties
-
         public DateTime BirthDate
         {
             get { return _birthDate; }
@@ -191,12 +189,6 @@ namespace Imobi.ViewModels
             set { SetProperty(ref _shortName, value); }
         }
 
-        #endregion Public Properties
-
-
-
-        #region Private Fields + Structs
-
         private DateTime _birthDate;
         private string _birthDateString;
         private string _dispatchingAgency;
@@ -223,12 +215,6 @@ namespace Imobi.ViewModels
         private string _shortName;
         private string cpf;
 
-        #endregion Private Fields + Structs
-
-
-
-        #region Public Methods
-
         public void LoadPickers()
         {
             MaritalStatusList = EnumExtension.ConvertToList<MaritalStatusEnum>();
@@ -236,7 +222,5 @@ namespace Imobi.ViewModels
             ScholarityList = EnumExtension.ConvertToList<ScholarityEnum>();
             GenreList = EnumExtension.ConvertToList<GenreEnum>();
         }
-
-        #endregion Public Methods
     }
 }
