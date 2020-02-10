@@ -21,7 +21,7 @@
             <Color x:Key="InformativeColor">Blue</Color>
             <Color x:Key="WarningColor">Yellow</Color>
             <Color x:Key="ErrorColor">Red</Color>
-            #284329fa
+
             <!--  Global Styles  -->
             <Color x:Key="PrimaryDarkColor">#2d2e30</Color>
 

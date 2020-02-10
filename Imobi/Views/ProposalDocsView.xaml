@@ -8,6 +8,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+
     <ContentView.Content>
         <StackLayout>
             <al:RepeatableWrapLayout
@@ -41,14 +42,13 @@
                 CornerRadius="6"
                 HeightRequest="40"
                 HorizontalOptions="FillAndExpand"
-                Text="Próximo"
-                TextColor="Red">
+                Text="Próximo">
                 <Button.Triggers>
                     <DataTrigger
                         Binding="{Binding CanGoToFormTab}"
                         TargetType="Button"
                         Value="False">
-                        <Setter Property="Style" Value="{StaticResource}" />
+                        <Setter Property="Style" Value="{StaticResource ButtonPrimaryDisabled}" />
                     </DataTrigger>
                 </Button.Triggers>
             </Button>
