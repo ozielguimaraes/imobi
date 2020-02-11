@@ -4,14 +4,11 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:dictionary="clr-namespace:Imobi.Resources.Dictionaries"
+    xmlns:dictionaries="clr-namespace:Imobi.Resources.Dictionaries"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <dictionary:ContantsStylesValues />
-            </ResourceDictionary.MergedDictionaries>
 
             <Color x:Key="PrimaryColor">#111526</Color>
             <Color x:Key="SecondaryColor">LightGray</Color>
@@ -52,6 +49,10 @@
                 <Setter Property="TextColor" Value="{StaticResource EntryTextColorPrimary}" />
                 <Setter Property="TitleColor" Value="{StaticResource EntryPlaceholderColorPrimary}" />
             </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <dictionaries:ContantsStylesValues />
+                <dictionaries:ButtonStyles />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

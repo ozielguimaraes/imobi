@@ -10,13 +10,6 @@
     Title="{Binding Title}"
     BackgroundColor="{StaticResource PageBackgroundColor}"
     mc:Ignorable="d">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <dictionaries:ButtonStyles />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="16,0,16,0">

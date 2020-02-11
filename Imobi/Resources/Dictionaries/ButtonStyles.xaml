@@ -34,6 +34,11 @@
         <Setter Property="TextColor" Value="{StaticResource PrimaryButtonTextColorDisabled}" />
     </Style>
 
+    <Style Class="ButtonPrimaryDisabled" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryButtonBackgroundColorDisabled}" />
+        <Setter Property="TextColor" Value="{StaticResource PrimaryButtonTextColorDisabled}" />
+    </Style>
+
     <Style
         ApplyToDerivedTypes="True"
         BaseResourceKey="ButtonPrimary"

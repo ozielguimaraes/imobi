@@ -42,6 +42,7 @@
                 CornerRadius="6"
                 HeightRequest="40"
                 HorizontalOptions="FillAndExpand"
+                StyleClass=""
                 Text="Próximo">
                 <Button.Triggers>
                     <DataTrigger
