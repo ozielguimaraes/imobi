@@ -51,7 +51,6 @@
             </Style>
             <ResourceDictionary.MergedDictionaries>
                 <dictionaries:ContantsStylesValues />
-                <dictionaries:ButtonStyles />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

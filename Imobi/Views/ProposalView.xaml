@@ -10,6 +10,13 @@
     Title="{Binding Title}"
     BackgroundColor="{StaticResource PageBackgroundColor}"
     mc:Ignorable="d">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Dictionaries/ButtonStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="16,0,16,0">
@@ -149,6 +156,7 @@
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="CenterAndExpand" />
                 </StackLayout>
+                <!--<Button Text="TESTE se aparece o button cerinho" />-->
                 <StackLayout IsVisible="{Binding ShowBuyerOptions}">
                     <StackLayout Orientation="Horizontal">
                         <StackLayout HorizontalOptions="FillAndExpand">
@@ -200,7 +208,7 @@
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </StackLayout>
-                    <views:ProposalDocsView
+                    <!--<views:ProposalDocsView
                         Margin="0,16,0,0"
                         BindingContext="{Binding .}"
                         IsVisible="{Binding IsDocsTabVisible}" />
@@ -211,7 +219,7 @@
                     <views:ProposalFlowView
                         Margin="0,16,0,0"
                         BindingContext="{Binding .}"
-                        IsVisible="{Binding IsFlowTabVisible}" />
+                        IsVisible="{Binding IsFlowTabVisible}" />-->
                 </StackLayout>
             </StackLayout>
         </ScrollView>
