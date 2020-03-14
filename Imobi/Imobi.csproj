@@ -12,8 +12,8 @@
   <ItemGroup>
     <PackageReference Include="AiForms.Layouts" Version="1.1.0" />
     <PackageReference Include="Autofac" Version="4.9.4" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.1.1" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.0.0" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xam.Plugins.Forms.ProgressRing" Version="0.1.2" />
@@ -33,7 +33,7 @@
     <Compile Update="Views\NewProposalView.xaml.cs">
       <DependentUpon>NewProposalView.xaml</DependentUpon>
     </Compile>
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.947036" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />  
   </ItemGroup>
 
   <ItemGroup>
