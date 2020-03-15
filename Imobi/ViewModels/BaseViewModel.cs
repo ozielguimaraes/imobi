@@ -15,8 +15,6 @@ namespace Imobi.ViewModels
 {
     public class BaseViewModel : ExtendedBindableObject, INotifyPropertyChanged
     {
-        #region Public Properties
-
         public string AppVersion
         {
             get { return VersionTracking.CurrentVersion; }
@@ -38,28 +36,12 @@ namespace Imobi.ViewModels
             set { SetProperty(ref title, value); }
         }
 
-        #endregion Public Properties
-
-
-
-        #region Protected Properties
-
         protected IExceptionService ExceptionService { get; private set; }
         protected IMessageService MessageService { get; private set; }
-
-        #endregion Protected Properties
-
-
-
-        #region Private Fields + Structs
 
         private bool isBusy = false;
 
         private string title = string.Empty;
-
-        #endregion Private Fields + Structs
-
-        #region Public Constructors + Destructors
 
         public BaseViewModel()
         {
@@ -68,22 +50,10 @@ namespace Imobi.ViewModels
             NavigationService = Bootstraper.Resolve<INavigationService>();
         }
 
-        #endregion Public Constructors + Destructors
-
-
-
-        #region Public Methods
-
         public virtual Task InitializeAsync(object data)
         {
             return Task.FromResult(false);
         }
-
-        #endregion Public Methods
-
-
-
-        #region Protected Methods
 
         protected bool SetProperty<T>(ref T backingStore, T value,
                     [CallerMemberName]string propertyName = "",
@@ -98,20 +68,14 @@ namespace Imobi.ViewModels
             return true;
         }
 
-        #endregion Protected Methods
+        //public event PropertyChangedEventHandler PropertyChanged;
 
-        #region INotifyPropertyChanged
+        //protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        //{
+        //    var changed = PropertyChanged;
+        //    if (changed is null) return;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            var changed = PropertyChanged;
-            if (changed is null) return;
-
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion INotifyPropertyChanged
+        //    changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
     }
 }

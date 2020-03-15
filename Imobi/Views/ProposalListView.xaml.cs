@@ -13,7 +13,7 @@ namespace Imobi.Views
             InitializeComponent();
         }
 
-        public async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        public void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             if (!(args.SelectedItem is ProposalDto item)) return;
             // Manually deselect item.

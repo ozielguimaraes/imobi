@@ -219,6 +219,7 @@ namespace Imobi.ViewModels
 
         private async Task BuyerDocumentSelectedAsync(BuyerDocumentViewModel buyerDocument)
         {
+            await Task.Delay(150);
             //await MessageService.ShowAsync("TESTE OK " + buyerDocument.BuyerDocumentType);
         }
 

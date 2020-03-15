@@ -7,19 +7,11 @@ namespace Imobi.Validations
 {
     public abstract class ExtendedBindableObject : BindableObject
     {
-        #region Public Methods
-
         public void RaisePropertyChanged<T>(Expression<Func<T>> property)
         {
             var name = GetMemberInfo(property).Name;
             OnPropertyChanged(name);
         }
-
-        #endregion Public Methods
-
-
-
-        #region Private Methods
 
         private MemberInfo GetMemberInfo(Expression expression)
         {
@@ -36,7 +28,5 @@ namespace Imobi.Validations
             }
             return operand.Member;
         }
-
-        #endregion Private Methods
     }
 }
