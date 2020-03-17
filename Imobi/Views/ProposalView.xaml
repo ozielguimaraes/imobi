@@ -87,10 +87,11 @@
                         VerticalOptions="CenterAndExpand"
                         WidthRequest="70">
                         <StackLayout>
-                            <Image
-                                HeightRequest="16"
-                                Source="ic_plus_circle_white"
-                                WidthRequest="16" />
+                            <Image HeightRequest="16" WidthRequest="16">
+                                <Image.Source>
+                                    <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf055;" />
+                                </Image.Source>
+                            </Image>
                             <Label
                                 HorizontalOptions="CenterAndExpand"
                                 Text="Add"
