@@ -28,7 +28,7 @@
                 Orientation="Horizontal">
                 <Image
                     HeightRequest="16"
-                    Source="ic_plus_circle_white"
+                    Source="ic_check_green"
                     WidthRequest="16" />
                 <Label Text="ADD NOVO DOCUMENTO" TextColor="{StaticResource TextColorDefault}" />
                 <StackLayout.GestureRecognizers>

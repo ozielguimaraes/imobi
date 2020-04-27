@@ -1,8 +1,10 @@
-﻿using Imobi.Services.Interfaces;
+﻿using Imobi.Extensions;
+using Imobi.Services.Interfaces;
 using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
 
 namespace Imobi.Services
 {
@@ -19,21 +21,21 @@ namespace Imobi.Services
 #endif
         }
 
-        public void TrackError(Exception e, string messageError)
+        public void TrackError(Exception ex, string messageError)
         {
             if (!string.IsNullOrWhiteSpace(messageError)) Debug.WriteLine(messageError);
-            WriteError(e);
+            WriteError(ex);
 
 #if (!DEBUG)
-            Crashes.TrackError(e, new Dictionary<string, string> { { "error", messageError } });
+            Crashes.TrackError(ex, new Dictionary<string, string> { { "error", messageError } });
 #endif
         }
 
-        public void TrackError(Exception e, Dictionary<string, string> properties)
+        public void TrackError(Exception ex, Dictionary<string, string> properties)
         {
-            WriteError(e);
+            WriteError(ex);
 #if (!DEBUG)
-            Crashes.TrackError(e, properties);
+            Crashes.TrackError(ex, properties);
 #endif
         }
 
@@ -53,48 +55,75 @@ namespace Imobi.Services
 
         private void WriteError(string messageError)
         {
-            Debug.WriteLine("------------- START --------------");
-            Debug.WriteLine(messageError);
-            Debug.WriteLine("-------------- END -----------------");
+            WriteStartLog();
+            WriteIfNotNull(messageError);
+            WriteEndLog();
         }
 
         private void WriteError(Exception ex, string className = null, string methodName = null)
         {
             if (ex is null) return;
-            Debug.WriteLine("------------- START --------------");
-            if (!(className is null)) Debug.WriteLine($"Class: {className}");
-            if (!(methodName is null)) Debug.WriteLine($"Method: {methodName}");
 
-            var error = ex.Message;
+            WriteStartLog();
 
-            var stackTrace = new StackTrace(ex, true);
-            var stackFrame = stackTrace.GetFrame(0);
-
+            var stackFrame = ex.GetWhereTheExceptionWasGenerated();
             if (stackFrame is null)
             {
-                if (string.IsNullOrWhiteSpace(ex.Message)) Debug.WriteLine(ex.Message);
+                if (!string.IsNullOrWhiteSpace(className)) Write($"Class: {className}");
+                if (!string.IsNullOrWhiteSpace(methodName)) Write($"Method: {methodName}");
+                if (!string.IsNullOrWhiteSpace(ex.Message)) WriteIfNotNull(ex.Message);
 
-                Debug.WriteLine("-------------- END -----------------");
+                WriteEndLog();
                 return;
             }
+
             var errorFileName = stackFrame.GetFileName();
-            if (!string.IsNullOrWhiteSpace(errorFileName)) Debug.WriteLine($"File: {errorFileName}");
+            if (!string.IsNullOrWhiteSpace(errorFileName)) Write($"FileName: {errorFileName}");
+
+            if (!string.IsNullOrWhiteSpace(className)) Write($"Class: {className}");
+            else
+            {
+                var classFullName = stackFrame.GetMethod().DeclaringType.FullName;
+                if (!string.IsNullOrWhiteSpace(classFullName)) Write($"Class: {classFullName}");
+            }
+
+            if (!string.IsNullOrWhiteSpace(methodName)) Write(methodName);
+            else
+            {
+                var method = stackFrame.GetMethod()?.Name;
+                if (string.IsNullOrWhiteSpace(method)) Write($"Method: {method}");
+            }
 
             var errorLineNumber = stackFrame.GetFileLineNumber();
-            if (errorLineNumber != 0) Debug.WriteLine($"Line: {errorLineNumber}");
+            if (errorLineNumber != 0) Write($"Line: {errorLineNumber}");
 
-            if (!string.IsNullOrWhiteSpace(error)) Debug.WriteLine(error);
-            var detailError = ex.InnerException?.Message;
-            if (!string.IsNullOrWhiteSpace(detailError))
-                if (!detailError.Equals(error))
-                    Debug.WriteLine(detailError);
+            var columnNumber = stackFrame.GetFileColumnNumber();
+            Write($"Column: {columnNumber}");
 
-            var detailErrorFurther = ex.InnerException?.InnerException?.Message;
-            if (!string.IsNullOrWhiteSpace(detailErrorFurther))
-                if (!detailErrorFurther.Equals(error) && !detailErrorFurther.Equals(detailError))
-                    Debug.WriteLine(detailErrorFurther);
+            WriteIfNotNull(ex.FullException());
+            WriteEndLog();
+        }
 
-            Debug.WriteLine("-------------- END -----------------");
+        private void WriteStartLog()
+        {
+            WriteIfNotNull("------------- START --------------");
+        }
+
+        private void WriteEndLog()
+        {
+            WriteIfNotNull("-------------- END -----------------");
+        }
+
+        private void WriteIfNotNull(string message)
+        {
+            if (message is null) return;
+
+            Write(message);
+        }
+
+        private void Write(string message)
+        {
+            Debug.WriteLine(message);
         }
     }
 }

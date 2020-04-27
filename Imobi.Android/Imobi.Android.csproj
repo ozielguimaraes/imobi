@@ -106,8 +106,6 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_plus_circle_white.png" />
-    <AndroidResource Include="Resources\drawable-ldpi\ic_plus_circle_white.png" />
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
     <AndroidResource Include="Resources\layout\Toolbar.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />
@@ -129,18 +127,6 @@
       <Project>{12917B94-853B-4015-AA93-9D96DDC50DE3}</Project>
       <Name>Imobi</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-mdpi\ic_plus_circle_white.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_plus_circle_white.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_plus_circle_white.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_plus_circle_white.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Linker.xml" />
